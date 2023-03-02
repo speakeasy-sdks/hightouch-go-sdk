@@ -1,0 +1,46 @@
+package operations
+
+import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"time"
+)
+
+type ListSyncOrderByEnum string
+
+const (
+	ListSyncOrderByEnumID        ListSyncOrderByEnum = "id"
+	ListSyncOrderByEnumName      ListSyncOrderByEnum = "name"
+	ListSyncOrderByEnumSlug      ListSyncOrderByEnum = "slug"
+	ListSyncOrderByEnumCreatedAt ListSyncOrderByEnum = "createdAt"
+	ListSyncOrderByEnumUpdatedAt ListSyncOrderByEnum = "updatedAt"
+)
+
+type ListSyncQueryParams struct {
+	After   *time.Time           `queryParam:"style=form,explode=true,name=after"`
+	Before  *time.Time           `queryParam:"style=form,explode=true,name=before"`
+	Limit   *float64             `queryParam:"style=form,explode=true,name=limit"`
+	ModelID *float64             `queryParam:"style=form,explode=true,name=modelId"`
+	Offset  *float64             `queryParam:"style=form,explode=true,name=offset"`
+	OrderBy *ListSyncOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
+	Slug    *string              `queryParam:"style=form,explode=true,name=slug"`
+}
+
+type ListSyncSecurity struct {
+	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+}
+
+type ListSyncRequest struct {
+	QueryParams ListSyncQueryParams
+	Security    ListSyncSecurity
+}
+
+type ListSync200ApplicationJSON struct {
+	Data []shared.Sync `json:"data"`
+}
+
+type ListSyncResponse struct {
+	ContentType                      string
+	ListSync200ApplicationJSONObject *ListSync200ApplicationJSON
+	StatusCode                       int
+	ValidateErrorJSON                *shared.ValidateErrorJSON
+}
