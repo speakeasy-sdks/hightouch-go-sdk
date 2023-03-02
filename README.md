@@ -1,4 +1,15 @@
-# github.com/speakeasy-sdks/hightouch-go-sdk
+<div align="center">
+    <picture>
+        <source srcset="https://user-images.githubusercontent.com/6267663/221538824-87af0e1b-0508-4af5-b3b9-e4b192d8337f.svg" media="(prefers-color-scheme: dark)">
+        <img src="https://user-images.githubusercontent.com/6267663/221538828-de1343f2-b249-4ba2-85e3-a2e43cc5f265.svg">
+    </picture>
+    <h1>Hightouch Go SDK</h1>
+   <p>Hightouch exposes a REST API that lets users interact with resources like syncs, models, sources and destinations.</p>
+   <a href="https://hightouch.com/docs/api-reference"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000000&style=for-the-badge" /></a>
+   <a href="https://github.com/speakeasy-sdks/hightouch-go-sdk/actions"><img src="https://img.shields.io/github/actions/workflow/status/speakeasy-sdks/hightouch-go-sdk/speakeasy_sdk_generation.yml?style=for-the-badge" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
+  <a href="https://github.com/speakeasy-sdks/hightouch-go-sdk/releases"><img src="https://img.shields.io/github/v/release/speakeasy-sdks/hightouch-go-sdk?sort=semver&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
@@ -7,6 +18,14 @@
 go get github.com/speakeasy-sdks/hightouch-go-sdk
 ```
 <!-- End SDK Installation -->
+
+## Authentication
+
+- Create an [API key](https://app.hightouch.com/settings/api-keys)
+- From the API keys tab on the Settings page, select Add API key.
+- Enter a descriptive Name for your key.
+- Copy your API key and store it in a safe location. The key will only be displayed once.
+- Click Create API key.
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
