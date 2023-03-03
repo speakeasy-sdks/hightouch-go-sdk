@@ -52,7 +52,7 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "0.1.0",
+		_sdkVersion: "0.1.1",
 		_genVersion: "1.7.1",
 	}
 	for _, opt := range opts {
