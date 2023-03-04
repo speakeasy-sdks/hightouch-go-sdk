@@ -2,8 +2,13 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"net/http"
 	"time"
 )
+
+type ListSyncRunsSecurity struct {
+	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+}
 
 type ListSyncRunsPathParams struct {
 	SyncID float64 `pathParam:"style=simple,explode=false,name=syncId"`
@@ -28,10 +33,6 @@ type ListSyncRunsQueryParams struct {
 	Within  *float64                 `queryParam:"style=form,explode=true,name=within"`
 }
 
-type ListSyncRunsSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
 type ListSyncRunsRequest struct {
 	PathParams  ListSyncRunsPathParams
 	QueryParams ListSyncRunsQueryParams
@@ -46,5 +47,6 @@ type ListSyncRunsResponse struct {
 	ContentType                          string
 	ListSyncRuns200ApplicationJSONObject *ListSyncRuns200ApplicationJSON
 	StatusCode                           int
+	RawResponse                          *http.Response
 	ValidateErrorJSON                    *shared.ValidateErrorJSON
 }

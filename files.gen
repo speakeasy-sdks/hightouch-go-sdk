@@ -11,7 +11,6 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
-strings.go
 pkg/models/operations/createdestination.go
 pkg/models/operations/createmodel.go
 pkg/models/operations/createsource.go
@@ -35,6 +34,7 @@ pkg/models/shared/validateerrorjson.go
 pkg/models/shared/internalservererrorenum.go
 pkg/models/shared/destination.go
 pkg/models/shared/destinationcreate.go
+pkg/models/shared/security.go
 pkg/models/shared/model.go
 pkg/models/shared/modelcreate.go
 pkg/models/shared/source.go
@@ -58,5 +58,4 @@ pkg/models/shared/destinationupdate.go
 pkg/models/shared/modelupdate.go
 pkg/models/shared/sourceupdate.go
 pkg/models/shared/syncupdate.go
-pkg/models/shared/security.go
 USAGE.md

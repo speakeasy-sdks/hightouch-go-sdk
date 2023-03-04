@@ -19,6 +19,10 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: Hightouch Public Rest API to access syncs, models, sources and destinations
 type SDK struct {
 
 	// Non-idiomatic field names below are to namespace fields from the fields names above to avoid name conflicts
@@ -33,7 +37,13 @@ type SDK struct {
 
 type SDKOption func(*SDK)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *SDK) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *SDK) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -52,8 +62,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "0.1.1",
-		_genVersion: "1.7.1",
+		_sdkVersion: "0.2.0",
+		_genVersion: "1.8.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -113,6 +123,7 @@ func (s *SDK) CreateDestination(ctx context.Context, request operations.CreateDe
 	res := &operations.CreateDestinationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -198,6 +209,7 @@ func (s *SDK) CreateModel(ctx context.Context, request operations.CreateModelReq
 	res := &operations.CreateModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -283,6 +295,7 @@ func (s *SDK) CreateSource(ctx context.Context, request operations.CreateSourceR
 	res := &operations.CreateSourceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -368,6 +381,7 @@ func (s *SDK) CreateSync(ctx context.Context, request operations.CreateSyncReque
 	res := &operations.CreateSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -443,6 +457,7 @@ func (s *SDK) GetDestination(ctx context.Context, request operations.GetDestinat
 	res := &operations.GetDestinationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -489,6 +504,7 @@ func (s *SDK) GetModel(ctx context.Context, request operations.GetModelRequest) 
 	res := &operations.GetModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -535,6 +551,7 @@ func (s *SDK) GetSource(ctx context.Context, request operations.GetSourceRequest
 	res := &operations.GetSourceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -591,6 +608,7 @@ func (s *SDK) GetSync(ctx context.Context, request operations.GetSyncRequest) (*
 	res := &operations.GetSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -641,6 +659,7 @@ func (s *SDK) ListDestination(ctx context.Context, request operations.ListDestin
 	res := &operations.ListDestinationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -701,6 +720,7 @@ func (s *SDK) ListModel(ctx context.Context, request operations.ListModelRequest
 	res := &operations.ListModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -761,6 +781,7 @@ func (s *SDK) ListSource(ctx context.Context, request operations.ListSourceReque
 	res := &operations.ListSourceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -811,6 +832,7 @@ func (s *SDK) ListSync(ctx context.Context, request operations.ListSyncRequest) 
 	res := &operations.ListSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -871,6 +893,7 @@ func (s *SDK) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsR
 	res := &operations.ListSyncRunsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -937,6 +960,7 @@ func (s *SDK) TriggerRun(ctx context.Context, request operations.TriggerRunReque
 	res := &operations.TriggerRunResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1006,6 +1030,7 @@ func (s *SDK) TriggerRunCustom(ctx context.Context, request operations.TriggerRu
 	res := &operations.TriggerRunCustomResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1074,6 +1099,7 @@ func (s *SDK) UpdateDestination(ctx context.Context, request operations.UpdateDe
 	res := &operations.UpdateDestinationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1152,6 +1178,7 @@ func (s *SDK) UpdateModel(ctx context.Context, request operations.UpdateModelReq
 	res := &operations.UpdateModelResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1230,6 +1257,7 @@ func (s *SDK) UpdateSource(ctx context.Context, request operations.UpdateSourceR
 	res := &operations.UpdateSourceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1308,6 +1336,7 @@ func (s *SDK) UpdateSync(ctx context.Context, request operations.UpdateSyncReque
 	res := &operations.UpdateSyncResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

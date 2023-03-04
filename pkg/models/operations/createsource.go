@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"net/http"
 )
 
 type CreateSourceSecurity struct {
@@ -18,5 +19,6 @@ type CreateSourceResponse struct {
 	CreateSource200ApplicationJSONAnyOf interface{}
 	InternalServerError                 *shared.InternalServerErrorEnum
 	StatusCode                          int
+	RawResponse                         *http.Response
 	ValidateErrorJSON                   *shared.ValidateErrorJSON
 }

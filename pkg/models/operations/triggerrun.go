@@ -2,14 +2,15 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"net/http"
 )
-
-type TriggerRunPathParams struct {
-	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
-}
 
 type TriggerRunSecurity struct {
 	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+}
+
+type TriggerRunPathParams struct {
+	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
 }
 
 type TriggerRunRequest struct {
@@ -21,6 +22,7 @@ type TriggerRunRequest struct {
 type TriggerRunResponse struct {
 	ContentType       string
 	StatusCode        int
+	RawResponse       *http.Response
 	TriggerRunOutput  *shared.TriggerRunOutput
 	ValidateErrorJSON *shared.ValidateErrorJSON
 }

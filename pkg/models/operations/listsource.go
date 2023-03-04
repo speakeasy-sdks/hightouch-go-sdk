@@ -2,7 +2,12 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"net/http"
 )
+
+type ListSourceSecurity struct {
+	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+}
 
 type ListSourceOrderByEnum string
 
@@ -22,10 +27,6 @@ type ListSourceQueryParams struct {
 	Slug    *string                `queryParam:"style=form,explode=true,name=slug"`
 }
 
-type ListSourceSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
 type ListSourceRequest struct {
 	QueryParams ListSourceQueryParams
 	Security    ListSourceSecurity
@@ -39,4 +40,5 @@ type ListSourceResponse struct {
 	ContentType                        string
 	ListSource200ApplicationJSONObject *ListSource200ApplicationJSON
 	StatusCode                         int
+	RawResponse                        *http.Response
 }
