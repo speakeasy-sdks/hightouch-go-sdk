@@ -2,11 +2,11 @@ configVersion: 1.0.0
 management:
   docChecksum: a53d236a840ccb19591ccbf41c41acd1
   docVersion: 1.0.0
-  speakeasyVersion: 1.8.2
+  speakeasyVersion: 1.8.4
 generation:
   telemetryEnabled: false
   sdkClassName: SDK
   sdkFlattening: false
 go:
-  version: 0.2.0
+  version: 0.2.1
   packageName: github.com/speakeasy-sdks/hightouch-go-sdk
