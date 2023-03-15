@@ -12,7 +12,7 @@ import (
 
 func main() {
     s := sdk.New()
-    
+
     req := operations.CreateDestinationRequest{
         Security: operations.CreateDestinationSecurity{
             BearerAuth: shared.SchemeBearerAuth{

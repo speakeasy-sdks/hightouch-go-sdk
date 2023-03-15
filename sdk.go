@@ -62,8 +62,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "0.3.1",
-		_genVersion: "1.9.2",
+		_sdkVersion: "0.4.0",
+		_genVersion: "1.12.0",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -74,9 +74,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._defaultClient = &http.Client{Timeout: 60 * time.Second}
 	}
 	if sdk._securityClient == nil {
-
 		sdk._securityClient = sdk._defaultClient
-
 	}
 
 	if sdk._serverURL == "" {
@@ -92,7 +90,7 @@ func (s *SDK) CreateDestination(ctx context.Context, request operations.CreateDe
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/destinations"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -138,15 +136,7 @@ func (s *SDK) CreateDestination(ctx context.Context, request operations.CreateDe
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ValidateErrorJSON = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
@@ -178,7 +168,7 @@ func (s *SDK) CreateModel(ctx context.Context, request operations.CreateModelReq
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/models"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -224,15 +214,7 @@ func (s *SDK) CreateModel(ctx context.Context, request operations.CreateModelReq
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ValidateErrorJSON = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
@@ -264,7 +246,7 @@ func (s *SDK) CreateSource(ctx context.Context, request operations.CreateSourceR
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/sources"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -310,15 +292,7 @@ func (s *SDK) CreateSource(ctx context.Context, request operations.CreateSourceR
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ValidateErrorJSON = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
@@ -350,7 +324,7 @@ func (s *SDK) CreateSync(ctx context.Context, request operations.CreateSyncReque
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -396,15 +370,7 @@ func (s *SDK) CreateSync(ctx context.Context, request operations.CreateSyncReque
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.ValidateErrorJSON = out
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
@@ -434,7 +400,7 @@ func (s *SDK) CreateSync(ctx context.Context, request operations.CreateSyncReque
 // Retrieve a destination based on its Hightouch ID
 func (s *SDK) GetDestination(ctx context.Context, request operations.GetDestinationRequest) (*operations.GetDestinationResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -471,6 +437,7 @@ func (s *SDK) GetDestination(ctx context.Context, request operations.GetDestinat
 			res.Destination = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	}
 
@@ -481,7 +448,7 @@ func (s *SDK) GetDestination(ctx context.Context, request operations.GetDestinat
 // Retrieve models from model ID
 func (s *SDK) GetModel(ctx context.Context, request operations.GetModelRequest) (*operations.GetModelResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -518,6 +485,7 @@ func (s *SDK) GetModel(ctx context.Context, request operations.GetModelRequest) 
 			res.Model = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	}
 
@@ -528,7 +496,7 @@ func (s *SDK) GetModel(ctx context.Context, request operations.GetModelRequest) 
 // Retrieve source from source ID
 func (s *SDK) GetSource(ctx context.Context, request operations.GetSourceRequest) (*operations.GetSourceResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -565,6 +533,7 @@ func (s *SDK) GetSource(ctx context.Context, request operations.GetSourceRequest
 			res.Source = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -585,7 +554,7 @@ func (s *SDK) GetSource(ctx context.Context, request operations.GetSourceRequest
 // Retrieve sync from sync ID
 func (s *SDK) GetSync(ctx context.Context, request operations.GetSyncRequest) (*operations.GetSyncResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -622,6 +591,7 @@ func (s *SDK) GetSync(ctx context.Context, request operations.GetSyncRequest) (*
 			res.Sync = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	}
 
@@ -639,7 +609,7 @@ func (s *SDK) ListDestination(ctx context.Context, request operations.ListDestin
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -673,6 +643,7 @@ func (s *SDK) ListDestination(ctx context.Context, request operations.ListDestin
 			res.ListDestination200ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -700,7 +671,7 @@ func (s *SDK) ListModel(ctx context.Context, request operations.ListModelRequest
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -734,6 +705,7 @@ func (s *SDK) ListModel(ctx context.Context, request operations.ListModelRequest
 			res.ListModel200ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -761,7 +733,7 @@ func (s *SDK) ListSource(ctx context.Context, request operations.ListSourceReque
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -795,6 +767,7 @@ func (s *SDK) ListSource(ctx context.Context, request operations.ListSourceReque
 			res.ListSource200ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	}
 
@@ -812,7 +785,7 @@ func (s *SDK) ListSync(ctx context.Context, request operations.ListSyncRequest) 
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -846,6 +819,7 @@ func (s *SDK) ListSync(ctx context.Context, request operations.ListSyncRequest) 
 			res.ListSync200ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -866,14 +840,14 @@ func (s *SDK) ListSync(ctx context.Context, request operations.ListSyncRequest) 
 // List all sync runs under a sync
 func (s *SDK) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsRequest) (*operations.ListSyncRunsResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/runs", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/runs", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -907,6 +881,7 @@ func (s *SDK) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsR
 			res.ListSyncRuns200ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -930,9 +905,9 @@ func (s *SDK) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsR
 // executed immediately after the current run completes.
 func (s *SDK) TriggerRun(ctx context.Context, request operations.TriggerRunRequest) (*operations.TriggerRunResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/trigger", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/trigger", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -974,6 +949,7 @@ func (s *SDK) TriggerRun(ctx context.Context, request operations.TriggerRunReque
 			res.TriggerRunOutput = out
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -999,7 +975,7 @@ func (s *SDK) TriggerRunCustom(ctx context.Context, request operations.TriggerRu
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs/trigger"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1044,6 +1020,7 @@ func (s *SDK) TriggerRunCustom(ctx context.Context, request operations.TriggerRu
 			res.TriggerRunCustom200ApplicationJSONAnyOf = out
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -1066,9 +1043,9 @@ func (s *SDK) TriggerRunCustom(ctx context.Context, request operations.TriggerRu
 // Patch a destination based on its Hightouch ID
 func (s *SDK) UpdateDestination(ctx context.Context, request operations.UpdateDestinationRequest) (*operations.UpdateDestinationResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1113,6 +1090,7 @@ func (s *SDK) UpdateDestination(ctx context.Context, request operations.UpdateDe
 			res.UpdateDestination200ApplicationJSONAnyOf = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -1145,9 +1123,9 @@ func (s *SDK) UpdateDestination(ctx context.Context, request operations.UpdateDe
 // Patch a model based on its Hightouch ID
 func (s *SDK) UpdateModel(ctx context.Context, request operations.UpdateModelRequest) (*operations.UpdateModelResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1192,6 +1170,7 @@ func (s *SDK) UpdateModel(ctx context.Context, request operations.UpdateModelReq
 			res.UpdateModel200ApplicationJSONAnyOf = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -1224,9 +1203,9 @@ func (s *SDK) UpdateModel(ctx context.Context, request operations.UpdateModelReq
 // Patch a source based on its Hightouch ID
 func (s *SDK) UpdateSource(ctx context.Context, request operations.UpdateSourceRequest) (*operations.UpdateSourceResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1271,6 +1250,7 @@ func (s *SDK) UpdateSource(ctx context.Context, request operations.UpdateSourceR
 			res.UpdateSource200ApplicationJSONAnyOf = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	case httpRes.StatusCode == 422:
 		switch {
@@ -1303,9 +1283,9 @@ func (s *SDK) UpdateSource(ctx context.Context, request operations.UpdateSourceR
 // Patch a sync based on its Hightouch ID
 func (s *SDK) UpdateSync(ctx context.Context, request operations.UpdateSyncRequest) (*operations.UpdateSyncResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1350,6 +1330,7 @@ func (s *SDK) UpdateSync(ctx context.Context, request operations.UpdateSyncReque
 			res.UpdateSync200ApplicationJSONAnyOf = out
 		}
 	case httpRes.StatusCode == 401:
+		fallthrough
 	case httpRes.StatusCode == 404:
 	case httpRes.StatusCode == 422:
 		switch {
