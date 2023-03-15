@@ -7,7 +7,7 @@ import (
 )
 
 type ListSyncSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type ListSyncOrderByEnum string
@@ -20,7 +20,7 @@ const (
 	ListSyncOrderByEnumUpdatedAt ListSyncOrderByEnum = "updatedAt"
 )
 
-type ListSyncQueryParams struct {
+type ListSyncRequest struct {
 	After   *time.Time           `queryParam:"style=form,explode=true,name=after"`
 	Before  *time.Time           `queryParam:"style=form,explode=true,name=before"`
 	Limit   *float64             `queryParam:"style=form,explode=true,name=limit"`
@@ -28,11 +28,6 @@ type ListSyncQueryParams struct {
 	Offset  *float64             `queryParam:"style=form,explode=true,name=offset"`
 	OrderBy *ListSyncOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
 	Slug    *string              `queryParam:"style=form,explode=true,name=slug"`
-}
-
-type ListSyncRequest struct {
-	QueryParams ListSyncQueryParams
-	Security    ListSyncSecurity
 }
 
 type ListSync200ApplicationJSON struct {

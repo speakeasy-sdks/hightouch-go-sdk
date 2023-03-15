@@ -1,4 +1,4 @@
-package sdk
+package hightouch
 
 import (
 	"context"
@@ -23,7 +23,7 @@ type HTTPClient interface {
 func String(s string) *string { return &s }
 
 // SDK Documentation: Hightouch Public Rest API to access syncs, models, sources and destinations
-type SDK struct {
+type Hightouch struct {
 
 	// Non-idiomatic field names below are to namespace fields from the fields names above to avoid name conflicts
 	_defaultClient  HTTPClient
@@ -35,16 +35,16 @@ type SDK struct {
 	_genVersion string
 }
 
-type SDKOption func(*SDK)
+type SDKOption func(*Hightouch)
 
 func WithServerURL(serverURL string) SDKOption {
-	return func(sdk *SDK) {
+	return func(sdk *Hightouch) {
 		sdk._serverURL = serverURL
 	}
 }
 
 func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
-	return func(sdk *SDK) {
+	return func(sdk *Hightouch) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
 		}
@@ -54,15 +54,15 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOptio
 }
 
 func WithClient(client HTTPClient) SDKOption {
-	return func(sdk *SDK) {
+	return func(sdk *Hightouch) {
 		sdk._defaultClient = client
 	}
 }
 
-func New(opts ...SDKOption) *SDK {
-	sdk := &SDK{
+func New(opts ...SDKOption) *Hightouch {
+	sdk := &Hightouch{
 		_language:   "go",
-		_sdkVersion: "0.4.0",
+		_sdkVersion: "0.4.1",
 		_genVersion: "1.12.0",
 	}
 	for _, opt := range opts {
@@ -86,7 +86,7 @@ func New(opts ...SDKOption) *SDK {
 
 // CreateDestination - Create Destination
 // Create a new destination
-func (s *SDK) CreateDestination(ctx context.Context, request operations.CreateDestinationRequest) (*operations.CreateDestinationResponse, error) {
+func (s *Hightouch) CreateDestination(ctx context.Context, request shared.DestinationCreate, security operations.CreateDestinationSecurity) (*operations.CreateDestinationResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/destinations"
 
@@ -105,7 +105,7 @@ func (s *SDK) CreateDestination(ctx context.Context, request operations.CreateDe
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -164,7 +164,7 @@ func (s *SDK) CreateDestination(ctx context.Context, request operations.CreateDe
 
 // CreateModel - Create Model
 // Create a new model
-func (s *SDK) CreateModel(ctx context.Context, request operations.CreateModelRequest) (*operations.CreateModelResponse, error) {
+func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate, security operations.CreateModelSecurity) (*operations.CreateModelResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/models"
 
@@ -183,7 +183,7 @@ func (s *SDK) CreateModel(ctx context.Context, request operations.CreateModelReq
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -242,7 +242,7 @@ func (s *SDK) CreateModel(ctx context.Context, request operations.CreateModelReq
 
 // CreateSource - Create Source
 // Create a new source
-func (s *SDK) CreateSource(ctx context.Context, request operations.CreateSourceRequest) (*operations.CreateSourceResponse, error) {
+func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreate, security operations.CreateSourceSecurity) (*operations.CreateSourceResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/sources"
 
@@ -261,7 +261,7 @@ func (s *SDK) CreateSource(ctx context.Context, request operations.CreateSourceR
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -320,7 +320,7 @@ func (s *SDK) CreateSource(ctx context.Context, request operations.CreateSourceR
 
 // CreateSync - Create Sync
 // Create a new sync
-func (s *SDK) CreateSync(ctx context.Context, request operations.CreateSyncRequest) (*operations.CreateSyncResponse, error) {
+func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, security operations.CreateSyncSecurity) (*operations.CreateSyncResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs"
 
@@ -339,7 +339,7 @@ func (s *SDK) CreateSync(ctx context.Context, request operations.CreateSyncReque
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -398,16 +398,16 @@ func (s *SDK) CreateSync(ctx context.Context, request operations.CreateSyncReque
 
 // GetDestination - Get Destination
 // Retrieve a destination based on its Hightouch ID
-func (s *SDK) GetDestination(ctx context.Context, request operations.GetDestinationRequest) (*operations.GetDestinationResponse, error) {
+func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDestinationRequest, security operations.GetDestinationSecurity) (*operations.GetDestinationResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -446,16 +446,16 @@ func (s *SDK) GetDestination(ctx context.Context, request operations.GetDestinat
 
 // GetModel - Get Model
 // Retrieve models from model ID
-func (s *SDK) GetModel(ctx context.Context, request operations.GetModelRequest) (*operations.GetModelResponse, error) {
+func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelRequest, security operations.GetModelSecurity) (*operations.GetModelResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -494,16 +494,16 @@ func (s *SDK) GetModel(ctx context.Context, request operations.GetModelRequest) 
 
 // GetSource - Get Source
 // Retrieve source from source ID
-func (s *SDK) GetSource(ctx context.Context, request operations.GetSourceRequest) (*operations.GetSourceResponse, error) {
+func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceRequest, security operations.GetSourceSecurity) (*operations.GetSourceResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -552,16 +552,16 @@ func (s *SDK) GetSource(ctx context.Context, request operations.GetSourceRequest
 
 // GetSync - Get Sync
 // Retrieve sync from sync ID
-func (s *SDK) GetSync(ctx context.Context, request operations.GetSyncRequest) (*operations.GetSyncResponse, error) {
+func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncRequest, security operations.GetSyncSecurity) (*operations.GetSyncResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -600,7 +600,7 @@ func (s *SDK) GetSync(ctx context.Context, request operations.GetSyncRequest) (*
 
 // ListDestination - List Destinations
 // List the destinations in the user's workspace
-func (s *SDK) ListDestination(ctx context.Context, request operations.ListDestinationRequest) (*operations.ListDestinationResponse, error) {
+func (s *Hightouch) ListDestination(ctx context.Context, request operations.ListDestinationRequest, security operations.ListDestinationSecurity) (*operations.ListDestinationResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/destinations"
 
@@ -609,11 +609,11 @@ func (s *SDK) ListDestination(ctx context.Context, request operations.ListDestin
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -662,7 +662,7 @@ func (s *SDK) ListDestination(ctx context.Context, request operations.ListDestin
 
 // ListModel - List Models
 // List all the models in the current workspace
-func (s *SDK) ListModel(ctx context.Context, request operations.ListModelRequest) (*operations.ListModelResponse, error) {
+func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelRequest, security operations.ListModelSecurity) (*operations.ListModelResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/models"
 
@@ -671,11 +671,11 @@ func (s *SDK) ListModel(ctx context.Context, request operations.ListModelRequest
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -724,7 +724,7 @@ func (s *SDK) ListModel(ctx context.Context, request operations.ListModelRequest
 
 // ListSource - List Sources
 // List all the sources in the current workspace
-func (s *SDK) ListSource(ctx context.Context, request operations.ListSourceRequest) (*operations.ListSourceResponse, error) {
+func (s *Hightouch) ListSource(ctx context.Context, request operations.ListSourceRequest, security operations.ListSourceSecurity) (*operations.ListSourceResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/sources"
 
@@ -733,11 +733,11 @@ func (s *SDK) ListSource(ctx context.Context, request operations.ListSourceReque
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -776,7 +776,7 @@ func (s *SDK) ListSource(ctx context.Context, request operations.ListSourceReque
 
 // ListSync - List Syncs
 // List all the syncs in the current workspace
-func (s *SDK) ListSync(ctx context.Context, request operations.ListSyncRequest) (*operations.ListSyncResponse, error) {
+func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncRequest, security operations.ListSyncSecurity) (*operations.ListSyncResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs"
 
@@ -785,11 +785,11 @@ func (s *SDK) ListSync(ctx context.Context, request operations.ListSyncRequest) 
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -838,20 +838,20 @@ func (s *SDK) ListSync(ctx context.Context, request operations.ListSyncRequest) 
 
 // ListSyncRuns - List Sync Runs
 // List all sync runs under a sync
-func (s *SDK) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsRequest) (*operations.ListSyncRunsResponse, error) {
+func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsRequest, security operations.ListSyncRunsSecurity) (*operations.ListSyncRunsResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/runs", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/runs", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -903,11 +903,11 @@ func (s *SDK) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsR
 //
 // If a run is already in progress, this queues a sync run that will get
 // executed immediately after the current run completes.
-func (s *SDK) TriggerRun(ctx context.Context, request operations.TriggerRunRequest) (*operations.TriggerRunResponse, error) {
+func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRunRequest, security operations.TriggerRunSecurity) (*operations.TriggerRunResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/trigger", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/trigger", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "TriggerRunInput", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -919,7 +919,7 @@ func (s *SDK) TriggerRun(ctx context.Context, request operations.TriggerRunReque
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -971,7 +971,7 @@ func (s *SDK) TriggerRun(ctx context.Context, request operations.TriggerRunReque
 //
 // If a run is already in progress, this queues a sync run that will get
 // executed immediately after the current run completes.
-func (s *SDK) TriggerRunCustom(ctx context.Context, request operations.TriggerRunCustomRequest) (*operations.TriggerRunCustomResponse, error) {
+func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.TriggerRunCustomInput, security operations.TriggerRunCustomSecurity) (*operations.TriggerRunCustomResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs/trigger"
 
@@ -990,7 +990,7 @@ func (s *SDK) TriggerRunCustom(ctx context.Context, request operations.TriggerRu
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -1041,11 +1041,11 @@ func (s *SDK) TriggerRunCustom(ctx context.Context, request operations.TriggerRu
 // Update an existing destination
 //
 // Patch a destination based on its Hightouch ID
-func (s *SDK) UpdateDestination(ctx context.Context, request operations.UpdateDestinationRequest) (*operations.UpdateDestinationResponse, error) {
+func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.UpdateDestinationRequest, security operations.UpdateDestinationSecurity) (*operations.UpdateDestinationResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DestinationUpdate", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1060,7 +1060,7 @@ func (s *SDK) UpdateDestination(ctx context.Context, request operations.UpdateDe
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -1121,11 +1121,11 @@ func (s *SDK) UpdateDestination(ctx context.Context, request operations.UpdateDe
 // Update an existing model
 //
 // Patch a model based on its Hightouch ID
-func (s *SDK) UpdateModel(ctx context.Context, request operations.UpdateModelRequest) (*operations.UpdateModelResponse, error) {
+func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateModelRequest, security operations.UpdateModelSecurity) (*operations.UpdateModelResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "ModelUpdate", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1140,7 +1140,7 @@ func (s *SDK) UpdateModel(ctx context.Context, request operations.UpdateModelReq
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -1201,11 +1201,11 @@ func (s *SDK) UpdateModel(ctx context.Context, request operations.UpdateModelReq
 // Update an existing source
 //
 // Patch a source based on its Hightouch ID
-func (s *SDK) UpdateSource(ctx context.Context, request operations.UpdateSourceRequest) (*operations.UpdateSourceResponse, error) {
+func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateSourceRequest, security operations.UpdateSourceSecurity) (*operations.UpdateSourceResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SourceUpdate", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1220,7 +1220,7 @@ func (s *SDK) UpdateSource(ctx context.Context, request operations.UpdateSourceR
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -1281,11 +1281,11 @@ func (s *SDK) UpdateSource(ctx context.Context, request operations.UpdateSourceR
 // Update an existing sync
 //
 // Patch a sync based on its Hightouch ID
-func (s *SDK) UpdateSync(ctx context.Context, request operations.UpdateSyncRequest) (*operations.UpdateSyncResponse, error) {
+func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyncRequest, security operations.UpdateSyncSecurity) (*operations.UpdateSyncResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SyncUpdate", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1300,7 +1300,7 @@ func (s *SDK) UpdateSync(ctx context.Context, request operations.UpdateSyncReque
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := utils.ConfigureSecurityClient(s._defaultClient, request.Security)
+	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
 	httpRes, err := client.Do(req)
 	if err != nil {

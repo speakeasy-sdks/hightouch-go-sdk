@@ -6,7 +6,7 @@ import (
 )
 
 type ListModelSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type ListModelOrderByEnum string
@@ -19,17 +19,12 @@ const (
 	ListModelOrderByEnumUpdatedAt ListModelOrderByEnum = "updatedAt"
 )
 
-type ListModelQueryParams struct {
+type ListModelRequest struct {
 	Limit   *float64              `queryParam:"style=form,explode=true,name=limit"`
 	Name    *string               `queryParam:"style=form,explode=true,name=name"`
 	Offset  *float64              `queryParam:"style=form,explode=true,name=offset"`
 	OrderBy *ListModelOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
 	Slug    *string               `queryParam:"style=form,explode=true,name=slug"`
-}
-
-type ListModelRequest struct {
-	QueryParams ListModelQueryParams
-	Security    ListModelSecurity
 }
 
 type ListModel200ApplicationJSON struct {

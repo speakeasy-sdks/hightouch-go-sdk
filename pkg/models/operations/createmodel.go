@@ -6,12 +6,7 @@ import (
 )
 
 type CreateModelSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type CreateModelRequest struct {
-	Request  shared.ModelCreate `request:"mediaType=application/json"`
-	Security CreateModelSecurity
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type CreateModelResponse struct {

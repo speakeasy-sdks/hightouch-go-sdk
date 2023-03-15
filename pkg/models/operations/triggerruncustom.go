@@ -6,12 +6,7 @@ import (
 )
 
 type TriggerRunCustomSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type TriggerRunCustomRequest struct {
-	Request  shared.TriggerRunCustomInput `request:"mediaType=application/json"`
-	Security TriggerRunCustomSecurity
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type TriggerRunCustomResponse struct {

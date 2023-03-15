@@ -6,16 +6,11 @@ import (
 )
 
 type GetModelSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type GetModelPathParams struct {
-	ModelID float64 `pathParam:"style=simple,explode=false,name=modelId"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type GetModelRequest struct {
-	PathParams GetModelPathParams
-	Security   GetModelSecurity
+	ModelID float64 `pathParam:"style=simple,explode=false,name=modelId"`
 }
 
 type GetModelResponse struct {

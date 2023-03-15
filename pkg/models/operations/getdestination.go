@@ -6,16 +6,11 @@ import (
 )
 
 type GetDestinationSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type GetDestinationPathParams struct {
-	DestinationID float64 `pathParam:"style=simple,explode=false,name=destinationId"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type GetDestinationRequest struct {
-	PathParams GetDestinationPathParams
-	Security   GetDestinationSecurity
+	DestinationID float64 `pathParam:"style=simple,explode=false,name=destinationId"`
 }
 
 type GetDestinationResponse struct {

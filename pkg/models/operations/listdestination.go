@@ -6,7 +6,7 @@ import (
 )
 
 type ListDestinationSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type ListDestinationOrderByEnum string
@@ -19,17 +19,12 @@ const (
 	ListDestinationOrderByEnumUpdatedAt ListDestinationOrderByEnum = "updatedAt"
 )
 
-type ListDestinationQueryParams struct {
+type ListDestinationRequest struct {
 	Limit   *float64                    `queryParam:"style=form,explode=true,name=limit"`
 	Name    *string                     `queryParam:"style=form,explode=true,name=name"`
 	Offset  *float64                    `queryParam:"style=form,explode=true,name=offset"`
 	OrderBy *ListDestinationOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
 	Slug    *string                     `queryParam:"style=form,explode=true,name=slug"`
-}
-
-type ListDestinationRequest struct {
-	QueryParams ListDestinationQueryParams
-	Security    ListDestinationSecurity
 }
 
 type ListDestination200ApplicationJSON struct {

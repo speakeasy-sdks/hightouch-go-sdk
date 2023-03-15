@@ -6,16 +6,11 @@ import (
 )
 
 type GetSyncSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type GetSyncPathParams struct {
-	SyncID float64 `pathParam:"style=simple,explode=false,name=syncId"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type GetSyncRequest struct {
-	PathParams GetSyncPathParams
-	Security   GetSyncSecurity
+	SyncID float64 `pathParam:"style=simple,explode=false,name=syncId"`
 }
 
 type GetSyncResponse struct {

@@ -7,11 +7,7 @@ import (
 )
 
 type ListSyncRunsSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type ListSyncRunsPathParams struct {
-	SyncID float64 `pathParam:"style=simple,explode=false,name=syncId"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type ListSyncRunsOrderByEnum string
@@ -23,20 +19,15 @@ const (
 	ListSyncRunsOrderByEnumFinishedAt ListSyncRunsOrderByEnum = "finishedAt"
 )
 
-type ListSyncRunsQueryParams struct {
+type ListSyncRunsRequest struct {
 	After   *time.Time               `queryParam:"style=form,explode=true,name=after"`
 	Before  *time.Time               `queryParam:"style=form,explode=true,name=before"`
 	Limit   *float64                 `queryParam:"style=form,explode=true,name=limit"`
 	Offset  *float64                 `queryParam:"style=form,explode=true,name=offset"`
 	OrderBy *ListSyncRunsOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
 	RunID   *float64                 `queryParam:"style=form,explode=true,name=runId"`
+	SyncID  float64                  `pathParam:"style=simple,explode=false,name=syncId"`
 	Within  *float64                 `queryParam:"style=form,explode=true,name=within"`
-}
-
-type ListSyncRunsRequest struct {
-	PathParams  ListSyncRunsPathParams
-	QueryParams ListSyncRunsQueryParams
-	Security    ListSyncRunsSecurity
 }
 
 type ListSyncRuns200ApplicationJSON struct {

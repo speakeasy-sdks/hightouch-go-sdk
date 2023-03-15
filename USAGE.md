@@ -11,28 +11,23 @@ import (
 )
 
 func main() {
-    s := sdk.New()
+    s := hightouch.New()
 
-    req := operations.CreateDestinationRequest{
-        Security: operations.CreateDestinationSecurity{
-            BearerAuth: shared.SchemeBearerAuth{
-                Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
-            },
+    req := shared.DestinationCreate{
+        Configuration: map[string]interface{}{
+            "deserunt": "porro",
+            "nulla": "id",
+            "vero": "perspiciatis",
         },
-        Request: shared.DestinationCreate{
-            Configuration: map[string]interface{}{
-                "deserunt": "porro",
-                "nulla": "id",
-                "vero": "perspiciatis",
-            },
-            Name: "nulla",
-            Slug: "nihil",
-            Type: "fuga",
-        },
+        Name: "nulla",
+        Slug: "nihil",
+        Type: "fuga",
     }
 
     ctx := context.Background()
-    res, err := s.CreateDestination(ctx, req)
+    res, err := s.CreateDestination(ctx, req, operations.CreateDestinationSecurity{
+        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+    })
     if err != nil {
         log.Fatal(err)
     }

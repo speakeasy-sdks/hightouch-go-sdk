@@ -6,7 +6,7 @@ import (
 )
 
 type ListSourceSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type ListSourceOrderByEnum string
@@ -19,17 +19,12 @@ const (
 	ListSourceOrderByEnumUpdatedAt ListSourceOrderByEnum = "updatedAt"
 )
 
-type ListSourceQueryParams struct {
+type ListSourceRequest struct {
 	Limit   *float64               `queryParam:"style=form,explode=true,name=limit"`
 	Name    *string                `queryParam:"style=form,explode=true,name=name"`
 	Offset  *float64               `queryParam:"style=form,explode=true,name=offset"`
 	OrderBy *ListSourceOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
 	Slug    *string                `queryParam:"style=form,explode=true,name=slug"`
-}
-
-type ListSourceRequest struct {
-	QueryParams ListSourceQueryParams
-	Security    ListSourceSecurity
 }
 
 type ListSource200ApplicationJSON struct {

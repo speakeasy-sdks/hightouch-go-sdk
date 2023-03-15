@@ -6,17 +6,12 @@ import (
 )
 
 type TriggerRunSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type TriggerRunPathParams struct {
-	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type TriggerRunRequest struct {
-	PathParams TriggerRunPathParams
-	Request    *shared.TriggerRunInput `request:"mediaType=application/json"`
-	Security   TriggerRunSecurity
+	TriggerRunInput *shared.TriggerRunInput `request:"mediaType=application/json"`
+	SyncID          string                  `pathParam:"style=simple,explode=false,name=syncId"`
 }
 
 type TriggerRunResponse struct {

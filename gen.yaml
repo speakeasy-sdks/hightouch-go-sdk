@@ -8,5 +8,5 @@ generation:
   sdkClassName: hightouch
   sdkFlattening: true
 go:
-  version: 0.4.0
+  version: 0.4.1
   packageName: github.com/speakeasy-sdks/hightouch-go-sdk

@@ -6,16 +6,11 @@ import (
 )
 
 type GetSourceSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type GetSourcePathParams struct {
-	SourceID float64 `pathParam:"style=simple,explode=false,name=sourceId"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type GetSourceRequest struct {
-	PathParams GetSourcePathParams
-	Security   GetSourceSecurity
+	SourceID float64 `pathParam:"style=simple,explode=false,name=sourceId"`
 }
 
 type GetSourceResponse struct {

@@ -6,17 +6,12 @@ import (
 )
 
 type UpdateSourceSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type UpdateSourcePathParams struct {
-	SourceID float64 `pathParam:"style=simple,explode=false,name=sourceId"`
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type UpdateSourceRequest struct {
-	PathParams UpdateSourcePathParams
-	Request    shared.SourceUpdate `request:"mediaType=application/json"`
-	Security   UpdateSourceSecurity
+	SourceUpdate shared.SourceUpdate `request:"mediaType=application/json"`
+	SourceID     float64             `pathParam:"style=simple,explode=false,name=sourceId"`
 }
 
 type UpdateSourceResponse struct {

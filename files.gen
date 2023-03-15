@@ -1,4 +1,4 @@
-sdk.go
+hightouch.go
 go.mod
 go.sum
 pkg/types/date.go
@@ -34,7 +34,6 @@ pkg/models/shared/validateerrorjson.go
 pkg/models/shared/internalservererrorenum.go
 pkg/models/shared/destination.go
 pkg/models/shared/destinationcreate.go
-pkg/models/shared/security.go
 pkg/models/shared/model.go
 pkg/models/shared/modelcreate.go
 pkg/models/shared/source.go

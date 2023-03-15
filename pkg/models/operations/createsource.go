@@ -6,12 +6,7 @@ import (
 )
 
 type CreateSourceSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type CreateSourceRequest struct {
-	Request  shared.SourceCreate `request:"mediaType=application/json"`
-	Security CreateSourceSecurity
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type CreateSourceResponse struct {

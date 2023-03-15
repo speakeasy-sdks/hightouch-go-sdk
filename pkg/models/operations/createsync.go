@@ -6,12 +6,7 @@ import (
 )
 
 type CreateSyncSecurity struct {
-	BearerAuth shared.SchemeBearerAuth `security:"scheme,type=http,subtype=bearer"`
-}
-
-type CreateSyncRequest struct {
-	Request  shared.SyncCreate `request:"mediaType=application/json"`
-	Security CreateSyncSecurity
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
 type CreateSyncResponse struct {
