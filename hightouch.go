@@ -62,8 +62,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *Hightouch {
 	sdk := &Hightouch{
 		_language:   "go",
-		_sdkVersion: "0.4.3",
-		_genVersion: "1.12.3",
+		_sdkVersion: "0.4.4",
+		_genVersion: "1.12.4",
 	}
 	for _, opt := range opts {
 		opt(sdk)
