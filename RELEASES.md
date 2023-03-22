@@ -111,3 +111,11 @@ Based on:
 - Speakeasy CLI 1.12.4 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v0.4.4] https://github.com/speakeasy-sdks/hightouch-go-sdk/releases/tag/v0.4.4 - .
+
+## 2023-03-22 00:37:12
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 https://api.hightouch.io/api/swagger.json
+- Speakeasy CLI 1.13.0 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v0.5.0] https://github.com/speakeasy-sdks/hightouch-go-sdk/releases/tag/v0.5.0 - .
