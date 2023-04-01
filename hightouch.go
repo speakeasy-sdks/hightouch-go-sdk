@@ -70,8 +70,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *Hightouch {
 	sdk := &Hightouch{
 		_language:   "go",
-		_sdkVersion: "0.5.0",
-		_genVersion: "2.12.10",
+		_sdkVersion: "0.6.0",
+		_genVersion: "2.16.7",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -669,7 +669,7 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 }
 
 // ListModel - List Models
-// List all the models in the current workspace
+// List all the models in the current workspace including parent and related models
 func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelRequest, security operations.ListModelSecurity) (*operations.ListModelResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/models"

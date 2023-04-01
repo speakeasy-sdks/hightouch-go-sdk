@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type SyncStatusEnum string
 
 const (
@@ -17,3 +22,37 @@ const (
 	SyncStatusEnumReporting   SyncStatusEnum = "reporting"
 	SyncStatusEnumInterrupted SyncStatusEnum = "interrupted"
 )
+
+func (e *SyncStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "disabled":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "cancelled":
+		fallthrough
+	case "failed":
+		fallthrough
+	case "queued":
+		fallthrough
+	case "success":
+		fallthrough
+	case "warning":
+		fallthrough
+	case "querying":
+		fallthrough
+	case "processing":
+		fallthrough
+	case "reporting":
+		fallthrough
+	case "interrupted":
+		*e = SyncStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SyncStatusEnum: %s", s)
+	}
+}

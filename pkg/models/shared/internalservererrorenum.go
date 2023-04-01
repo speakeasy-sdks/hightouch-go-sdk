@@ -2,9 +2,28 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 // InternalServerErrorEnum - Something went wrong
 type InternalServerErrorEnum string
 
 const (
 	InternalServerErrorEnumInternalServerError InternalServerErrorEnum = "Internal Server Error"
 )
+
+func (e *InternalServerErrorEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Internal Server Error":
+		*e = InternalServerErrorEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InternalServerErrorEnum: %s", s)
+	}
+}

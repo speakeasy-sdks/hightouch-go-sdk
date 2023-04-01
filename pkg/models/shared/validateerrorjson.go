@@ -2,11 +2,30 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type ValidateErrorJSONMessageEnum string
 
 const (
 	ValidateErrorJSONMessageEnumValidationFailed ValidateErrorJSONMessageEnum = "Validation failed"
 )
+
+func (e *ValidateErrorJSONMessageEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "Validation failed":
+		*e = ValidateErrorJSONMessageEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ValidateErrorJSONMessageEnum: %s", s)
+	}
+}
 
 // ValidateErrorJSON - Validation Failed
 type ValidateErrorJSON struct {

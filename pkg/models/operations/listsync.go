@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"net/http"
 	"time"
@@ -22,6 +24,28 @@ const (
 	ListSyncOrderByEnumCreatedAt ListSyncOrderByEnum = "createdAt"
 	ListSyncOrderByEnumUpdatedAt ListSyncOrderByEnum = "updatedAt"
 )
+
+func (e *ListSyncOrderByEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "id":
+		fallthrough
+	case "name":
+		fallthrough
+	case "slug":
+		fallthrough
+	case "createdAt":
+		fallthrough
+	case "updatedAt":
+		*e = ListSyncOrderByEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSyncOrderByEnum: %s", s)
+	}
+}
 
 type ListSyncRequest struct {
 	// select syncs that were run after given ISO timestamp

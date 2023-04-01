@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"net/http"
 	"time"
@@ -21,6 +23,26 @@ const (
 	ListSyncRunsOrderByEnumStartedAt  ListSyncRunsOrderByEnum = "startedAt"
 	ListSyncRunsOrderByEnumFinishedAt ListSyncRunsOrderByEnum = "finishedAt"
 )
+
+func (e *ListSyncRunsOrderByEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "id":
+		fallthrough
+	case "createdAt":
+		fallthrough
+	case "startedAt":
+		fallthrough
+	case "finishedAt":
+		*e = ListSyncRunsOrderByEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSyncRunsOrderByEnum: %s", s)
+	}
+}
 
 type ListSyncRunsRequest struct {
 	// select sync runs that are started after given ISO timestamp

@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type IntervalUnitEnum string
 
 const (
@@ -10,3 +15,23 @@ const (
 	IntervalUnitEnumDay    IntervalUnitEnum = "day"
 	IntervalUnitEnumWeek   IntervalUnitEnum = "week"
 )
+
+func (e *IntervalUnitEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "minute":
+		fallthrough
+	case "hour":
+		fallthrough
+	case "day":
+		fallthrough
+	case "week":
+		*e = IntervalUnitEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for IntervalUnitEnum: %s", s)
+	}
+}

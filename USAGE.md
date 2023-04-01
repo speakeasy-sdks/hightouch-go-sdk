@@ -15,13 +15,13 @@ func main() {
 
     req := shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "deserunt": "porro",
-            "nulla": "id",
-            "vero": "perspiciatis",
+            "provident": "distinctio",
+            "quibusdam": "unde",
+            "nulla": "corrupti",
         },
-        Name: "nulla",
-        Slug: "nihil",
-        Type: "fuga",
+        Name: "illum",
+        Slug: "vel",
+        Type: "error",
     }
 
     ctx := context.Background()

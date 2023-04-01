@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"net/http"
 )
@@ -21,6 +23,28 @@ const (
 	ListSourceOrderByEnumCreatedAt ListSourceOrderByEnum = "createdAt"
 	ListSourceOrderByEnumUpdatedAt ListSourceOrderByEnum = "updatedAt"
 )
+
+func (e *ListSourceOrderByEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "id":
+		fallthrough
+	case "name":
+		fallthrough
+	case "slug":
+		fallthrough
+	case "createdAt":
+		fallthrough
+	case "updatedAt":
+		*e = ListSourceOrderByEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSourceOrderByEnum: %s", s)
+	}
+}
 
 type ListSourceRequest struct {
 	// limit the number of objects returned (default is 100)

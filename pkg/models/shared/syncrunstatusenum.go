@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 // SyncRunStatusEnum - The status of sync runs
 type SyncRunStatusEnum string
 
@@ -16,3 +21,33 @@ const (
 	SyncRunStatusEnumReporting   SyncRunStatusEnum = "reporting"
 	SyncRunStatusEnumInterrupted SyncRunStatusEnum = "interrupted"
 )
+
+func (e *SyncRunStatusEnum) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	switch s {
+	case "cancelled":
+		fallthrough
+	case "failed":
+		fallthrough
+	case "queued":
+		fallthrough
+	case "success":
+		fallthrough
+	case "warning":
+		fallthrough
+	case "querying":
+		fallthrough
+	case "processing":
+		fallthrough
+	case "reporting":
+		fallthrough
+	case "interrupted":
+		*e = SyncRunStatusEnum(s)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SyncRunStatusEnum: %s", s)
+	}
+}

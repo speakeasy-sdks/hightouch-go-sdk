@@ -45,13 +45,13 @@ func main() {
 
     req := shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "deserunt": "porro",
-            "nulla": "id",
-            "vero": "perspiciatis",
+            "provident": "distinctio",
+            "quibusdam": "unde",
+            "nulla": "corrupti",
         },
-        Name: "nulla",
-        Slug: "nihil",
-        Type: "fuga",
+        Name: "illum",
+        Slug: "vel",
+        Type: "error",
     }
 
     ctx := context.Background()
@@ -70,7 +70,7 @@ func main() {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 ### Hightouch SDK
 
