@@ -13,6 +13,7 @@ import (
 func main() {
     s := hightouch.New()
 
+    ctx := context.Background()    
     req := shared.DestinationCreate{
         Configuration: map[string]interface{}{
             "provident": "distinctio",
@@ -24,7 +25,6 @@ func main() {
         Type: "error",
     }
 
-    ctx := context.Background()
     res, err := s.CreateDestination(ctx, req, operations.CreateDestinationSecurity{
         BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
     })
