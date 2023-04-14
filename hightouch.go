@@ -70,8 +70,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *Hightouch {
 	sdk := &Hightouch{
 		_language:   "go",
-		_sdkVersion: "0.7.0",
-		_genVersion: "2.17.9",
+		_sdkVersion: "0.8.0",
+		_genVersion: "2.18.0",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -408,7 +408,10 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 // Retrieve a destination based on its Hightouch ID
 func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDestinationRequest, security operations.GetDestinationSecurity) (*operations.GetDestinationResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -456,7 +459,10 @@ func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDe
 // Retrieve models from model ID
 func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelRequest, security operations.GetModelSecurity) (*operations.GetModelResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -504,7 +510,10 @@ func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelReq
 // Retrieve source from source ID
 func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceRequest, security operations.GetSourceSecurity) (*operations.GetSourceResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -562,7 +571,10 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 // Retrieve sync from sync ID
 func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncRequest, security operations.GetSyncSecurity) (*operations.GetSyncResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -848,7 +860,10 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 // List all sync runs under a sync
 func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsRequest, security operations.ListSyncRunsSecurity) (*operations.ListSyncRunsResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/runs", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/runs", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -913,7 +928,10 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 // executed immediately after the current run completes.
 func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRunRequest, security operations.TriggerRunSecurity) (*operations.TriggerRunResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/trigger", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/trigger", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "TriggerRunInput", "json")
 	if err != nil {
@@ -1051,7 +1069,10 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 // Patch a destination based on its Hightouch ID
 func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.UpdateDestinationRequest, security operations.UpdateDestinationSecurity) (*operations.UpdateDestinationResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "DestinationUpdate", "json")
 	if err != nil {
@@ -1131,7 +1152,10 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 // Patch a model based on its Hightouch ID
 func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateModelRequest, security operations.UpdateModelSecurity) (*operations.UpdateModelResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "ModelUpdate", "json")
 	if err != nil {
@@ -1211,7 +1235,10 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 // Patch a source based on its Hightouch ID
 func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateSourceRequest, security operations.UpdateSourceSecurity) (*operations.UpdateSourceResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SourceUpdate", "json")
 	if err != nil {
@@ -1291,7 +1318,10 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 // Patch a sync based on its Hightouch ID
 func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyncRequest, security operations.UpdateSyncSecurity) (*operations.UpdateSyncResponse, error) {
 	baseURL := s._serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SyncUpdate", "json")
 	if err != nil {

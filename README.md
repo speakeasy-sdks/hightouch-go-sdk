@@ -50,9 +50,9 @@ func main() {
             "quibusdam": "unde",
             "nulla": "corrupti",
         },
-        Name: "illum",
-        Slug: "vel",
-        Type: "error",
+        Name: "Ben Mueller",
+        Slug: "iure",
+        Type: "magnam",
     }
 
     res, err := s.CreateDestination(ctx, req, operations.CreateDestinationSecurity{
