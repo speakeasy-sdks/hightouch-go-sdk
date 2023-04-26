@@ -14,6 +14,10 @@ const (
 	InternalServerErrorEnumInternalServerError InternalServerErrorEnum = "Internal Server Error"
 )
 
+func (e InternalServerErrorEnum) ToPointer() *InternalServerErrorEnum {
+	return &e
+}
+
 func (e *InternalServerErrorEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

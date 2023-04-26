@@ -24,6 +24,10 @@ const (
 	ListSyncRunsOrderByEnumFinishedAt ListSyncRunsOrderByEnum = "finishedAt"
 )
 
+func (e ListSyncRunsOrderByEnum) ToPointer() *ListSyncRunsOrderByEnum {
+	return &e
+}
+
 func (e *ListSyncRunsOrderByEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

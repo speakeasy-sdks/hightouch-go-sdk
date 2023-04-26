@@ -13,6 +13,10 @@ const (
 	ValidateErrorJSONMessageEnumValidationFailed ValidateErrorJSONMessageEnum = "Validation failed"
 )
 
+func (e ValidateErrorJSONMessageEnum) ToPointer() *ValidateErrorJSONMessageEnum {
+	return &e
+}
+
 func (e *ValidateErrorJSONMessageEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

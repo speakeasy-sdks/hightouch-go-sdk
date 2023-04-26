@@ -23,6 +23,10 @@ const (
 	SyncStatusEnumInterrupted SyncStatusEnum = "interrupted"
 )
 
+func (e SyncStatusEnum) ToPointer() *SyncStatusEnum {
+	return &e
+}
+
 func (e *SyncStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

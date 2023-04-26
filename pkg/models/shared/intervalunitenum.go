@@ -16,6 +16,10 @@ const (
 	IntervalUnitEnumWeek   IntervalUnitEnum = "week"
 )
 
+func (e IntervalUnitEnum) ToPointer() *IntervalUnitEnum {
+	return &e
+}
+
 func (e *IntervalUnitEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

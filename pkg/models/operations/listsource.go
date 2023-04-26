@@ -24,6 +24,10 @@ const (
 	ListSourceOrderByEnumUpdatedAt ListSourceOrderByEnum = "updatedAt"
 )
 
+func (e ListSourceOrderByEnum) ToPointer() *ListSourceOrderByEnum {
+	return &e
+}
+
 func (e *ListSourceOrderByEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
