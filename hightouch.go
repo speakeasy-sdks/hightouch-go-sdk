@@ -85,8 +85,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *Hightouch {
 	sdk := &Hightouch{
 		_language:   "go",
-		_sdkVersion: "0.9.0",
-		_genVersion: "2.21.1",
+		_sdkVersion: "0.10.0",
+		_genVersion: "2.24.0",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -109,6 +109,7 @@ func New(opts ...SDKOption) *Hightouch {
 
 // CreateDestination - Create Destination
 // Create a new destination
+
 func (s *Hightouch) CreateDestination(ctx context.Context, request shared.DestinationCreate, security operations.CreateDestinationSecurity) (*operations.CreateDestinationResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/destinations"
@@ -187,6 +188,7 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 
 // CreateModel - Create Model
 // Create a new model
+
 func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate, security operations.CreateModelSecurity) (*operations.CreateModelResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/models"
@@ -265,6 +267,7 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 
 // CreateSource - Create Source
 // Create a new source
+
 func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreate, security operations.CreateSourceSecurity) (*operations.CreateSourceResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/sources"
@@ -343,6 +346,7 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 
 // CreateSync - Create Sync
 // Create a new sync
+
 func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, security operations.CreateSyncSecurity) (*operations.CreateSyncResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs"
@@ -421,6 +425,7 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 
 // GetDestination - Get Destination
 // Retrieve a destination based on its Hightouch ID
+
 func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDestinationRequest, security operations.GetDestinationSecurity) (*operations.GetDestinationResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
@@ -472,6 +477,7 @@ func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDe
 
 // GetModel - Get Model
 // Retrieve models from model ID
+
 func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelRequest, security operations.GetModelSecurity) (*operations.GetModelResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
@@ -523,6 +529,7 @@ func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelReq
 
 // GetSource - Get Source
 // Retrieve source from source ID
+
 func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceRequest, security operations.GetSourceSecurity) (*operations.GetSourceResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
@@ -584,6 +591,7 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 
 // GetSync - Get Sync
 // Retrieve sync from sync ID
+
 func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncRequest, security operations.GetSyncSecurity) (*operations.GetSyncResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)
@@ -635,6 +643,7 @@ func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncReque
 
 // ListDestination - List Destinations
 // List the destinations in the user's workspace
+
 func (s *Hightouch) ListDestination(ctx context.Context, request operations.ListDestinationRequest, security operations.ListDestinationSecurity) (*operations.ListDestinationResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/destinations"
@@ -697,6 +706,7 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 
 // ListModel - List Models
 // List all the models in the current workspace including parent and related models
+
 func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelRequest, security operations.ListModelSecurity) (*operations.ListModelResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/models"
@@ -759,6 +769,7 @@ func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelR
 
 // ListSource - List Sources
 // List all the sources in the current workspace
+
 func (s *Hightouch) ListSource(ctx context.Context, request operations.ListSourceRequest, security operations.ListSourceSecurity) (*operations.ListSourceResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/sources"
@@ -811,6 +822,7 @@ func (s *Hightouch) ListSource(ctx context.Context, request operations.ListSourc
 
 // ListSync - List Syncs
 // List all the syncs in the current workspace
+
 func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncRequest, security operations.ListSyncSecurity) (*operations.ListSyncResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs"
@@ -873,6 +885,7 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 
 // ListSyncRuns - List Sync Runs
 // List all sync runs under a sync
+
 func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyncRunsRequest, security operations.ListSyncRunsSecurity) (*operations.ListSyncRunsResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/runs", request, nil)
@@ -941,6 +954,7 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 //
 // If a run is already in progress, this queues a sync run that will get
 // executed immediately after the current run completes.
+
 func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRunRequest, security operations.TriggerRunSecurity) (*operations.TriggerRunResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}/trigger", request, nil)
@@ -1012,6 +1026,7 @@ func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRu
 //
 // If a run is already in progress, this queues a sync run that will get
 // executed immediately after the current run completes.
+
 func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.TriggerRunCustomInput, security operations.TriggerRunCustomSecurity) (*operations.TriggerRunCustomResponse, error) {
 	baseURL := s._serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/syncs/trigger"
@@ -1082,6 +1097,7 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 // Update an existing destination
 //
 // Patch a destination based on its Hightouch ID
+
 func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.UpdateDestinationRequest, security operations.UpdateDestinationSecurity) (*operations.UpdateDestinationResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/destinations/{destinationId}", request, nil)
@@ -1165,6 +1181,7 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 // Update an existing model
 //
 // Patch a model based on its Hightouch ID
+
 func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateModelRequest, security operations.UpdateModelSecurity) (*operations.UpdateModelResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/models/{modelId}", request, nil)
@@ -1248,6 +1265,7 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 // Update an existing source
 //
 // Patch a source based on its Hightouch ID
+
 func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateSourceRequest, security operations.UpdateSourceSecurity) (*operations.UpdateSourceResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/sources/{sourceId}", request, nil)
@@ -1331,6 +1349,7 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 // Update an existing sync
 //
 // Patch a sync based on its Hightouch ID
+
 func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyncRequest, security operations.UpdateSyncSecurity) (*operations.UpdateSyncResponse, error) {
 	baseURL := s._serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/syncs/{syncId}", request, nil)

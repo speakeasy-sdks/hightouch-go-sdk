@@ -21,11 +21,11 @@ func (e IntervalUnitEnum) ToPointer() *IntervalUnitEnum {
 }
 
 func (e *IntervalUnitEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "minute":
 		fallthrough
 	case "hour":
@@ -33,9 +33,9 @@ func (e *IntervalUnitEnum) UnmarshalJSON(data []byte) error {
 	case "day":
 		fallthrough
 	case "week":
-		*e = IntervalUnitEnum(s)
+		*e = IntervalUnitEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for IntervalUnitEnum: %s", s)
+		return fmt.Errorf("invalid value for IntervalUnitEnum: %v", v)
 	}
 }

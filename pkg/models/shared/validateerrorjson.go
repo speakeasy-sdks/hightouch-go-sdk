@@ -18,16 +18,16 @@ func (e ValidateErrorJSONMessageEnum) ToPointer() *ValidateErrorJSONMessageEnum 
 }
 
 func (e *ValidateErrorJSONMessageEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "Validation failed":
-		*e = ValidateErrorJSONMessageEnum(s)
+		*e = ValidateErrorJSONMessageEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ValidateErrorJSONMessageEnum: %s", s)
+		return fmt.Errorf("invalid value for ValidateErrorJSONMessageEnum: %v", v)
 	}
 }
 

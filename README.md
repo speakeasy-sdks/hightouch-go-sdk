@@ -43,8 +43,8 @@ import(
 func main() {
     s := hightouch.New()
 
-    ctx := context.Background()    
-    req := shared.DestinationCreate{
+    ctx := context.Background()
+    res, err := s.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
             "provident": "distinctio",
             "quibusdam": "unde",
@@ -53,9 +53,7 @@ func main() {
         Name: "Ben Mueller",
         Slug: "iure",
         Type: "magnam",
-    }
-
-    res, err := s.CreateDestination(ctx, req, operations.CreateDestinationSecurity{
+    }, operations.CreateDestinationSecurity{
         BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {

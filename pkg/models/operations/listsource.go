@@ -29,11 +29,11 @@ func (e ListSourceOrderByEnum) ToPointer() *ListSourceOrderByEnum {
 }
 
 func (e *ListSourceOrderByEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "id":
 		fallthrough
 	case "name":
@@ -43,10 +43,10 @@ func (e *ListSourceOrderByEnum) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListSourceOrderByEnum(s)
+		*e = ListSourceOrderByEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSourceOrderByEnum: %s", s)
+		return fmt.Errorf("invalid value for ListSourceOrderByEnum: %v", v)
 	}
 }
 
