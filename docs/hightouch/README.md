@@ -58,7 +58,7 @@ func main() {
         Slug: "ab",
         Type: "quis",
     }, operations.CreateDestinationSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -117,7 +117,7 @@ func main() {
             SecondaryLabel: "officia",
         },
     }, operations.CreateModelSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -160,7 +160,7 @@ func main() {
         Slug: "cum",
         Type: "esse",
     }, operations.CreateSourceSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -221,7 +221,7 @@ func main() {
         },
         Slug: "natus",
     }, operations.CreateSyncSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -256,7 +256,7 @@ func main() {
     res, err := s.Hightouch.GetDestination(ctx, operations.GetDestinationRequest{
         DestinationID: 3864.89,
     }, operations.GetDestinationSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -291,7 +291,7 @@ func main() {
     res, err := s.Hightouch.GetModel(ctx, operations.GetModelRequest{
         ModelID: 9437.49,
     }, operations.GetModelSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -326,7 +326,7 @@ func main() {
     res, err := s.Hightouch.GetSource(ctx, operations.GetSourceRequest{
         SourceID: 9025.99,
     }, operations.GetSourceSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -361,7 +361,7 @@ func main() {
     res, err := s.Hightouch.GetSync(ctx, operations.GetSyncRequest{
         SyncID: 6818.2,
     }, operations.GetSyncSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -400,7 +400,7 @@ func main() {
         OrderBy: operations.ListDestinationOrderByEnumID.ToPointer(),
         Slug: hightouch.String("reiciendis"),
     }, operations.ListDestinationSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -439,7 +439,7 @@ func main() {
         OrderBy: operations.ListModelOrderByEnumCreatedAt.ToPointer(),
         Slug: hightouch.String("enim"),
     }, operations.ListModelSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -478,7 +478,7 @@ func main() {
         OrderBy: operations.ListSourceOrderByEnumUpdatedAt.ToPointer(),
         Slug: hightouch.String("architecto"),
     }, operations.ListSourceSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -520,7 +520,7 @@ func main() {
         OrderBy: operations.ListSyncOrderByEnumName.ToPointer(),
         Slug: hightouch.String("commodi"),
     }, operations.ListSyncSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -563,7 +563,7 @@ func main() {
         SyncID: 6563.3,
         Within: hightouch.Float64(3172.02),
     }, operations.ListSyncRunsSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -605,7 +605,7 @@ func main() {
         },
         SyncID: "odit",
     }, operations.TriggerRunSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -646,7 +646,7 @@ func main() {
         SyncID: hightouch.String("quo"),
         SyncSlug: hightouch.String("sequi"),
     }, operations.TriggerRunCustomSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -693,7 +693,7 @@ func main() {
         },
         DestinationID: 5096.24,
     }, operations.UpdateDestinationSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -754,7 +754,7 @@ func main() {
         },
         ModelID: 641.47,
     }, operations.UpdateModelSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -798,7 +798,7 @@ func main() {
         },
         SourceID: 9167.23,
     }, operations.UpdateSourceSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
@@ -851,7 +851,7 @@ func main() {
         },
         SyncID: 93.56,
     }, operations.UpdateSyncSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)

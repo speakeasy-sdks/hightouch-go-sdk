@@ -24,7 +24,7 @@ func main() {
         Slug: "iure",
         Type: "magnam",
     }, operations.CreateDestinationSecurity{
-        BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
+        BearerAuth: "YOUR_BEARER_TOKEN_HERE",
     })
     if err != nil {
         log.Fatal(err)
