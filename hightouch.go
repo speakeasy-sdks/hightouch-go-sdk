@@ -85,8 +85,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *Hightouch {
 	sdk := &Hightouch{
 		_language:   "go",
-		_sdkVersion: "0.12.0",
-		_genVersion: "2.28.0",
+		_sdkVersion: "0.13.0",
+		_genVersion: "2.31.0",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -125,6 +125,8 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -173,7 +175,7 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -203,6 +205,8 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -251,7 +255,7 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -281,6 +285,8 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -329,7 +335,7 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -359,6 +365,8 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -407,7 +415,7 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -432,6 +440,8 @@ func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDe
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
@@ -483,6 +493,8 @@ func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelReq
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
@@ -534,6 +546,8 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
@@ -595,6 +609,8 @@ func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncReque
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	client := utils.ConfigureSecurityClient(s._defaultClient, security)
 
@@ -643,6 +659,8 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -705,6 +723,8 @@ func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelR
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -767,6 +787,8 @@ func (s *Hightouch) ListSource(ctx context.Context, request operations.ListSourc
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -819,6 +841,8 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -884,6 +908,8 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -957,6 +983,8 @@ func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRu
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -1028,6 +1056,8 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -1101,6 +1131,8 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -1149,7 +1181,7 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -1184,6 +1216,8 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -1232,7 +1266,7 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -1267,6 +1301,8 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -1315,7 +1351,7 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}
@@ -1350,6 +1386,8 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
+	req.Header.Set("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0")
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s._language, s._sdkVersion, s._genVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -1398,7 +1436,7 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 	case httpRes.StatusCode == 500:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.InternalServerErrorEnum
+			var out *shared.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
 				return nil, err
 			}

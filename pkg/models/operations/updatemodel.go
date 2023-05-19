@@ -20,7 +20,7 @@ type UpdateModelRequest struct {
 type UpdateModelResponse struct {
 	ContentType string
 	// Something went wrong
-	InternalServerError *shared.InternalServerErrorEnum
+	InternalServerError *shared.InternalServerError
 	StatusCode          int
 	RawResponse         *http.Response
 	// Ok

@@ -59,8 +59,8 @@ type Sync struct {
 	// DBT-cloud: the sync will be trigged based on a dbt cloud job
 	Schedule SyncSchedule `json:"schedule"`
 	// The sync's slug
-	Slug   string         `json:"slug"`
-	Status SyncStatusEnum `json:"status"`
+	Slug   string     `json:"slug"`
+	Status SyncStatus `json:"status"`
 	// The timestamp when the sync was last updated
 	UpdatedAt time.Time `json:"updatedAt"`
 	// Number as a string

@@ -13,22 +13,22 @@ type ListSourceSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-// ListSourceOrderByEnum - specify the order
-type ListSourceOrderByEnum string
+// ListSourceOrderBy - specify the order
+type ListSourceOrderBy string
 
 const (
-	ListSourceOrderByEnumID        ListSourceOrderByEnum = "id"
-	ListSourceOrderByEnumName      ListSourceOrderByEnum = "name"
-	ListSourceOrderByEnumSlug      ListSourceOrderByEnum = "slug"
-	ListSourceOrderByEnumCreatedAt ListSourceOrderByEnum = "createdAt"
-	ListSourceOrderByEnumUpdatedAt ListSourceOrderByEnum = "updatedAt"
+	ListSourceOrderByID        ListSourceOrderBy = "id"
+	ListSourceOrderByName      ListSourceOrderBy = "name"
+	ListSourceOrderBySlug      ListSourceOrderBy = "slug"
+	ListSourceOrderByCreatedAt ListSourceOrderBy = "createdAt"
+	ListSourceOrderByUpdatedAt ListSourceOrderBy = "updatedAt"
 )
 
-func (e ListSourceOrderByEnum) ToPointer() *ListSourceOrderByEnum {
+func (e ListSourceOrderBy) ToPointer() *ListSourceOrderBy {
 	return &e
 }
 
-func (e *ListSourceOrderByEnum) UnmarshalJSON(data []byte) error {
+func (e *ListSourceOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,10 +43,10 @@ func (e *ListSourceOrderByEnum) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListSourceOrderByEnum(v)
+		*e = ListSourceOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSourceOrderByEnum: %v", v)
+		return fmt.Errorf("invalid value for ListSourceOrderBy: %v", v)
 	}
 }
 
@@ -58,7 +58,7 @@ type ListSourceRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSourceOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSourceOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
 	// filter based on slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }

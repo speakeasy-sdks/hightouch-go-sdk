@@ -73,7 +73,7 @@ type SyncRun struct {
 	// The timestamp when the sync run started
 	StartedAt time.Time `json:"startedAt"`
 	// The status of sync runs
-	Status SyncRunStatusEnum `json:"status"`
+	Status SyncRunStatus `json:"status"`
 	// The number of rows that were successfully processed by the destination.
 	SuccessfulRows SyncRunSuccessfulRows `json:"successfulRows"`
 }

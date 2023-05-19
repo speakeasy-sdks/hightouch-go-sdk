@@ -13,22 +13,22 @@ type ListDestinationSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-// ListDestinationOrderByEnum - Order the returned destinations
-type ListDestinationOrderByEnum string
+// ListDestinationOrderBy - Order the returned destinations
+type ListDestinationOrderBy string
 
 const (
-	ListDestinationOrderByEnumID        ListDestinationOrderByEnum = "id"
-	ListDestinationOrderByEnumName      ListDestinationOrderByEnum = "name"
-	ListDestinationOrderByEnumSlug      ListDestinationOrderByEnum = "slug"
-	ListDestinationOrderByEnumCreatedAt ListDestinationOrderByEnum = "createdAt"
-	ListDestinationOrderByEnumUpdatedAt ListDestinationOrderByEnum = "updatedAt"
+	ListDestinationOrderByID        ListDestinationOrderBy = "id"
+	ListDestinationOrderByName      ListDestinationOrderBy = "name"
+	ListDestinationOrderBySlug      ListDestinationOrderBy = "slug"
+	ListDestinationOrderByCreatedAt ListDestinationOrderBy = "createdAt"
+	ListDestinationOrderByUpdatedAt ListDestinationOrderBy = "updatedAt"
 )
 
-func (e ListDestinationOrderByEnum) ToPointer() *ListDestinationOrderByEnum {
+func (e ListDestinationOrderBy) ToPointer() *ListDestinationOrderBy {
 	return &e
 }
 
-func (e *ListDestinationOrderByEnum) UnmarshalJSON(data []byte) error {
+func (e *ListDestinationOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,10 +43,10 @@ func (e *ListDestinationOrderByEnum) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListDestinationOrderByEnum(v)
+		*e = ListDestinationOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListDestinationOrderByEnum: %v", v)
+		return fmt.Errorf("invalid value for ListDestinationOrderBy: %v", v)
 	}
 }
 
@@ -58,7 +58,7 @@ type ListDestinationRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
 	// Order the returned destinations
-	OrderBy *ListDestinationOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListDestinationOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
 	// Filter based on destination's slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }

@@ -14,22 +14,22 @@ type ListSyncSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-// ListSyncOrderByEnum - specify the order
-type ListSyncOrderByEnum string
+// ListSyncOrderBy - specify the order
+type ListSyncOrderBy string
 
 const (
-	ListSyncOrderByEnumID        ListSyncOrderByEnum = "id"
-	ListSyncOrderByEnumName      ListSyncOrderByEnum = "name"
-	ListSyncOrderByEnumSlug      ListSyncOrderByEnum = "slug"
-	ListSyncOrderByEnumCreatedAt ListSyncOrderByEnum = "createdAt"
-	ListSyncOrderByEnumUpdatedAt ListSyncOrderByEnum = "updatedAt"
+	ListSyncOrderByID        ListSyncOrderBy = "id"
+	ListSyncOrderByName      ListSyncOrderBy = "name"
+	ListSyncOrderBySlug      ListSyncOrderBy = "slug"
+	ListSyncOrderByCreatedAt ListSyncOrderBy = "createdAt"
+	ListSyncOrderByUpdatedAt ListSyncOrderBy = "updatedAt"
 )
 
-func (e ListSyncOrderByEnum) ToPointer() *ListSyncOrderByEnum {
+func (e ListSyncOrderBy) ToPointer() *ListSyncOrderBy {
 	return &e
 }
 
-func (e *ListSyncOrderByEnum) UnmarshalJSON(data []byte) error {
+func (e *ListSyncOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -44,10 +44,10 @@ func (e *ListSyncOrderByEnum) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListSyncOrderByEnum(v)
+		*e = ListSyncOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSyncOrderByEnum: %v", v)
+		return fmt.Errorf("invalid value for ListSyncOrderBy: %v", v)
 	}
 }
 
@@ -63,7 +63,7 @@ type ListSyncRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSyncOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSyncOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
 	// filter based on slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }

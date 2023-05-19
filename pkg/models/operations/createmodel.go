@@ -16,7 +16,7 @@ type CreateModelResponse struct {
 	// Ok
 	CreateModel200ApplicationJSONAnyOf interface{}
 	// Something went wrong
-	InternalServerError *shared.InternalServerErrorEnum
+	InternalServerError *shared.InternalServerError
 	StatusCode          int
 	RawResponse         *http.Response
 	// Conflict

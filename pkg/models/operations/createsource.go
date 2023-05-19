@@ -16,7 +16,7 @@ type CreateSourceResponse struct {
 	// Ok
 	CreateSource200ApplicationJSONAnyOf interface{}
 	// Something went wrong
-	InternalServerError *shared.InternalServerErrorEnum
+	InternalServerError *shared.InternalServerError
 	StatusCode          int
 	RawResponse         *http.Response
 	// Conflict

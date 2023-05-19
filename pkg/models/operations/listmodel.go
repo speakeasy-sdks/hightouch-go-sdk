@@ -13,22 +13,22 @@ type ListModelSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-// ListModelOrderByEnum - specify the order
-type ListModelOrderByEnum string
+// ListModelOrderBy - specify the order
+type ListModelOrderBy string
 
 const (
-	ListModelOrderByEnumID        ListModelOrderByEnum = "id"
-	ListModelOrderByEnumName      ListModelOrderByEnum = "name"
-	ListModelOrderByEnumSlug      ListModelOrderByEnum = "slug"
-	ListModelOrderByEnumCreatedAt ListModelOrderByEnum = "createdAt"
-	ListModelOrderByEnumUpdatedAt ListModelOrderByEnum = "updatedAt"
+	ListModelOrderByID        ListModelOrderBy = "id"
+	ListModelOrderByName      ListModelOrderBy = "name"
+	ListModelOrderBySlug      ListModelOrderBy = "slug"
+	ListModelOrderByCreatedAt ListModelOrderBy = "createdAt"
+	ListModelOrderByUpdatedAt ListModelOrderBy = "updatedAt"
 )
 
-func (e ListModelOrderByEnum) ToPointer() *ListModelOrderByEnum {
+func (e ListModelOrderBy) ToPointer() *ListModelOrderBy {
 	return &e
 }
 
-func (e *ListModelOrderByEnum) UnmarshalJSON(data []byte) error {
+func (e *ListModelOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,10 +43,10 @@ func (e *ListModelOrderByEnum) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListModelOrderByEnum(v)
+		*e = ListModelOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListModelOrderByEnum: %v", v)
+		return fmt.Errorf("invalid value for ListModelOrderBy: %v", v)
 	}
 }
 
@@ -58,7 +58,7 @@ type ListModelRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListModelOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListModelOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
 	// filter based on slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }

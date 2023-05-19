@@ -14,21 +14,21 @@ type ListSyncRunsSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-// ListSyncRunsOrderByEnum - specify the order
-type ListSyncRunsOrderByEnum string
+// ListSyncRunsOrderBy - specify the order
+type ListSyncRunsOrderBy string
 
 const (
-	ListSyncRunsOrderByEnumID         ListSyncRunsOrderByEnum = "id"
-	ListSyncRunsOrderByEnumCreatedAt  ListSyncRunsOrderByEnum = "createdAt"
-	ListSyncRunsOrderByEnumStartedAt  ListSyncRunsOrderByEnum = "startedAt"
-	ListSyncRunsOrderByEnumFinishedAt ListSyncRunsOrderByEnum = "finishedAt"
+	ListSyncRunsOrderByID         ListSyncRunsOrderBy = "id"
+	ListSyncRunsOrderByCreatedAt  ListSyncRunsOrderBy = "createdAt"
+	ListSyncRunsOrderByStartedAt  ListSyncRunsOrderBy = "startedAt"
+	ListSyncRunsOrderByFinishedAt ListSyncRunsOrderBy = "finishedAt"
 )
 
-func (e ListSyncRunsOrderByEnum) ToPointer() *ListSyncRunsOrderByEnum {
+func (e ListSyncRunsOrderBy) ToPointer() *ListSyncRunsOrderBy {
 	return &e
 }
 
-func (e *ListSyncRunsOrderByEnum) UnmarshalJSON(data []byte) error {
+func (e *ListSyncRunsOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -41,10 +41,10 @@ func (e *ListSyncRunsOrderByEnum) UnmarshalJSON(data []byte) error {
 	case "startedAt":
 		fallthrough
 	case "finishedAt":
-		*e = ListSyncRunsOrderByEnum(v)
+		*e = ListSyncRunsOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSyncRunsOrderByEnum: %v", v)
+		return fmt.Errorf("invalid value for ListSyncRunsOrderBy: %v", v)
 	}
 }
 
@@ -58,7 +58,7 @@ type ListSyncRunsRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSyncRunsOrderByEnum `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSyncRunsOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
 	// query for specific run id
 	RunID  *float64 `queryParam:"style=form,explode=true,name=runId"`
 	SyncID float64  `pathParam:"style=simple,explode=false,name=syncId"`

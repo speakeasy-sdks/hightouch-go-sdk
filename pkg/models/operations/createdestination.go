@@ -16,7 +16,7 @@ type CreateDestinationResponse struct {
 	// Ok
 	CreateDestination200ApplicationJSONAnyOf interface{}
 	// Something went wrong
-	InternalServerError *shared.InternalServerErrorEnum
+	InternalServerError *shared.InternalServerError
 	StatusCode          int
 	RawResponse         *http.Response
 	// Conflict

@@ -7,32 +7,32 @@ import (
 	"fmt"
 )
 
-type ValidateErrorJSONMessageEnum string
+type ValidateErrorJSONMessage string
 
 const (
-	ValidateErrorJSONMessageEnumValidationFailed ValidateErrorJSONMessageEnum = "Validation failed"
+	ValidateErrorJSONMessageValidationFailed ValidateErrorJSONMessage = "Validation failed"
 )
 
-func (e ValidateErrorJSONMessageEnum) ToPointer() *ValidateErrorJSONMessageEnum {
+func (e ValidateErrorJSONMessage) ToPointer() *ValidateErrorJSONMessage {
 	return &e
 }
 
-func (e *ValidateErrorJSONMessageEnum) UnmarshalJSON(data []byte) error {
+func (e *ValidateErrorJSONMessage) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Validation failed":
-		*e = ValidateErrorJSONMessageEnum(v)
+		*e = ValidateErrorJSONMessage(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ValidateErrorJSONMessageEnum: %v", v)
+		return fmt.Errorf("invalid value for ValidateErrorJSONMessage: %v", v)
 	}
 }
 
 // ValidateErrorJSON - Validation Failed
 type ValidateErrorJSON struct {
-	Details map[string]interface{}       `json:"details"`
-	Message ValidateErrorJSONMessageEnum `json:"message"`
+	Details map[string]interface{}   `json:"details"`
+	Message ValidateErrorJSONMessage `json:"message"`
 }

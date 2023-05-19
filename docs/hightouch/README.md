@@ -397,7 +397,7 @@ func main() {
         Limit: hightouch.Float64(4499.5),
         Name: hightouch.String("Sheryl Kertzmann"),
         Offset: hightouch.Float64(992.8),
-        OrderBy: operations.ListDestinationOrderByEnumID.ToPointer(),
+        OrderBy: operations.ListDestinationOrderByID.ToPointer(),
         Slug: hightouch.String("reiciendis"),
     }, operations.ListDestinationSecurity{
         BearerAuth: "YOUR_BEARER_TOKEN_HERE",
@@ -436,7 +436,7 @@ func main() {
         Limit: hightouch.Float64(6667.67),
         Name: hightouch.String("Cameron Dach"),
         Offset: hightouch.Float64(1289.26),
-        OrderBy: operations.ListModelOrderByEnumCreatedAt.ToPointer(),
+        OrderBy: operations.ListModelOrderByCreatedAt.ToPointer(),
         Slug: hightouch.String("enim"),
     }, operations.ListModelSecurity{
         BearerAuth: "YOUR_BEARER_TOKEN_HERE",
@@ -475,7 +475,7 @@ func main() {
         Limit: hightouch.Float64(6078.31),
         Name: hightouch.String("Ms. Cathy Marks"),
         Offset: hightouch.Float64(9883.74),
-        OrderBy: operations.ListSourceOrderByEnumUpdatedAt.ToPointer(),
+        OrderBy: operations.ListSourceOrderByUpdatedAt.ToPointer(),
         Slug: hightouch.String("architecto"),
     }, operations.ListSourceSecurity{
         BearerAuth: "YOUR_BEARER_TOKEN_HERE",
@@ -517,7 +517,7 @@ func main() {
         Limit: hightouch.Float64(9953),
         ModelID: hightouch.Float64(6531.08),
         Offset: hightouch.Float64(5818.5),
-        OrderBy: operations.ListSyncOrderByEnumName.ToPointer(),
+        OrderBy: operations.ListSyncOrderByName.ToPointer(),
         Slug: hightouch.String("commodi"),
     }, operations.ListSyncSecurity{
         BearerAuth: "YOUR_BEARER_TOKEN_HERE",
@@ -558,7 +558,7 @@ func main() {
         Before: types.MustTimeFromString("2022-05-18T10:03:04.921Z"),
         Limit: hightouch.Float64(1589.69),
         Offset: hightouch.Float64(3380.07),
-        OrderBy: operations.ListSyncRunsOrderByEnumID.ToPointer(),
+        OrderBy: operations.ListSyncRunsOrderByID.ToPointer(),
         RunID: hightouch.Float64(6747.52),
         SyncID: 6563.3,
         Within: hightouch.Float64(3172.02),
@@ -843,7 +843,7 @@ func main() {
                 Schedule: shared.IntervalSchedule{
                     Interval: shared.Interval{
                         Quantity: 9292.97,
-                        Unit: shared.IntervalUnitEnumHour,
+                        Unit: shared.IntervalUnitHour,
                     },
                 },
                 Type: "enim",
