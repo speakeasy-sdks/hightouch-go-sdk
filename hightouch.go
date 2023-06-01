@@ -3,11 +3,13 @@
 package hightouch
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
+	"io"
 	"net/http"
 	"strings"
 	"time"
@@ -85,8 +87,8 @@ func WithClient(client HTTPClient) SDKOption {
 func New(opts ...SDKOption) *Hightouch {
 	sdk := &Hightouch{
 		_language:   "go",
-		_sdkVersion: "0.13.0",
-		_genVersion: "2.31.0",
+		_sdkVersion: "0.14.0",
+		_genVersion: "2.34.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -139,7 +141,13 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -153,7 +161,7 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -166,7 +174,7 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -176,7 +184,7 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -219,7 +227,13 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -233,7 +247,7 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -246,7 +260,7 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -256,7 +270,7 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -299,7 +313,13 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -313,7 +333,7 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -326,7 +346,7 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -336,7 +356,7 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -379,7 +399,13 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -393,7 +419,7 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -406,7 +432,7 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -416,7 +442,7 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -452,7 +478,13 @@ func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDe
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -466,7 +498,7 @@ func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDe
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Destination
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -505,7 +537,13 @@ func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelReq
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -519,7 +557,7 @@ func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelReq
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Model
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -558,7 +596,13 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -572,7 +616,7 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Source
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -585,7 +629,7 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -621,7 +665,13 @@ func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncReque
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -635,7 +685,7 @@ func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncReque
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Sync
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -675,7 +725,13 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -689,7 +745,7 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.ListDestination200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -702,7 +758,7 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -739,7 +795,13 @@ func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelR
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -753,7 +815,7 @@ func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.ListModel200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -766,7 +828,7 @@ func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelR
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -803,7 +865,13 @@ func (s *Hightouch) ListSource(ctx context.Context, request operations.ListSourc
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -817,7 +885,7 @@ func (s *Hightouch) ListSource(ctx context.Context, request operations.ListSourc
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.ListSource200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -857,7 +925,13 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -871,7 +945,7 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.ListSync200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -884,7 +958,7 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -924,7 +998,13 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -938,7 +1018,7 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.ListSyncRuns200ApplicationJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -951,7 +1031,7 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -997,7 +1077,13 @@ func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRu
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1011,7 +1097,7 @@ func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRu
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.TriggerRunOutput
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1024,7 +1110,7 @@ func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRu
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1070,7 +1156,13 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1084,7 +1176,7 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1097,7 +1189,7 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1145,7 +1237,13 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1159,7 +1257,7 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1172,7 +1270,7 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1182,7 +1280,7 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1230,7 +1328,13 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1244,7 +1348,7 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1257,7 +1361,7 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1267,7 +1371,7 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1315,7 +1419,13 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1329,7 +1439,7 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1342,7 +1452,7 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1352,7 +1462,7 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1400,7 +1510,13 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -1414,7 +1530,7 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out interface{}
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1427,7 +1543,7 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ValidateErrorJSON
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -1437,7 +1553,7 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.InternalServerError
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
