@@ -1,0 +1,12 @@
+# ListSourceRequest
+
+
+## Fields
+
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `Limit`                                                            | **float64*                                                         | :heavy_minus_sign:                                                 | limit the number of objects returned (default is 100)              |
+| `Name`                                                             | **string*                                                          | :heavy_minus_sign:                                                 | filter based on name                                               |
+| `Offset`                                                           | **float64*                                                         | :heavy_minus_sign:                                                 | set the offset on results (for pagination)                         |
+| `OrderBy`                                                          | [*ListSourceOrderBy](../../models/operations/listsourceorderby.md) | :heavy_minus_sign:                                                 | specify the order                                                  |
+| `Slug`                                                             | **string*                                                          | :heavy_minus_sign:                                                 | filter based on slug                                               |
