@@ -8,7 +8,7 @@ type ModelUpdateCustom struct {
 }
 
 type ModelUpdateDbt struct {
-	// Number as a string
+	// Model id that refers to a dbt model
 	ModelID string `json:"modelId"`
 }
 
@@ -25,7 +25,7 @@ type ModelUpdateTable struct {
 // ModelUpdateVisual - Visual query, used by audience
 type ModelUpdateVisual struct {
 	Filter interface{} `json:"filter"`
-	// Number as a string
+	// Parent id of the schema that visual query is based on
 	ParentID       string `json:"parentId"`
 	PrimaryLabel   string `json:"primaryLabel"`
 	SecondaryLabel string `json:"secondaryLabel"`

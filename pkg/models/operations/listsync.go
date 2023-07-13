@@ -70,7 +70,8 @@ type ListSyncRequest struct {
 
 // ListSync200ApplicationJSON - Ok
 type ListSync200ApplicationJSON struct {
-	Data []shared.Sync `json:"data"`
+	Data    []shared.Sync `json:"data"`
+	HasMore bool          `json:"hasMore"`
 }
 
 type ListSyncResponse struct {

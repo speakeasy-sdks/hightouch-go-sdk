@@ -21,6 +21,7 @@ Hightouch API: Hightouch Public Rest API to access syncs, models, sources and de
 * [ListSyncRuns](#listsyncruns) - List Sync Runs
 * [TriggerRun](#triggerrun) - Trigger Sync
 * [TriggerRunCustom](#triggerruncustom) - Trigger Sync From ID or Slug
+* [TriggerRunIDGraph](#triggerrunidgraph)
 * [UpdateDestination](#updatedestination) - Update Destination
 * [UpdateModel](#updatemodel) - Update Model
 * [UpdateSource](#updatesource) - Update Source
@@ -868,6 +869,57 @@ func main() {
 **[*operations.TriggerRunCustomResponse](../../models/operations/triggerruncustomresponse.md), error**
 
 
+## TriggerRunIDGraph
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+)
+
+func main() {
+    s := hightouch.New()
+
+    ctx := context.Background()
+    res, err := s.Hightouch.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
+        TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{
+            FullRerun: hightouch.Bool(false),
+        },
+        GraphID: "tenetur",
+    }, operations.TriggerRunIDGraphSecurity{
+        BearerAuth: "",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.TriggerRunIDGraphOutput != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.TriggerRunIDGraphRequest](../../models/operations/triggerrunidgraphrequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `security`                                                                                   | [operations.TriggerRunIDGraphSecurity](../../models/operations/triggerrunidgraphsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+
+
+### Response
+
+**[*operations.TriggerRunIDGraphResponse](../../models/operations/triggerrunidgraphresponse.md), error**
+
+
 ## UpdateDestination
 
 Update an existing destination
@@ -894,14 +946,12 @@ func main() {
     res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
         DestinationUpdate: shared.DestinationUpdate{
             Configuration: map[string]interface{}{
-                "ipsam": "id",
-                "possimus": "aut",
-                "quasi": "error",
-                "temporibus": "laborum",
+                "id": "possimus",
+                "aut": "quasi",
             },
-            Name: hightouch.String("Johanna Wolf"),
+            Name: hightouch.String("Dr. Jake Pacocha"),
         },
-        DestinationID: 5096.24,
+        DestinationID: 8781.94,
     }, operations.UpdateDestinationSecurity{
         BearerAuth: "",
     })
@@ -955,28 +1005,28 @@ func main() {
     res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
         ModelUpdate: shared.ModelUpdate{
             Custom: &shared.ModelUpdateCustom{
-                Query: "voluptatibus",
+                Query: "nihil",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "ipsa",
+                ModelID: "praesentium",
             },
             IsSchema: hightouch.Bool(false),
-            Name: hightouch.String("Mr. Jared Ritchie"),
-            PrimaryKey: hightouch.String("ut"),
+            Name: hightouch.String("Jose Moen"),
+            PrimaryKey: hightouch.String("perferendis"),
             Raw: &shared.ModelUpdateRaw{
-                SQL: "maiores",
+                SQL: "doloremque",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "Stacy Gulgowski MD",
+                Name: "Mrs. April Wuckert",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "enim",
-                ParentID: "accusamus",
-                PrimaryLabel: "commodi",
-                SecondaryLabel: "repudiandae",
+                Filter: "iusto",
+                ParentID: "dicta",
+                PrimaryLabel: "harum",
+                SecondaryLabel: "enim",
             },
         },
-        ModelID: 641.47,
+        ModelID: 8804.76,
     }, operations.UpdateModelSecurity{
         BearerAuth: "",
     })
@@ -1030,11 +1080,12 @@ func main() {
     res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
         SourceUpdate: shared.SourceUpdate{
             Configuration: map[string]interface{}{
-                "quidem": "molestias",
+                "repudiandae": "quae",
+                "ipsum": "quidem",
             },
-            Name: hightouch.String("Ervin Gleason"),
+            Name: hightouch.String("Andy Streich"),
         },
-        SourceID: 9167.23,
+        SourceID: 5232.48,
     }, operations.UpdateSourceSecurity{
         BearerAuth: "",
     })
@@ -1088,20 +1139,69 @@ func main() {
     res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
         SyncUpdate: shared.SyncUpdate{
             Configuration: map[string]interface{}{
-                "repudiandae": "sint",
+                "quasi": "repudiandae",
+                "sint": "veritatis",
+                "itaque": "incidunt",
+                "enim": "consequatur",
             },
             Disabled: hightouch.Bool(false),
             Schedule: &shared.SyncUpdateSchedule{
-                Schedule: shared.IntervalSchedule{
-                    Interval: shared.Interval{
-                        Quantity: 9292.97,
-                        Unit: shared.IntervalUnitHour,
+                Schedule: shared.VisualCronSchedule{
+                    Expressions: []shared.VisualCronScheduleExpressions{
+                        shared.VisualCronScheduleExpressions{
+                            Days: shared.RecordDayBooleanOrUndefined{
+                                Friday: hightouch.Bool(false),
+                                Monday: hightouch.Bool(false),
+                                Saturday: hightouch.Bool(false),
+                                Sunday: hightouch.Bool(false),
+                                Thursday: hightouch.Bool(false),
+                                Tuesday: hightouch.Bool(false),
+                                Wednesday: hightouch.Bool(false),
+                            },
+                            Time: "explicabo",
+                        },
+                        shared.VisualCronScheduleExpressions{
+                            Days: shared.RecordDayBooleanOrUndefined{
+                                Friday: hightouch.Bool(false),
+                                Monday: hightouch.Bool(false),
+                                Saturday: hightouch.Bool(false),
+                                Sunday: hightouch.Bool(false),
+                                Thursday: hightouch.Bool(false),
+                                Tuesday: hightouch.Bool(false),
+                                Wednesday: hightouch.Bool(false),
+                            },
+                            Time: "deserunt",
+                        },
+                        shared.VisualCronScheduleExpressions{
+                            Days: shared.RecordDayBooleanOrUndefined{
+                                Friday: hightouch.Bool(false),
+                                Monday: hightouch.Bool(false),
+                                Saturday: hightouch.Bool(false),
+                                Sunday: hightouch.Bool(false),
+                                Thursday: hightouch.Bool(false),
+                                Tuesday: hightouch.Bool(false),
+                                Wednesday: hightouch.Bool(false),
+                            },
+                            Time: "distinctio",
+                        },
+                        shared.VisualCronScheduleExpressions{
+                            Days: shared.RecordDayBooleanOrUndefined{
+                                Friday: hightouch.Bool(false),
+                                Monday: hightouch.Bool(false),
+                                Saturday: hightouch.Bool(false),
+                                Sunday: hightouch.Bool(false),
+                                Thursday: hightouch.Bool(false),
+                                Tuesday: hightouch.Bool(false),
+                                Wednesday: hightouch.Bool(false),
+                            },
+                            Time: "quibusdam",
+                        },
                     },
                 },
-                Type: "enim",
+                Type: "labore",
             },
         },
-        SyncID: 93.56,
+        SyncID: 2647.3,
     }, operations.UpdateSyncSecurity{
         BearerAuth: "",
     })

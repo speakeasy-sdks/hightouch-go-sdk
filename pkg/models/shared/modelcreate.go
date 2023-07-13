@@ -8,7 +8,7 @@ type ModelCreateCustom struct {
 }
 
 type ModelCreateDbt struct {
-	// Number as a string
+	// Model id that refers to a dbt model
 	ModelID string `json:"modelId"`
 }
 
@@ -25,7 +25,7 @@ type ModelCreateTable struct {
 // ModelCreateVisual - Visual query, used by audience
 type ModelCreateVisual struct {
 	Filter interface{} `json:"filter"`
-	// Number as a string
+	// Parent id of the schema that visual query is based on
 	ParentID       string `json:"parentId"`
 	PrimaryLabel   string `json:"primaryLabel"`
 	SecondaryLabel string `json:"secondaryLabel"`
@@ -49,7 +49,7 @@ type ModelCreate struct {
 	Raw *ModelCreateRaw `json:"raw,omitempty"`
 	// The slug of the model
 	Slug string `json:"slug"`
-	// Number as a string
+	// The id of the source that model is connected to
 	SourceID string `json:"sourceId"`
 	// Table-based query that fetches on a table instead of SQL
 	Table *ModelCreateTable `json:"table,omitempty"`

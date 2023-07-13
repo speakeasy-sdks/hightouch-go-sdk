@@ -7,7 +7,7 @@ type TriggerRunCustomInput struct {
 	// Whether to resync all the rows in the query (i.e. ignoring previously
 	// synced rows).
 	FullResync *bool `json:"fullResync,omitempty"`
-	// Number as a string
+	// Trigger run based on sync id
 	SyncID *string `json:"syncId,omitempty"`
 	// Trigger run based on sync slug
 	SyncSlug *string `json:"syncSlug,omitempty"`

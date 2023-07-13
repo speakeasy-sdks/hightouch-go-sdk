@@ -34,15 +34,15 @@ type Sync struct {
 	Configuration map[string]interface{} `json:"configuration"`
 	// The timestamp when the sync was created
 	CreatedAt time.Time `json:"createdAt"`
-	// Number as a string
+	// The id of the Destination that sync is connected to
 	DestinationID string `json:"destinationId"`
 	// Whether the sync has been disabled by the user.
 	Disabled bool `json:"disabled"`
-	// Number as a string
+	// The sync's id
 	ID string `json:"id"`
 	// The timestamp of the last sync run
 	LastRunAt time.Time `json:"lastRunAt"`
-	// Number as a string
+	// The id of the Model that sync is connected to
 	ModelID string `json:"modelId"`
 	// The primary key that sync uses to identify data from source
 	PrimaryKey string `json:"primaryKey"`
@@ -59,10 +59,11 @@ type Sync struct {
 	// DBT-cloud: the sync will be trigged based on a dbt cloud job
 	Schedule SyncSchedule `json:"schedule"`
 	// The sync's slug
-	Slug   string     `json:"slug"`
+	Slug string `json:"slug"`
+	// SyncStatus
 	Status SyncStatus `json:"status"`
 	// The timestamp when the sync was last updated
 	UpdatedAt time.Time `json:"updatedAt"`
-	// Number as a string
+	// The id of the workspace that the sync belongs to
 	WorkspaceID string `json:"workspaceId"`
 }

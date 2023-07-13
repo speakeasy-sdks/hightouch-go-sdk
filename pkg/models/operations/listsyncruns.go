@@ -68,7 +68,8 @@ type ListSyncRunsRequest struct {
 
 // ListSyncRuns200ApplicationJSON - Ok
 type ListSyncRuns200ApplicationJSON struct {
-	Data []shared.SyncRun `json:"data"`
+	Data    []shared.SyncRun `json:"data"`
+	HasMore bool             `json:"hasMore"`
 }
 
 type ListSyncRunsResponse struct {

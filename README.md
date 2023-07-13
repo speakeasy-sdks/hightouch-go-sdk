@@ -87,6 +87,7 @@ func main() {
 * [ListSyncRuns](docs/sdks/hightouch/README.md#listsyncruns) - List Sync Runs
 * [TriggerRun](docs/sdks/hightouch/README.md#triggerrun) - Trigger Sync
 * [TriggerRunCustom](docs/sdks/hightouch/README.md#triggerruncustom) - Trigger Sync From ID or Slug
+* [TriggerRunIDGraph](docs/sdks/hightouch/README.md#triggerrunidgraph)
 * [UpdateDestination](docs/sdks/hightouch/README.md#updatedestination) - Update Destination
 * [UpdateModel](docs/sdks/hightouch/README.md#updatemodel) - Update Model
 * [UpdateSource](docs/sdks/hightouch/README.md#updatesource) - Update Source

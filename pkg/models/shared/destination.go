@@ -19,7 +19,7 @@ type Destination struct {
 	Configuration map[string]interface{} `json:"configuration"`
 	// The timestamp when the destination was created
 	CreatedAt time.Time `json:"createdAt"`
-	// Number as a string
+	// The destination's id
 	ID string `json:"id"`
 	// The destination's name
 	Name string `json:"name"`
@@ -31,6 +31,6 @@ type Destination struct {
 	Type string `json:"type"`
 	// The timestamp when the destination was last updated
 	UpdatedAt time.Time `json:"updatedAt"`
-	// Number as a string
+	// The id of the workspace that the destination belongs to
 	WorkspaceID string `json:"workspaceId"`
 }

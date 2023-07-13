@@ -26,11 +26,11 @@ type SyncCreate struct {
 	// Consumers should NOT make assumptions on the contents of the
 	// configuration. It may change as Hightouch updates its internal code.
 	Configuration map[string]interface{} `json:"configuration"`
-	// Number as a string
+	// The id of the Destination that sync is connected to
 	DestinationID string `json:"destinationId"`
 	// Whether the sync has been disabled by the user.
 	Disabled bool `json:"disabled"`
-	// Number as a string
+	// The id of the Model that sync is connected to
 	ModelID string `json:"modelId"`
 	// The scheduling configuration. It can be triggerd based on several ways:
 	//

@@ -61,7 +61,7 @@ type SyncRun struct {
 	FailedRows SyncRunFailedRows `json:"failedRows"`
 	// The timestamp when the sync run finished
 	FinishedAt time.Time `json:"finishedAt"`
-	// Number as a string
+	// The sync run's id
 	ID string `json:"id"`
 	// The number of planned rows that this sync run was supposed to execute.
 	//

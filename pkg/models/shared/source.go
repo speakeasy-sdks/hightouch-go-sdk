@@ -19,7 +19,7 @@ type Source struct {
 	Configuration map[string]interface{} `json:"configuration"`
 	// The timestamp when the source was created
 	CreatedAt time.Time `json:"createdAt"`
-	// Number as a string
+	// The source's id
 	ID string `json:"id"`
 	// The source's name
 	Name string `json:"name"`
@@ -29,6 +29,6 @@ type Source struct {
 	Type string `json:"type"`
 	// The timestamp when the source was last updated
 	UpdatedAt time.Time `json:"updatedAt"`
-	// Number as a string
+	// The id of the workspace that the source belongs to
 	WorkspaceID string `json:"workspaceId"`
 }
