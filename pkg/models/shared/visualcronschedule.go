@@ -8,6 +8,27 @@ type VisualCronScheduleExpressions struct {
 	Time string                      `json:"time"`
 }
 
+func (o *VisualCronScheduleExpressions) GetDays() RecordDayBooleanOrUndefined {
+	if o == nil {
+		return RecordDayBooleanOrUndefined{}
+	}
+	return o.Days
+}
+
+func (o *VisualCronScheduleExpressions) GetTime() string {
+	if o == nil {
+		return ""
+	}
+	return o.Time
+}
+
 type VisualCronSchedule struct {
 	Expressions []VisualCronScheduleExpressions `json:"expressions"`
+}
+
+func (o *VisualCronSchedule) GetExpressions() []VisualCronScheduleExpressions {
+	if o == nil {
+		return []VisualCronScheduleExpressions{}
+	}
+	return o.Expressions
 }

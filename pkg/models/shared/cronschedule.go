@@ -5,3 +5,10 @@ package shared
 type CronSchedule struct {
 	Expression string `json:"expression"`
 }
+
+func (o *CronSchedule) GetExpression() string {
+	if o == nil {
+		return ""
+	}
+	return o.Expression
+}

@@ -11,6 +11,13 @@ type CreateDestinationSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *CreateDestinationSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type CreateDestinationResponse struct {
 	ContentType string
 	// Ok
@@ -21,4 +28,46 @@ type CreateDestinationResponse struct {
 	RawResponse         *http.Response
 	// Conflict
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *CreateDestinationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CreateDestinationResponse) GetCreateDestination200ApplicationJSONAnyOf() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.CreateDestination200ApplicationJSONAnyOf
+}
+
+func (o *CreateDestinationResponse) GetInternalServerError() *shared.InternalServerError {
+	if o == nil {
+		return nil
+	}
+	return o.InternalServerError
+}
+
+func (o *CreateDestinationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CreateDestinationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CreateDestinationResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

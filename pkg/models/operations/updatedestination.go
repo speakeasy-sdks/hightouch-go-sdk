@@ -11,10 +11,31 @@ type UpdateDestinationSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *UpdateDestinationSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type UpdateDestinationRequest struct {
 	DestinationUpdate shared.DestinationUpdate `request:"mediaType=application/json"`
 	// The destination's ID
 	DestinationID float64 `pathParam:"style=simple,explode=false,name=destinationId"`
+}
+
+func (o *UpdateDestinationRequest) GetDestinationUpdate() shared.DestinationUpdate {
+	if o == nil {
+		return shared.DestinationUpdate{}
+	}
+	return o.DestinationUpdate
+}
+
+func (o *UpdateDestinationRequest) GetDestinationID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.DestinationID
 }
 
 type UpdateDestinationResponse struct {
@@ -27,4 +48,46 @@ type UpdateDestinationResponse struct {
 	UpdateDestination200ApplicationJSONAnyOf interface{}
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *UpdateDestinationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateDestinationResponse) GetInternalServerError() *shared.InternalServerError {
+	if o == nil {
+		return nil
+	}
+	return o.InternalServerError
+}
+
+func (o *UpdateDestinationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateDestinationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateDestinationResponse) GetUpdateDestination200ApplicationJSONAnyOf() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateDestination200ApplicationJSONAnyOf
+}
+
+func (o *UpdateDestinationResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

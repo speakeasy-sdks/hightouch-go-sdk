@@ -20,6 +20,20 @@ type SyncSchedule struct {
 	Type     string      `json:"type"`
 }
 
+func (o *SyncSchedule) GetSchedule() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Schedule
+}
+
+func (o *SyncSchedule) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
 // Sync - Syncs define how data from models are mapped to destinations. Each time a
 // sync runs, Hightouch calculates the rows that have changed since the last
 // run, and syncs them to Sync's destination.
@@ -66,4 +80,102 @@ type Sync struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	// The id of the workspace that the sync belongs to
 	WorkspaceID string `json:"workspaceId"`
+}
+
+func (o *Sync) GetConfiguration() map[string]interface{} {
+	if o == nil {
+		return map[string]interface{}{}
+	}
+	return o.Configuration
+}
+
+func (o *Sync) GetCreatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.CreatedAt
+}
+
+func (o *Sync) GetDestinationID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DestinationID
+}
+
+func (o *Sync) GetDisabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Disabled
+}
+
+func (o *Sync) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Sync) GetLastRunAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.LastRunAt
+}
+
+func (o *Sync) GetModelID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ModelID
+}
+
+func (o *Sync) GetPrimaryKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PrimaryKey
+}
+
+func (o *Sync) GetReferencedColumns() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.ReferencedColumns
+}
+
+func (o *Sync) GetSchedule() SyncSchedule {
+	if o == nil {
+		return SyncSchedule{}
+	}
+	return o.Schedule
+}
+
+func (o *Sync) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
+}
+
+func (o *Sync) GetStatus() SyncStatus {
+	if o == nil {
+		return SyncStatus("")
+	}
+	return o.Status
+}
+
+func (o *Sync) GetUpdatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.UpdatedAt
+}
+
+func (o *Sync) GetWorkspaceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.WorkspaceID
 }

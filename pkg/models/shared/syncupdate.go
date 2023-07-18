@@ -16,6 +16,20 @@ type SyncUpdateSchedule struct {
 	Type     string      `json:"type"`
 }
 
+func (o *SyncUpdateSchedule) GetSchedule() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Schedule
+}
+
+func (o *SyncUpdateSchedule) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
 // SyncUpdate - The input for updating a Sync
 type SyncUpdate struct {
 	// The sync's configuration. This specifies how data is mapped, among other
@@ -38,4 +52,25 @@ type SyncUpdate struct {
 	//
 	// DBT-cloud: the sync will be trigged based on a dbt cloud job
 	Schedule *SyncUpdateSchedule `json:"schedule,omitempty"`
+}
+
+func (o *SyncUpdate) GetConfiguration() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Configuration
+}
+
+func (o *SyncUpdate) GetDisabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Disabled
+}
+
+func (o *SyncUpdate) GetSchedule() *SyncUpdateSchedule {
+	if o == nil {
+		return nil
+	}
+	return o.Schedule
 }

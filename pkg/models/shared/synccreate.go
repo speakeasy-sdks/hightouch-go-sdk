@@ -16,6 +16,20 @@ type SyncCreateSchedule struct {
 	Type     string      `json:"type"`
 }
 
+func (o *SyncCreateSchedule) GetSchedule() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Schedule
+}
+
+func (o *SyncCreateSchedule) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
 // SyncCreate - The input for creating a Sync
 type SyncCreate struct {
 	// The sync's configuration. This specifies how data is mapped, among other
@@ -44,4 +58,46 @@ type SyncCreate struct {
 	Schedule SyncCreateSchedule `json:"schedule"`
 	// The sync's slug
 	Slug string `json:"slug"`
+}
+
+func (o *SyncCreate) GetConfiguration() map[string]interface{} {
+	if o == nil {
+		return map[string]interface{}{}
+	}
+	return o.Configuration
+}
+
+func (o *SyncCreate) GetDestinationID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DestinationID
+}
+
+func (o *SyncCreate) GetDisabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Disabled
+}
+
+func (o *SyncCreate) GetModelID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ModelID
+}
+
+func (o *SyncCreate) GetSchedule() SyncCreateSchedule {
+	if o == nil {
+		return SyncCreateSchedule{}
+	}
+	return o.Schedule
+}
+
+func (o *SyncCreate) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
 }

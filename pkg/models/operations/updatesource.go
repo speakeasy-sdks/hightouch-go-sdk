@@ -11,10 +11,31 @@ type UpdateSourceSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *UpdateSourceSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type UpdateSourceRequest struct {
 	SourceUpdate shared.SourceUpdate `request:"mediaType=application/json"`
 	// The source's ID
 	SourceID float64 `pathParam:"style=simple,explode=false,name=sourceId"`
+}
+
+func (o *UpdateSourceRequest) GetSourceUpdate() shared.SourceUpdate {
+	if o == nil {
+		return shared.SourceUpdate{}
+	}
+	return o.SourceUpdate
+}
+
+func (o *UpdateSourceRequest) GetSourceID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SourceID
 }
 
 type UpdateSourceResponse struct {
@@ -27,4 +48,46 @@ type UpdateSourceResponse struct {
 	UpdateSource200ApplicationJSONAnyOf interface{}
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *UpdateSourceResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateSourceResponse) GetInternalServerError() *shared.InternalServerError {
+	if o == nil {
+		return nil
+	}
+	return o.InternalServerError
+}
+
+func (o *UpdateSourceResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateSourceResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateSourceResponse) GetUpdateSource200ApplicationJSONAnyOf() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSource200ApplicationJSONAnyOf
+}
+
+func (o *UpdateSourceResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

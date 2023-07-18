@@ -11,9 +11,30 @@ type TriggerRunIDGraphSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *TriggerRunIDGraphSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type TriggerRunIDGraphRequest struct {
 	TriggerRunIDGraphInput *shared.TriggerRunIDGraphInput `request:"mediaType=application/json"`
 	GraphID                string                         `pathParam:"style=simple,explode=false,name=graphId"`
+}
+
+func (o *TriggerRunIDGraphRequest) GetTriggerRunIDGraphInput() *shared.TriggerRunIDGraphInput {
+	if o == nil {
+		return nil
+	}
+	return o.TriggerRunIDGraphInput
+}
+
+func (o *TriggerRunIDGraphRequest) GetGraphID() string {
+	if o == nil {
+		return ""
+	}
+	return o.GraphID
 }
 
 type TriggerRunIDGraphResponse struct {
@@ -24,4 +45,39 @@ type TriggerRunIDGraphResponse struct {
 	TriggerRunIDGraphOutput *shared.TriggerRunIDGraphOutput
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *TriggerRunIDGraphResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *TriggerRunIDGraphResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *TriggerRunIDGraphResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *TriggerRunIDGraphResponse) GetTriggerRunIDGraphOutput() *shared.TriggerRunIDGraphOutput {
+	if o == nil {
+		return nil
+	}
+	return o.TriggerRunIDGraphOutput
+}
+
+func (o *TriggerRunIDGraphResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

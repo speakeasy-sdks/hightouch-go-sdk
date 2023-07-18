@@ -11,9 +11,23 @@ type GetDestinationSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *GetDestinationSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type GetDestinationRequest struct {
 	// The destination's ID
 	DestinationID float64 `pathParam:"style=simple,explode=false,name=destinationId"`
+}
+
+func (o *GetDestinationRequest) GetDestinationID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.DestinationID
 }
 
 type GetDestinationResponse struct {
@@ -22,4 +36,32 @@ type GetDestinationResponse struct {
 	Destination *shared.Destination
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetDestinationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetDestinationResponse) GetDestination() *shared.Destination {
+	if o == nil {
+		return nil
+	}
+	return o.Destination
+}
+
+func (o *GetDestinationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetDestinationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -12,3 +12,24 @@ type TriggerRunCustomInput struct {
 	// Trigger run based on sync slug
 	SyncSlug *string `json:"syncSlug,omitempty"`
 }
+
+func (o *TriggerRunCustomInput) GetFullResync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.FullResync
+}
+
+func (o *TriggerRunCustomInput) GetSyncID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncID
+}
+
+func (o *TriggerRunCustomInput) GetSyncSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SyncSlug
+}

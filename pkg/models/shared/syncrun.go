@@ -20,6 +20,27 @@ type SyncRunFailedRows struct {
 	RemovedCount float64 `json:"removedCount"`
 }
 
+func (o *SyncRunFailedRows) GetAddedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.AddedCount
+}
+
+func (o *SyncRunFailedRows) GetChangedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ChangedCount
+}
+
+func (o *SyncRunFailedRows) GetRemovedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.RemovedCount
+}
+
 // SyncRunPlannedRows - The number of planned rows that this sync run was supposed to execute.
 //
 // Note that the counts for `successfulRows` and `failedRows` may not add up
@@ -33,6 +54,27 @@ type SyncRunPlannedRows struct {
 	RemovedCount float64 `json:"removedCount"`
 }
 
+func (o *SyncRunPlannedRows) GetAddedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.AddedCount
+}
+
+func (o *SyncRunPlannedRows) GetChangedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ChangedCount
+}
+
+func (o *SyncRunPlannedRows) GetRemovedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.RemovedCount
+}
+
 // SyncRunSuccessfulRows - The number of rows that were successfully processed by the destination.
 type SyncRunSuccessfulRows struct {
 	// The number of successful adds.
@@ -41,6 +83,27 @@ type SyncRunSuccessfulRows struct {
 	ChangedCount float64 `json:"changedCount"`
 	// The number of successful removes.
 	RemovedCount float64 `json:"removedCount"`
+}
+
+func (o *SyncRunSuccessfulRows) GetAddedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.AddedCount
+}
+
+func (o *SyncRunSuccessfulRows) GetChangedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ChangedCount
+}
+
+func (o *SyncRunSuccessfulRows) GetRemovedCount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.RemovedCount
 }
 
 type SyncRun struct {
@@ -76,4 +139,81 @@ type SyncRun struct {
 	Status SyncRunStatus `json:"status"`
 	// The number of rows that were successfully processed by the destination.
 	SuccessfulRows SyncRunSuccessfulRows `json:"successfulRows"`
+}
+
+func (o *SyncRun) GetCompletionRatio() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.CompletionRatio
+}
+
+func (o *SyncRun) GetCreatedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.CreatedAt
+}
+
+func (o *SyncRun) GetError() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Error
+}
+
+func (o *SyncRun) GetFailedRows() SyncRunFailedRows {
+	if o == nil {
+		return SyncRunFailedRows{}
+	}
+	return o.FailedRows
+}
+
+func (o *SyncRun) GetFinishedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.FinishedAt
+}
+
+func (o *SyncRun) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SyncRun) GetPlannedRows() SyncRunPlannedRows {
+	if o == nil {
+		return SyncRunPlannedRows{}
+	}
+	return o.PlannedRows
+}
+
+func (o *SyncRun) GetQuerySize() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.QuerySize
+}
+
+func (o *SyncRun) GetStartedAt() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.StartedAt
+}
+
+func (o *SyncRun) GetStatus() SyncRunStatus {
+	if o == nil {
+		return SyncRunStatus("")
+	}
+	return o.Status
+}
+
+func (o *SyncRun) GetSuccessfulRows() SyncRunSuccessfulRows {
+	if o == nil {
+		return SyncRunSuccessfulRows{}
+	}
+	return o.SuccessfulRows
 }

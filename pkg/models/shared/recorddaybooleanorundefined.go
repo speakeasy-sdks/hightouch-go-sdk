@@ -12,3 +12,52 @@ type RecordDayBooleanOrUndefined struct {
 	Tuesday   *bool `json:"tuesday,omitempty"`
 	Wednesday *bool `json:"wednesday,omitempty"`
 }
+
+func (o *RecordDayBooleanOrUndefined) GetFriday() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Friday
+}
+
+func (o *RecordDayBooleanOrUndefined) GetMonday() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Monday
+}
+
+func (o *RecordDayBooleanOrUndefined) GetSaturday() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Saturday
+}
+
+func (o *RecordDayBooleanOrUndefined) GetSunday() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Sunday
+}
+
+func (o *RecordDayBooleanOrUndefined) GetThursday() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Thursday
+}
+
+func (o *RecordDayBooleanOrUndefined) GetTuesday() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Tuesday
+}
+
+func (o *RecordDayBooleanOrUndefined) GetWednesday() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Wednesday
+}

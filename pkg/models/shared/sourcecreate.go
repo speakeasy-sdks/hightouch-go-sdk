@@ -19,3 +19,31 @@ type SourceCreate struct {
 	// The source's type (e.g. snowflake or postgres).
 	Type string `json:"type"`
 }
+
+func (o *SourceCreate) GetConfiguration() map[string]interface{} {
+	if o == nil {
+		return map[string]interface{}{}
+	}
+	return o.Configuration
+}
+
+func (o *SourceCreate) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *SourceCreate) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
+}
+
+func (o *SourceCreate) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

@@ -13,6 +13,13 @@ type ListModelSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *ListModelSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 // ListModelOrderBy - specify the order
 type ListModelOrderBy string
 
@@ -63,9 +70,51 @@ type ListModelRequest struct {
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
 
+func (o *ListModelRequest) GetLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *ListModelRequest) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ListModelRequest) GetOffset() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
+func (o *ListModelRequest) GetOrderBy() *ListModelOrderBy {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListModelRequest) GetSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
 // ListModel200ApplicationJSON - Ok
 type ListModel200ApplicationJSON struct {
 	Data []shared.Model `json:"data"`
+}
+
+func (o *ListModel200ApplicationJSON) GetData() []shared.Model {
+	if o == nil {
+		return []shared.Model{}
+	}
+	return o.Data
 }
 
 type ListModelResponse struct {
@@ -76,4 +125,39 @@ type ListModelResponse struct {
 	RawResponse                       *http.Response
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *ListModelResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListModelResponse) GetListModel200ApplicationJSONObject() *ListModel200ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListModel200ApplicationJSONObject
+}
+
+func (o *ListModelResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListModelResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListModelResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

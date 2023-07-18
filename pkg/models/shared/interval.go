@@ -6,3 +6,17 @@ type Interval struct {
 	Quantity float64      `json:"quantity"`
 	Unit     IntervalUnit `json:"unit"`
 }
+
+func (o *Interval) GetQuantity() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Quantity
+}
+
+func (o *Interval) GetUnit() IntervalUnit {
+	if o == nil {
+		return IntervalUnit("")
+	}
+	return o.Unit
+}

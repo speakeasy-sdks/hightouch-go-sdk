@@ -8,3 +8,10 @@ type TriggerRunInput struct {
 	// synced rows).
 	FullResync *bool `json:"fullResync,omitempty"`
 }
+
+func (o *TriggerRunInput) GetFullResync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.FullResync
+}

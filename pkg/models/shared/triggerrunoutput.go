@@ -8,3 +8,10 @@ type TriggerRunOutput struct {
 	// get the run's status.
 	ID string `json:"id"`
 }
+
+func (o *TriggerRunOutput) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}

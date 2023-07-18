@@ -11,10 +11,31 @@ type UpdateSyncSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *UpdateSyncSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type UpdateSyncRequest struct {
 	SyncUpdate shared.SyncUpdate `request:"mediaType=application/json"`
 	// The sync's ID
 	SyncID float64 `pathParam:"style=simple,explode=false,name=syncId"`
+}
+
+func (o *UpdateSyncRequest) GetSyncUpdate() shared.SyncUpdate {
+	if o == nil {
+		return shared.SyncUpdate{}
+	}
+	return o.SyncUpdate
+}
+
+func (o *UpdateSyncRequest) GetSyncID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SyncID
 }
 
 type UpdateSyncResponse struct {
@@ -27,4 +48,46 @@ type UpdateSyncResponse struct {
 	UpdateSync200ApplicationJSONAnyOf interface{}
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *UpdateSyncResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateSyncResponse) GetInternalServerError() *shared.InternalServerError {
+	if o == nil {
+		return nil
+	}
+	return o.InternalServerError
+}
+
+func (o *UpdateSyncResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateSyncResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateSyncResponse) GetUpdateSync200ApplicationJSONAnyOf() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateSync200ApplicationJSONAnyOf
+}
+
+func (o *UpdateSyncResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

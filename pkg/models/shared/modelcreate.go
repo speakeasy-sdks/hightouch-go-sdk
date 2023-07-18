@@ -7,9 +7,23 @@ type ModelCreateCustom struct {
 	Query interface{} `json:"query"`
 }
 
+func (o *ModelCreateCustom) GetQuery() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type ModelCreateDbt struct {
 	// Model id that refers to a dbt model
 	ModelID string `json:"modelId"`
+}
+
+func (o *ModelCreateDbt) GetModelID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ModelID
 }
 
 // ModelCreateRaw - Standard raw SQL query
@@ -17,9 +31,23 @@ type ModelCreateRaw struct {
 	SQL string `json:"sql"`
 }
 
+func (o *ModelCreateRaw) GetSQL() string {
+	if o == nil {
+		return ""
+	}
+	return o.SQL
+}
+
 // ModelCreateTable - Table-based query that fetches on a table instead of SQL
 type ModelCreateTable struct {
 	Name string `json:"name"`
+}
+
+func (o *ModelCreateTable) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
 }
 
 // ModelCreateVisual - Visual query, used by audience
@@ -29,6 +57,34 @@ type ModelCreateVisual struct {
 	ParentID       string `json:"parentId"`
 	PrimaryLabel   string `json:"primaryLabel"`
 	SecondaryLabel string `json:"secondaryLabel"`
+}
+
+func (o *ModelCreateVisual) GetFilter() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *ModelCreateVisual) GetParentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ParentID
+}
+
+func (o *ModelCreateVisual) GetPrimaryLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.PrimaryLabel
+}
+
+func (o *ModelCreateVisual) GetSecondaryLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.SecondaryLabel
 }
 
 // ModelCreate - The input for creating a Model
@@ -55,4 +111,81 @@ type ModelCreate struct {
 	Table *ModelCreateTable `json:"table,omitempty"`
 	// Visual query, used by audience
 	Visual *ModelCreateVisual `json:"visual,omitempty"`
+}
+
+func (o *ModelCreate) GetCustom() *ModelCreateCustom {
+	if o == nil {
+		return nil
+	}
+	return o.Custom
+}
+
+func (o *ModelCreate) GetDbt() *ModelCreateDbt {
+	if o == nil {
+		return nil
+	}
+	return o.Dbt
+}
+
+func (o *ModelCreate) GetIsSchema() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsSchema
+}
+
+func (o *ModelCreate) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ModelCreate) GetPrimaryKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.PrimaryKey
+}
+
+func (o *ModelCreate) GetQueryType() string {
+	if o == nil {
+		return ""
+	}
+	return o.QueryType
+}
+
+func (o *ModelCreate) GetRaw() *ModelCreateRaw {
+	if o == nil {
+		return nil
+	}
+	return o.Raw
+}
+
+func (o *ModelCreate) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
+}
+
+func (o *ModelCreate) GetSourceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SourceID
+}
+
+func (o *ModelCreate) GetTable() *ModelCreateTable {
+	if o == nil {
+		return nil
+	}
+	return o.Table
+}
+
+func (o *ModelCreate) GetVisual() *ModelCreateVisual {
+	if o == nil {
+		return nil
+	}
+	return o.Visual
 }

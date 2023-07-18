@@ -13,6 +13,13 @@ type ListDestinationSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *ListDestinationSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 // ListDestinationOrderBy - Order the returned destinations
 type ListDestinationOrderBy string
 
@@ -63,9 +70,51 @@ type ListDestinationRequest struct {
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
 
+func (o *ListDestinationRequest) GetLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *ListDestinationRequest) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ListDestinationRequest) GetOffset() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
+func (o *ListDestinationRequest) GetOrderBy() *ListDestinationOrderBy {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListDestinationRequest) GetSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
 // ListDestination200ApplicationJSON - Ok
 type ListDestination200ApplicationJSON struct {
 	Data []shared.Destination `json:"data"`
+}
+
+func (o *ListDestination200ApplicationJSON) GetData() []shared.Destination {
+	if o == nil {
+		return []shared.Destination{}
+	}
+	return o.Data
 }
 
 type ListDestinationResponse struct {
@@ -76,4 +125,39 @@ type ListDestinationResponse struct {
 	RawResponse                             *http.Response
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *ListDestinationResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListDestinationResponse) GetListDestination200ApplicationJSONObject() *ListDestination200ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListDestination200ApplicationJSONObject
+}
+
+func (o *ListDestinationResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListDestinationResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListDestinationResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

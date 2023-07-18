@@ -15,3 +15,17 @@ type DestinationUpdate struct {
 	// The destination's name
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *DestinationUpdate) GetConfiguration() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Configuration
+}
+
+func (o *DestinationUpdate) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

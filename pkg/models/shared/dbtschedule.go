@@ -6,12 +6,47 @@ type DBTScheduleAccount struct {
 	ID string `json:"id"`
 }
 
+func (o *DBTScheduleAccount) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 type DBTScheduleJob struct {
 	ID string `json:"id"`
+}
+
+func (o *DBTScheduleJob) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
 }
 
 type DBTSchedule struct {
 	Account         DBTScheduleAccount `json:"account"`
 	DbtCredentialID string             `json:"dbtCredentialId"`
 	Job             DBTScheduleJob     `json:"job"`
+}
+
+func (o *DBTSchedule) GetAccount() DBTScheduleAccount {
+	if o == nil {
+		return DBTScheduleAccount{}
+	}
+	return o.Account
+}
+
+func (o *DBTSchedule) GetDbtCredentialID() string {
+	if o == nil {
+		return ""
+	}
+	return o.DbtCredentialID
+}
+
+func (o *DBTSchedule) GetJob() DBTScheduleJob {
+	if o == nil {
+		return DBTScheduleJob{}
+	}
+	return o.Job
 }

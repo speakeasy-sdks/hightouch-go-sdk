@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"io"
@@ -112,8 +113,8 @@ func New(opts ...SDKOption) *Hightouch {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.17.0",
-			GenVersion:        "2.62.1",
+			SDKVersion:        "0.18.0",
+			GenVersion:        "2.70.0",
 		},
 	}
 	for _, opt := range opts {
@@ -188,6 +189,8 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 			}
 
 			res.CreateDestination200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
@@ -201,6 +204,8 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -211,6 +216,8 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -274,6 +281,8 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 			}
 
 			res.CreateModel200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
@@ -287,6 +296,8 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -297,6 +308,8 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate,
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -360,6 +373,8 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 			}
 
 			res.CreateSource200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
@@ -373,6 +388,8 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -383,6 +400,8 @@ func (s *Hightouch) CreateSource(ctx context.Context, request shared.SourceCreat
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -446,6 +465,8 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 			}
 
 			res.CreateSync200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 	case httpRes.StatusCode == 409:
@@ -459,6 +480,8 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -469,6 +492,8 @@ func (s *Hightouch) CreateSync(ctx context.Context, request shared.SyncCreate, s
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -525,6 +550,8 @@ func (s *Hightouch) GetDestination(ctx context.Context, request operations.GetDe
 			}
 
 			res.Destination = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -584,6 +611,8 @@ func (s *Hightouch) GetModel(ctx context.Context, request operations.GetModelReq
 			}
 
 			res.Model = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -643,6 +672,8 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 			}
 
 			res.Source = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -656,6 +687,8 @@ func (s *Hightouch) GetSource(ctx context.Context, request operations.GetSourceR
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -712,6 +745,8 @@ func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncReque
 			}
 
 			res.Sync = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -772,6 +807,8 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 			}
 
 			res.ListDestination200ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -785,6 +822,8 @@ func (s *Hightouch) ListDestination(ctx context.Context, request operations.List
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -842,6 +881,8 @@ func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelR
 			}
 
 			res.ListModel200ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -855,6 +896,8 @@ func (s *Hightouch) ListModel(ctx context.Context, request operations.ListModelR
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -912,6 +955,8 @@ func (s *Hightouch) ListSource(ctx context.Context, request operations.ListSourc
 			}
 
 			res.ListSource200ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -972,6 +1017,8 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 			}
 
 			res.ListSync200ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -985,6 +1032,8 @@ func (s *Hightouch) ListSync(ctx context.Context, request operations.ListSyncReq
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1045,6 +1094,8 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 			}
 
 			res.ListSyncRuns200ApplicationJSONObject = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -1058,6 +1109,8 @@ func (s *Hightouch) ListSyncRuns(ctx context.Context, request operations.ListSyn
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1124,6 +1177,8 @@ func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRu
 			}
 
 			res.TriggerRunOutput = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -1137,6 +1192,8 @@ func (s *Hightouch) TriggerRun(ctx context.Context, request operations.TriggerRu
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1203,6 +1260,8 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 			}
 
 			res.TriggerRunCustom200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -1216,6 +1275,8 @@ func (s *Hightouch) TriggerRunCustom(ctx context.Context, request shared.Trigger
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1277,6 +1338,8 @@ func (s *Hightouch) TriggerRunIDGraph(ctx context.Context, request operations.Tr
 			}
 
 			res.TriggerRunIDGraphOutput = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
@@ -1290,6 +1353,8 @@ func (s *Hightouch) TriggerRunIDGraph(ctx context.Context, request operations.Tr
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1358,6 +1423,8 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 			}
 
 			res.UpdateDestination200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1371,6 +1438,8 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -1381,6 +1450,8 @@ func (s *Hightouch) UpdateDestination(ctx context.Context, request operations.Up
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1449,6 +1520,8 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 			}
 
 			res.UpdateModel200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1462,6 +1535,8 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -1472,6 +1547,8 @@ func (s *Hightouch) UpdateModel(ctx context.Context, request operations.UpdateMo
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1540,6 +1617,8 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 			}
 
 			res.UpdateSource200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1553,6 +1632,8 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -1563,6 +1644,8 @@ func (s *Hightouch) UpdateSource(ctx context.Context, request operations.UpdateS
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -1631,6 +1714,8 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 			}
 
 			res.UpdateSync200ApplicationJSONAnyOf = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
 		fallthrough
@@ -1644,6 +1729,8 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 			}
 
 			res.ValidateErrorJSON = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
 		switch {
@@ -1654,6 +1741,8 @@ func (s *Hightouch) UpdateSync(ctx context.Context, request operations.UpdateSyn
 			}
 
 			res.InternalServerError = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

@@ -15,3 +15,17 @@ type SourceUpdate struct {
 	// The source's name
 	Name *string `json:"name,omitempty"`
 }
+
+func (o *SourceUpdate) GetConfiguration() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Configuration
+}
+
+func (o *SourceUpdate) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}

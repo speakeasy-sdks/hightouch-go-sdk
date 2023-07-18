@@ -11,10 +11,31 @@ type UpdateModelSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *UpdateModelSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type UpdateModelRequest struct {
 	ModelUpdate shared.ModelUpdate `request:"mediaType=application/json"`
 	// The model's ID
 	ModelID float64 `pathParam:"style=simple,explode=false,name=modelId"`
+}
+
+func (o *UpdateModelRequest) GetModelUpdate() shared.ModelUpdate {
+	if o == nil {
+		return shared.ModelUpdate{}
+	}
+	return o.ModelUpdate
+}
+
+func (o *UpdateModelRequest) GetModelID() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ModelID
 }
 
 type UpdateModelResponse struct {
@@ -27,4 +48,46 @@ type UpdateModelResponse struct {
 	UpdateModel200ApplicationJSONAnyOf interface{}
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *UpdateModelResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UpdateModelResponse) GetInternalServerError() *shared.InternalServerError {
+	if o == nil {
+		return nil
+	}
+	return o.InternalServerError
+}
+
+func (o *UpdateModelResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UpdateModelResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UpdateModelResponse) GetUpdateModel200ApplicationJSONAnyOf() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.UpdateModel200ApplicationJSONAnyOf
+}
+
+func (o *UpdateModelResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

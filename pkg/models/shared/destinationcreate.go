@@ -19,3 +19,31 @@ type DestinationCreate struct {
 	// The destination's type (e.g. salesforce or hubspot).
 	Type string `json:"type"`
 }
+
+func (o *DestinationCreate) GetConfiguration() map[string]interface{} {
+	if o == nil {
+		return map[string]interface{}{}
+	}
+	return o.Configuration
+}
+
+func (o *DestinationCreate) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *DestinationCreate) GetSlug() string {
+	if o == nil {
+		return ""
+	}
+	return o.Slug
+}
+
+func (o *DestinationCreate) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}

@@ -11,10 +11,31 @@ type TriggerRunSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *TriggerRunSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 type TriggerRunRequest struct {
 	TriggerRunInput *shared.TriggerRunInput `request:"mediaType=application/json"`
 	// The id of the sync to trigger a run
 	SyncID string `pathParam:"style=simple,explode=false,name=syncId"`
+}
+
+func (o *TriggerRunRequest) GetTriggerRunInput() *shared.TriggerRunInput {
+	if o == nil {
+		return nil
+	}
+	return o.TriggerRunInput
+}
+
+func (o *TriggerRunRequest) GetSyncID() string {
+	if o == nil {
+		return ""
+	}
+	return o.SyncID
 }
 
 type TriggerRunResponse struct {
@@ -25,4 +46,39 @@ type TriggerRunResponse struct {
 	TriggerRunOutput *shared.TriggerRunOutput
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *TriggerRunResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *TriggerRunResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *TriggerRunResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *TriggerRunResponse) GetTriggerRunOutput() *shared.TriggerRunOutput {
+	if o == nil {
+		return nil
+	}
+	return o.TriggerRunOutput
+}
+
+func (o *TriggerRunResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }

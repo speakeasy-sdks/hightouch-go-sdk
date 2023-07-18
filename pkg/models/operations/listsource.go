@@ -13,6 +13,13 @@ type ListSourceSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *ListSourceSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 // ListSourceOrderBy - specify the order
 type ListSourceOrderBy string
 
@@ -63,9 +70,51 @@ type ListSourceRequest struct {
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
 
+func (o *ListSourceRequest) GetLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *ListSourceRequest) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ListSourceRequest) GetOffset() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
+func (o *ListSourceRequest) GetOrderBy() *ListSourceOrderBy {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListSourceRequest) GetSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
 // ListSource200ApplicationJSON - Ok
 type ListSource200ApplicationJSON struct {
 	Data []shared.Source `json:"data"`
+}
+
+func (o *ListSource200ApplicationJSON) GetData() []shared.Source {
+	if o == nil {
+		return []shared.Source{}
+	}
+	return o.Data
 }
 
 type ListSourceResponse struct {
@@ -74,4 +123,32 @@ type ListSourceResponse struct {
 	ListSource200ApplicationJSONObject *ListSource200ApplicationJSON
 	StatusCode                         int
 	RawResponse                        *http.Response
+}
+
+func (o *ListSourceResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListSourceResponse) GetListSource200ApplicationJSONObject() *ListSource200ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListSource200ApplicationJSONObject
+}
+
+func (o *ListSourceResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListSourceResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

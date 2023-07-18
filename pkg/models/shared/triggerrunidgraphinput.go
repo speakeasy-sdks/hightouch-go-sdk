@@ -7,3 +7,10 @@ type TriggerRunIDGraphInput struct {
 	// Whether to resync the entire Identity Graph or process incrementally.
 	FullRerun *bool `json:"fullRerun,omitempty"`
 }
+
+func (o *TriggerRunIDGraphInput) GetFullRerun() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.FullRerun
+}

@@ -7,9 +7,23 @@ type ModelUpdateCustom struct {
 	Query interface{} `json:"query"`
 }
 
+func (o *ModelUpdateCustom) GetQuery() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
 type ModelUpdateDbt struct {
 	// Model id that refers to a dbt model
 	ModelID string `json:"modelId"`
+}
+
+func (o *ModelUpdateDbt) GetModelID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ModelID
 }
 
 // ModelUpdateRaw - Standard raw SQL query
@@ -17,9 +31,23 @@ type ModelUpdateRaw struct {
 	SQL string `json:"sql"`
 }
 
+func (o *ModelUpdateRaw) GetSQL() string {
+	if o == nil {
+		return ""
+	}
+	return o.SQL
+}
+
 // ModelUpdateTable - Table-based query that fetches on a table instead of SQL
 type ModelUpdateTable struct {
 	Name string `json:"name"`
+}
+
+func (o *ModelUpdateTable) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
 }
 
 // ModelUpdateVisual - Visual query, used by audience
@@ -29,6 +57,34 @@ type ModelUpdateVisual struct {
 	ParentID       string `json:"parentId"`
 	PrimaryLabel   string `json:"primaryLabel"`
 	SecondaryLabel string `json:"secondaryLabel"`
+}
+
+func (o *ModelUpdateVisual) GetFilter() interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
+}
+
+func (o *ModelUpdateVisual) GetParentID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ParentID
+}
+
+func (o *ModelUpdateVisual) GetPrimaryLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.PrimaryLabel
+}
+
+func (o *ModelUpdateVisual) GetSecondaryLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.SecondaryLabel
 }
 
 // ModelUpdate - The input for updating a Model
@@ -49,4 +105,60 @@ type ModelUpdate struct {
 	Table *ModelUpdateTable `json:"table,omitempty"`
 	// Visual query, used by audience
 	Visual *ModelUpdateVisual `json:"visual,omitempty"`
+}
+
+func (o *ModelUpdate) GetCustom() *ModelUpdateCustom {
+	if o == nil {
+		return nil
+	}
+	return o.Custom
+}
+
+func (o *ModelUpdate) GetDbt() *ModelUpdateDbt {
+	if o == nil {
+		return nil
+	}
+	return o.Dbt
+}
+
+func (o *ModelUpdate) GetIsSchema() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsSchema
+}
+
+func (o *ModelUpdate) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *ModelUpdate) GetPrimaryKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PrimaryKey
+}
+
+func (o *ModelUpdate) GetRaw() *ModelUpdateRaw {
+	if o == nil {
+		return nil
+	}
+	return o.Raw
+}
+
+func (o *ModelUpdate) GetTable() *ModelUpdateTable {
+	if o == nil {
+		return nil
+	}
+	return o.Table
+}
+
+func (o *ModelUpdate) GetVisual() *ModelUpdateVisual {
+	if o == nil {
+		return nil
+	}
+	return o.Visual
 }

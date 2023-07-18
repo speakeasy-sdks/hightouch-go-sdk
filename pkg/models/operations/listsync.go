@@ -14,6 +14,13 @@ type ListSyncSecurity struct {
 	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
+func (o *ListSyncSecurity) GetBearerAuth() string {
+	if o == nil {
+		return ""
+	}
+	return o.BearerAuth
+}
+
 // ListSyncOrderBy - specify the order
 type ListSyncOrderBy string
 
@@ -68,10 +75,73 @@ type ListSyncRequest struct {
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
 
+func (o *ListSyncRequest) GetAfter() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.After
+}
+
+func (o *ListSyncRequest) GetBefore() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.Before
+}
+
+func (o *ListSyncRequest) GetLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *ListSyncRequest) GetModelID() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.ModelID
+}
+
+func (o *ListSyncRequest) GetOffset() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
+func (o *ListSyncRequest) GetOrderBy() *ListSyncOrderBy {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *ListSyncRequest) GetSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
 // ListSync200ApplicationJSON - Ok
 type ListSync200ApplicationJSON struct {
 	Data    []shared.Sync `json:"data"`
 	HasMore bool          `json:"hasMore"`
+}
+
+func (o *ListSync200ApplicationJSON) GetData() []shared.Sync {
+	if o == nil {
+		return []shared.Sync{}
+	}
+	return o.Data
+}
+
+func (o *ListSync200ApplicationJSON) GetHasMore() bool {
+	if o == nil {
+		return false
+	}
+	return o.HasMore
 }
 
 type ListSyncResponse struct {
@@ -82,4 +152,39 @@ type ListSyncResponse struct {
 	RawResponse                      *http.Response
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
+}
+
+func (o *ListSyncResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListSyncResponse) GetListSync200ApplicationJSONObject() *ListSync200ApplicationJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ListSync200ApplicationJSONObject
+}
+
+func (o *ListSyncResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListSyncResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ListSyncResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+	if o == nil {
+		return nil
+	}
+	return o.ValidateErrorJSON
 }
