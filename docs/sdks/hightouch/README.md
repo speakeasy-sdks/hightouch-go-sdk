@@ -46,6 +46,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.CreateDestinationSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
@@ -58,9 +61,7 @@ func main() {
         Name: "Miriam Huel",
         Slug: "ab",
         Type: "quis",
-    }, operations.CreateDestinationSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -104,6 +105,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.CreateModelSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateModel(ctx, shared.ModelCreate{
@@ -131,9 +135,7 @@ func main() {
             PrimaryLabel: "nam",
             SecondaryLabel: "officia",
         },
-    }, operations.CreateModelSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -177,6 +179,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.CreateSourceSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSource(ctx, shared.SourceCreate{
@@ -188,9 +193,7 @@ func main() {
         Name: "Tanya Gleason",
         Slug: "cum",
         Type: "esse",
-    }, operations.CreateSourceSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -234,6 +237,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.CreateSyncSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSync(ctx, shared.SyncCreate{
@@ -263,9 +269,7 @@ func main() {
             Type: "dolor",
         },
         Slug: "natus",
-    }, operations.CreateSyncSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -308,13 +312,14 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.GetDestinationSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.GetDestination(ctx, operations.GetDestinationRequest{
         DestinationID: 3864.89,
-    }, operations.GetDestinationSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -357,13 +362,14 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.GetModelSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.GetModel(ctx, operations.GetModelRequest{
         ModelID: 9437.49,
-    }, operations.GetModelSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -406,13 +412,14 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.GetSourceSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.GetSource(ctx, operations.GetSourceRequest{
         SourceID: 9025.99,
-    }, operations.GetSourceSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -455,13 +462,14 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.GetSyncSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.GetSync(ctx, operations.GetSyncRequest{
         SyncID: 6818.2,
-    }, operations.GetSyncSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -504,6 +512,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.ListDestinationSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.ListDestination(ctx, operations.ListDestinationRequest{
@@ -512,9 +523,7 @@ func main() {
         Offset: hightouch.Float64(992.8),
         OrderBy: operations.ListDestinationOrderByID.ToPointer(),
         Slug: hightouch.String("reiciendis"),
-    }, operations.ListDestinationSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -557,6 +566,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.ListModelSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.ListModel(ctx, operations.ListModelRequest{
@@ -565,9 +577,7 @@ func main() {
         Offset: hightouch.Float64(1289.26),
         OrderBy: operations.ListModelOrderByCreatedAt.ToPointer(),
         Slug: hightouch.String("enim"),
-    }, operations.ListModelSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -610,6 +620,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.ListSourceSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSource(ctx, operations.ListSourceRequest{
@@ -618,9 +631,7 @@ func main() {
         Offset: hightouch.Float64(9883.74),
         OrderBy: operations.ListSourceOrderByUpdatedAt.ToPointer(),
         Slug: hightouch.String("architecto"),
-    }, operations.ListSourceSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -664,6 +675,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.ListSyncSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSync(ctx, operations.ListSyncRequest{
@@ -674,9 +688,7 @@ func main() {
         Offset: hightouch.Float64(5818.5),
         OrderBy: operations.ListSyncOrderByName.ToPointer(),
         Slug: hightouch.String("commodi"),
-    }, operations.ListSyncSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -720,6 +732,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.ListSyncRunsSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
@@ -731,9 +746,7 @@ func main() {
         RunID: hightouch.Float64(6747.52),
         SyncID: 6563.3,
         Within: hightouch.Float64(3172.02),
-    }, operations.ListSyncRunsSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -780,6 +793,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.TriggerRunSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRun(ctx, operations.TriggerRunRequest{
@@ -787,9 +803,7 @@ func main() {
             FullResync: hightouch.Bool(false),
         },
         SyncID: "odit",
-    }, operations.TriggerRunSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -836,15 +850,16 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.TriggerRunCustomSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{
         FullResync: hightouch.Bool(false),
         SyncID: hightouch.String("quo"),
         SyncSlug: hightouch.String("sequi"),
-    }, operations.TriggerRunCustomSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -886,6 +901,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.TriggerRunIDGraphSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
@@ -893,9 +911,7 @@ func main() {
             FullRerun: hightouch.Bool(false),
         },
         GraphID: "tenetur",
-    }, operations.TriggerRunIDGraphSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -941,6 +957,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.UpdateDestinationSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
@@ -952,9 +971,7 @@ func main() {
             Name: hightouch.String("Dr. Jake Pacocha"),
         },
         DestinationID: 8781.94,
-    }, operations.UpdateDestinationSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -1000,6 +1017,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.UpdateModelSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
@@ -1027,9 +1047,7 @@ func main() {
             },
         },
         ModelID: 8804.76,
-    }, operations.UpdateModelSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -1075,6 +1093,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.UpdateSourceSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
@@ -1086,9 +1107,7 @@ func main() {
             Name: hightouch.String("Andy Streich"),
         },
         SourceID: 5232.48,
-    }, operations.UpdateSourceSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -1134,6 +1153,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.UpdateSyncSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
@@ -1202,9 +1224,7 @@ func main() {
             },
         },
         SyncID: 2647.3,
-    }, operations.UpdateSyncSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }

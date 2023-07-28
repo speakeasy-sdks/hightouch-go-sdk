@@ -14,6 +14,9 @@ import(
 
 func main() {
     s := hightouch.New()
+    operationSecurity := operations.CreateDestinationSecurity{
+            BearerAuth: "",
+        }
 
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -25,9 +28,7 @@ func main() {
         Name: "Ben Mueller",
         Slug: "iure",
         Type: "magnam",
-    }, operations.CreateDestinationSecurity{
-        BearerAuth: "",
-    })
+    }, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
