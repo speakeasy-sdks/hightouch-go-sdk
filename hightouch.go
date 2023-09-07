@@ -64,7 +64,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// Hightouch - Hightouch API: Hightouch Public Rest API to access syncs, models, sources and destinations
+// Hightouch API: Hightouch Public Rest API to access syncs, models, sources and destinations
 type Hightouch struct {
 	sdkConfiguration sdkConfiguration
 }
@@ -113,8 +113,8 @@ func New(opts ...SDKOption) *Hightouch {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.20.0",
-			GenVersion:        "2.89.1",
+			SDKVersion:        "0.21.0",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

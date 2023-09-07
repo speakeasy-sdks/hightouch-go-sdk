@@ -8,8 +8,8 @@ import(
 	"context"
 	"log"
 	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
@@ -21,13 +21,11 @@ func main() {
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "provident": "distinctio",
-            "quibusdam": "unde",
-            "nulla": "corrupti",
+            "corrupti": "provident",
         },
-        Name: "Ben Mueller",
-        Slug: "iure",
-        Type: "magnam",
+        Name: "Ellis Mitchell",
+        Slug: "illum",
+        Type: "vel",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

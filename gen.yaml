@@ -2,19 +2,20 @@ configVersion: 1.0.0
 management:
   docChecksum: 6c15b6978da01d8767c381eb7fb088bd
   docVersion: 1.0.0
-  speakeasyVersion: 1.76.0
-  generationVersion: 2.89.1
+  speakeasyVersion: 1.79.0
+  generationVersion: 2.101.0
 generation:
   sdkClassName: hightouch
   singleTagPerOp: false
   telemetryEnabled: false
 features:
   go:
-    core: 2.85.0
+    core: 2.86.4
+    docs: 0.1.0
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
-    methodSecurity: 2.81.1
+    methodSecurity: 2.81.2
 go:
-  version: 0.20.0
+  version: 0.21.0
   maxMethodParams: 0
   packageName: github.com/speakeasy-sdks/hightouch-go-sdk

@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// SyncStatus - SyncStatus
+// SyncStatus
 type SyncStatus string
 
 const (
