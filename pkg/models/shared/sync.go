@@ -55,7 +55,7 @@ type Sync struct {
 	// The sync's id
 	ID string `json:"id"`
 	// The timestamp of the last sync run
-	LastRunAt time.Time `json:"lastRunAt"`
+	LastRunAt *time.Time `json:"lastRunAt"`
 	// The id of the Model that sync is connected to
 	ModelID string `json:"modelId"`
 	// The primary key that sync uses to identify data from source
@@ -71,7 +71,7 @@ type Sync struct {
 	// Visual: the sync will be trigged based a visual cron configuration on UI
 	//
 	// DBT-cloud: the sync will be trigged based on a dbt cloud job
-	Schedule SyncSchedule `json:"schedule"`
+	Schedule *SyncSchedule `json:"schedule"`
 	// The sync's slug
 	Slug string `json:"slug"`
 	// SyncStatus
@@ -117,9 +117,9 @@ func (o *Sync) GetID() string {
 	return o.ID
 }
 
-func (o *Sync) GetLastRunAt() time.Time {
+func (o *Sync) GetLastRunAt() *time.Time {
 	if o == nil {
-		return time.Time{}
+		return nil
 	}
 	return o.LastRunAt
 }
@@ -145,9 +145,9 @@ func (o *Sync) GetReferencedColumns() []string {
 	return o.ReferencedColumns
 }
 
-func (o *Sync) GetSchedule() SyncSchedule {
+func (o *Sync) GetSchedule() *SyncSchedule {
 	if o == nil {
-		return SyncSchedule{}
+		return nil
 	}
 	return o.Schedule
 }

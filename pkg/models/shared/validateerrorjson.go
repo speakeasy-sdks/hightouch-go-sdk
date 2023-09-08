@@ -31,7 +31,6 @@ func (e *ValidateErrorJSONMessage) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ValidateErrorJSON - Validation Failed
 type ValidateErrorJSON struct {
 	Details map[string]interface{}   `json:"details"`
 	Message ValidateErrorJSONMessage `json:"message"`
