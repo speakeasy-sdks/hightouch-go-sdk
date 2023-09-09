@@ -7,7 +7,6 @@ import (
 	"fmt"
 )
 
-// InternalServerError - Something went wrong
 type InternalServerError string
 
 const (

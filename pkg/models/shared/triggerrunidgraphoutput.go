@@ -2,7 +2,6 @@
 
 package shared
 
-// TriggerRunIDGraphOutput - Ok
 type TriggerRunIDGraphOutput struct {
 	// The id of the triggered run.
 	ID string `json:"id"`

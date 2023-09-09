@@ -55,7 +55,7 @@ type SyncCreate struct {
 	// Visual: the sync will be trigged based a visual cron configuration on UI
 	//
 	// DBT-cloud: the sync will be trigged based on a dbt cloud job
-	Schedule SyncCreateSchedule `json:"schedule"`
+	Schedule *SyncCreateSchedule `json:"schedule"`
 	// The sync's slug
 	Slug string `json:"slug"`
 }
@@ -88,9 +88,9 @@ func (o *SyncCreate) GetModelID() string {
 	return o.ModelID
 }
 
-func (o *SyncCreate) GetSchedule() SyncCreateSchedule {
+func (o *SyncCreate) GetSchedule() *SyncCreateSchedule {
 	if o == nil {
-		return SyncCreateSchedule{}
+		return nil
 	}
 	return o.Schedule
 }
