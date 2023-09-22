@@ -2,6 +2,118 @@
 
 package shared
 
+import (
+	"errors"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
+)
+
+type SyncCreateScheduleScheduleType string
+
+const (
+	SyncCreateScheduleScheduleTypeIntervalSchedule   SyncCreateScheduleScheduleType = "IntervalSchedule"
+	SyncCreateScheduleScheduleTypeCronSchedule       SyncCreateScheduleScheduleType = "CronSchedule"
+	SyncCreateScheduleScheduleTypeVisualCronSchedule SyncCreateScheduleScheduleType = "VisualCronSchedule"
+	SyncCreateScheduleScheduleTypeDBTSchedule        SyncCreateScheduleScheduleType = "DBTSchedule"
+)
+
+type SyncCreateScheduleSchedule struct {
+	IntervalSchedule   *IntervalSchedule
+	CronSchedule       *CronSchedule
+	VisualCronSchedule *VisualCronSchedule
+	DBTSchedule        *DBTSchedule
+
+	Type SyncCreateScheduleScheduleType
+}
+
+func CreateSyncCreateScheduleScheduleIntervalSchedule(intervalSchedule IntervalSchedule) SyncCreateScheduleSchedule {
+	typ := SyncCreateScheduleScheduleTypeIntervalSchedule
+
+	return SyncCreateScheduleSchedule{
+		IntervalSchedule: &intervalSchedule,
+		Type:             typ,
+	}
+}
+
+func CreateSyncCreateScheduleScheduleCronSchedule(cronSchedule CronSchedule) SyncCreateScheduleSchedule {
+	typ := SyncCreateScheduleScheduleTypeCronSchedule
+
+	return SyncCreateScheduleSchedule{
+		CronSchedule: &cronSchedule,
+		Type:         typ,
+	}
+}
+
+func CreateSyncCreateScheduleScheduleVisualCronSchedule(visualCronSchedule VisualCronSchedule) SyncCreateScheduleSchedule {
+	typ := SyncCreateScheduleScheduleTypeVisualCronSchedule
+
+	return SyncCreateScheduleSchedule{
+		VisualCronSchedule: &visualCronSchedule,
+		Type:               typ,
+	}
+}
+
+func CreateSyncCreateScheduleScheduleDBTSchedule(dbtSchedule DBTSchedule) SyncCreateScheduleSchedule {
+	typ := SyncCreateScheduleScheduleTypeDBTSchedule
+
+	return SyncCreateScheduleSchedule{
+		DBTSchedule: &dbtSchedule,
+		Type:        typ,
+	}
+}
+
+func (u *SyncCreateScheduleSchedule) UnmarshalJSON(data []byte) error {
+
+	intervalSchedule := new(IntervalSchedule)
+	if err := utils.UnmarshalJSON(data, &intervalSchedule, "", true, true); err == nil {
+		u.IntervalSchedule = intervalSchedule
+		u.Type = SyncCreateScheduleScheduleTypeIntervalSchedule
+		return nil
+	}
+
+	cronSchedule := new(CronSchedule)
+	if err := utils.UnmarshalJSON(data, &cronSchedule, "", true, true); err == nil {
+		u.CronSchedule = cronSchedule
+		u.Type = SyncCreateScheduleScheduleTypeCronSchedule
+		return nil
+	}
+
+	visualCronSchedule := new(VisualCronSchedule)
+	if err := utils.UnmarshalJSON(data, &visualCronSchedule, "", true, true); err == nil {
+		u.VisualCronSchedule = visualCronSchedule
+		u.Type = SyncCreateScheduleScheduleTypeVisualCronSchedule
+		return nil
+	}
+
+	dbtSchedule := new(DBTSchedule)
+	if err := utils.UnmarshalJSON(data, &dbtSchedule, "", true, true); err == nil {
+		u.DBTSchedule = dbtSchedule
+		u.Type = SyncCreateScheduleScheduleTypeDBTSchedule
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u SyncCreateScheduleSchedule) MarshalJSON() ([]byte, error) {
+	if u.IntervalSchedule != nil {
+		return utils.MarshalJSON(u.IntervalSchedule, "", true)
+	}
+
+	if u.CronSchedule != nil {
+		return utils.MarshalJSON(u.CronSchedule, "", true)
+	}
+
+	if u.VisualCronSchedule != nil {
+		return utils.MarshalJSON(u.VisualCronSchedule, "", true)
+	}
+
+	if u.DBTSchedule != nil {
+		return utils.MarshalJSON(u.DBTSchedule, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type: all fields are null")
+}
+
 // SyncCreateSchedule - The scheduling configuration. It can be triggerd based on several ways:
 //
 // Interval: the sync will be trigged based on certain interval(minutes/hours/days/weeks)
@@ -12,13 +124,13 @@ package shared
 //
 // DBT-cloud: the sync will be trigged based on a dbt cloud job
 type SyncCreateSchedule struct {
-	Schedule interface{} `json:"schedule"`
-	Type     string      `json:"type"`
+	Schedule SyncCreateScheduleSchedule `json:"schedule"`
+	Type     string                     `json:"type"`
 }
 
-func (o *SyncCreateSchedule) GetSchedule() interface{} {
+func (o *SyncCreateSchedule) GetSchedule() SyncCreateScheduleSchedule {
 	if o == nil {
-		return nil
+		return SyncCreateScheduleSchedule{}
 	}
 	return o.Schedule
 }

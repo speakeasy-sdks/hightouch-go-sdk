@@ -3,27 +3,103 @@
 package operations
 
 import (
+	"errors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 )
 
-type CreateSourceSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+type CreateSource200ApplicationJSONType string
+
+const (
+	CreateSource200ApplicationJSONTypeSource            CreateSource200ApplicationJSONType = "Source"
+	CreateSource200ApplicationJSONTypeValidateErrorJSON CreateSource200ApplicationJSONType = "ValidateErrorJSON"
+	CreateSource200ApplicationJSONTypeStr               CreateSource200ApplicationJSONType = "str"
+)
+
+type CreateSource200ApplicationJSON struct {
+	Source            *shared.Source
+	ValidateErrorJSON *shared.ValidateErrorJSON
+	Str               *string
+
+	Type CreateSource200ApplicationJSONType
 }
 
-func (o *CreateSourceSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
+func CreateCreateSource200ApplicationJSONSource(source shared.Source) CreateSource200ApplicationJSON {
+	typ := CreateSource200ApplicationJSONTypeSource
+
+	return CreateSource200ApplicationJSON{
+		Source: &source,
+		Type:   typ,
 	}
-	return o.BearerAuth
+}
+
+func CreateCreateSource200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateSource200ApplicationJSON {
+	typ := CreateSource200ApplicationJSONTypeValidateErrorJSON
+
+	return CreateSource200ApplicationJSON{
+		ValidateErrorJSON: &validateErrorJSON,
+		Type:              typ,
+	}
+}
+
+func CreateCreateSource200ApplicationJSONStr(str string) CreateSource200ApplicationJSON {
+	typ := CreateSource200ApplicationJSONTypeStr
+
+	return CreateSource200ApplicationJSON{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *CreateSource200ApplicationJSON) UnmarshalJSON(data []byte) error {
+
+	validateErrorJSON := new(shared.ValidateErrorJSON)
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = validateErrorJSON
+		u.Type = CreateSource200ApplicationJSONTypeValidateErrorJSON
+		return nil
+	}
+
+	source := new(shared.Source)
+	if err := utils.UnmarshalJSON(data, &source, "", true, true); err == nil {
+		u.Source = source
+		u.Type = CreateSource200ApplicationJSONTypeSource
+		return nil
+	}
+
+	str := new(string)
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = str
+		u.Type = CreateSource200ApplicationJSONTypeStr
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u CreateSource200ApplicationJSON) MarshalJSON() ([]byte, error) {
+	if u.Source != nil {
+		return utils.MarshalJSON(u.Source, "", true)
+	}
+
+	if u.ValidateErrorJSON != nil {
+		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type CreateSourceResponse struct {
 	ContentType string
 	// Ok
-	CreateSource200ApplicationJSONAnyOf interface{}
+	CreateSource200ApplicationJSONOneOf *CreateSource200ApplicationJSON
 	// Something went wrong
-	InternalServerError *shared.InternalServerError
+	InternalServerError *string
 	StatusCode          int
 	RawResponse         *http.Response
 	// Conflict
@@ -37,14 +113,14 @@ func (o *CreateSourceResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *CreateSourceResponse) GetCreateSource200ApplicationJSONAnyOf() interface{} {
+func (o *CreateSourceResponse) GetCreateSource200ApplicationJSONOneOf() *CreateSource200ApplicationJSON {
 	if o == nil {
 		return nil
 	}
-	return o.CreateSource200ApplicationJSONAnyOf
+	return o.CreateSource200ApplicationJSONOneOf
 }
 
-func (o *CreateSourceResponse) GetInternalServerError() *shared.InternalServerError {
+func (o *CreateSourceResponse) GetInternalServerError() *string {
 	if o == nil {
 		return nil
 	}

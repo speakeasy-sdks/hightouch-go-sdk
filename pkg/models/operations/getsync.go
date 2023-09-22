@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type GetSyncSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *GetSyncSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
-
 type GetSyncRequest struct {
 	// The id of the sync
 	SyncID float64 `pathParam:"style=simple,explode=false,name=syncId"`

@@ -3,27 +3,103 @@
 package operations
 
 import (
+	"errors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 )
 
-type CreateDestinationSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+type CreateDestination200ApplicationJSONType string
+
+const (
+	CreateDestination200ApplicationJSONTypeDestination       CreateDestination200ApplicationJSONType = "Destination"
+	CreateDestination200ApplicationJSONTypeValidateErrorJSON CreateDestination200ApplicationJSONType = "ValidateErrorJSON"
+	CreateDestination200ApplicationJSONTypeStr               CreateDestination200ApplicationJSONType = "str"
+)
+
+type CreateDestination200ApplicationJSON struct {
+	Destination       *shared.Destination
+	ValidateErrorJSON *shared.ValidateErrorJSON
+	Str               *string
+
+	Type CreateDestination200ApplicationJSONType
 }
 
-func (o *CreateDestinationSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
+func CreateCreateDestination200ApplicationJSONDestination(destination shared.Destination) CreateDestination200ApplicationJSON {
+	typ := CreateDestination200ApplicationJSONTypeDestination
+
+	return CreateDestination200ApplicationJSON{
+		Destination: &destination,
+		Type:        typ,
 	}
-	return o.BearerAuth
+}
+
+func CreateCreateDestination200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateDestination200ApplicationJSON {
+	typ := CreateDestination200ApplicationJSONTypeValidateErrorJSON
+
+	return CreateDestination200ApplicationJSON{
+		ValidateErrorJSON: &validateErrorJSON,
+		Type:              typ,
+	}
+}
+
+func CreateCreateDestination200ApplicationJSONStr(str string) CreateDestination200ApplicationJSON {
+	typ := CreateDestination200ApplicationJSONTypeStr
+
+	return CreateDestination200ApplicationJSON{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *CreateDestination200ApplicationJSON) UnmarshalJSON(data []byte) error {
+
+	validateErrorJSON := new(shared.ValidateErrorJSON)
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = validateErrorJSON
+		u.Type = CreateDestination200ApplicationJSONTypeValidateErrorJSON
+		return nil
+	}
+
+	destination := new(shared.Destination)
+	if err := utils.UnmarshalJSON(data, &destination, "", true, true); err == nil {
+		u.Destination = destination
+		u.Type = CreateDestination200ApplicationJSONTypeDestination
+		return nil
+	}
+
+	str := new(string)
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = str
+		u.Type = CreateDestination200ApplicationJSONTypeStr
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u CreateDestination200ApplicationJSON) MarshalJSON() ([]byte, error) {
+	if u.Destination != nil {
+		return utils.MarshalJSON(u.Destination, "", true)
+	}
+
+	if u.ValidateErrorJSON != nil {
+		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type CreateDestinationResponse struct {
 	ContentType string
 	// Ok
-	CreateDestination200ApplicationJSONAnyOf interface{}
+	CreateDestination200ApplicationJSONOneOf *CreateDestination200ApplicationJSON
 	// Something went wrong
-	InternalServerError *shared.InternalServerError
+	InternalServerError *string
 	StatusCode          int
 	RawResponse         *http.Response
 	// Conflict
@@ -37,14 +113,14 @@ func (o *CreateDestinationResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *CreateDestinationResponse) GetCreateDestination200ApplicationJSONAnyOf() interface{} {
+func (o *CreateDestinationResponse) GetCreateDestination200ApplicationJSONOneOf() *CreateDestination200ApplicationJSON {
 	if o == nil {
 		return nil
 	}
-	return o.CreateDestination200ApplicationJSONAnyOf
+	return o.CreateDestination200ApplicationJSONOneOf
 }
 
-func (o *CreateDestinationResponse) GetInternalServerError() *shared.InternalServerError {
+func (o *CreateDestinationResponse) GetInternalServerError() *string {
 	if o == nil {
 		return nil
 	}

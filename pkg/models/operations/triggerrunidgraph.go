@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type TriggerRunIDGraphSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *TriggerRunIDGraphSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
-
 type TriggerRunIDGraphRequest struct {
 	TriggerRunIDGraphInput *shared.TriggerRunIDGraphInput `request:"mediaType=application/json"`
 	GraphID                string                         `pathParam:"style=simple,explode=false,name=graphId"`

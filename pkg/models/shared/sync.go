@@ -3,8 +3,117 @@
 package shared
 
 import (
+	"errors"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"time"
 )
+
+type SyncScheduleScheduleType string
+
+const (
+	SyncScheduleScheduleTypeIntervalSchedule   SyncScheduleScheduleType = "IntervalSchedule"
+	SyncScheduleScheduleTypeCronSchedule       SyncScheduleScheduleType = "CronSchedule"
+	SyncScheduleScheduleTypeVisualCronSchedule SyncScheduleScheduleType = "VisualCronSchedule"
+	SyncScheduleScheduleTypeDBTSchedule        SyncScheduleScheduleType = "DBTSchedule"
+)
+
+type SyncScheduleSchedule struct {
+	IntervalSchedule   *IntervalSchedule
+	CronSchedule       *CronSchedule
+	VisualCronSchedule *VisualCronSchedule
+	DBTSchedule        *DBTSchedule
+
+	Type SyncScheduleScheduleType
+}
+
+func CreateSyncScheduleScheduleIntervalSchedule(intervalSchedule IntervalSchedule) SyncScheduleSchedule {
+	typ := SyncScheduleScheduleTypeIntervalSchedule
+
+	return SyncScheduleSchedule{
+		IntervalSchedule: &intervalSchedule,
+		Type:             typ,
+	}
+}
+
+func CreateSyncScheduleScheduleCronSchedule(cronSchedule CronSchedule) SyncScheduleSchedule {
+	typ := SyncScheduleScheduleTypeCronSchedule
+
+	return SyncScheduleSchedule{
+		CronSchedule: &cronSchedule,
+		Type:         typ,
+	}
+}
+
+func CreateSyncScheduleScheduleVisualCronSchedule(visualCronSchedule VisualCronSchedule) SyncScheduleSchedule {
+	typ := SyncScheduleScheduleTypeVisualCronSchedule
+
+	return SyncScheduleSchedule{
+		VisualCronSchedule: &visualCronSchedule,
+		Type:               typ,
+	}
+}
+
+func CreateSyncScheduleScheduleDBTSchedule(dbtSchedule DBTSchedule) SyncScheduleSchedule {
+	typ := SyncScheduleScheduleTypeDBTSchedule
+
+	return SyncScheduleSchedule{
+		DBTSchedule: &dbtSchedule,
+		Type:        typ,
+	}
+}
+
+func (u *SyncScheduleSchedule) UnmarshalJSON(data []byte) error {
+
+	intervalSchedule := new(IntervalSchedule)
+	if err := utils.UnmarshalJSON(data, &intervalSchedule, "", true, true); err == nil {
+		u.IntervalSchedule = intervalSchedule
+		u.Type = SyncScheduleScheduleTypeIntervalSchedule
+		return nil
+	}
+
+	cronSchedule := new(CronSchedule)
+	if err := utils.UnmarshalJSON(data, &cronSchedule, "", true, true); err == nil {
+		u.CronSchedule = cronSchedule
+		u.Type = SyncScheduleScheduleTypeCronSchedule
+		return nil
+	}
+
+	visualCronSchedule := new(VisualCronSchedule)
+	if err := utils.UnmarshalJSON(data, &visualCronSchedule, "", true, true); err == nil {
+		u.VisualCronSchedule = visualCronSchedule
+		u.Type = SyncScheduleScheduleTypeVisualCronSchedule
+		return nil
+	}
+
+	dbtSchedule := new(DBTSchedule)
+	if err := utils.UnmarshalJSON(data, &dbtSchedule, "", true, true); err == nil {
+		u.DBTSchedule = dbtSchedule
+		u.Type = SyncScheduleScheduleTypeDBTSchedule
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u SyncScheduleSchedule) MarshalJSON() ([]byte, error) {
+	if u.IntervalSchedule != nil {
+		return utils.MarshalJSON(u.IntervalSchedule, "", true)
+	}
+
+	if u.CronSchedule != nil {
+		return utils.MarshalJSON(u.CronSchedule, "", true)
+	}
+
+	if u.VisualCronSchedule != nil {
+		return utils.MarshalJSON(u.VisualCronSchedule, "", true)
+	}
+
+	if u.DBTSchedule != nil {
+		return utils.MarshalJSON(u.DBTSchedule, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type: all fields are null")
+}
 
 // SyncSchedule - The scheduling configuration. It can be triggerd based on several ways:
 //
@@ -16,13 +125,13 @@ import (
 //
 // DBT-cloud: the sync will be trigged based on a dbt cloud job
 type SyncSchedule struct {
-	Schedule interface{} `json:"schedule"`
-	Type     string      `json:"type"`
+	Schedule SyncScheduleSchedule `json:"schedule"`
+	Type     string               `json:"type"`
 }
 
-func (o *SyncSchedule) GetSchedule() interface{} {
+func (o *SyncSchedule) GetSchedule() SyncScheduleSchedule {
 	if o == nil {
-		return nil
+		return SyncScheduleSchedule{}
 	}
 	return o.Schedule
 }
@@ -80,6 +189,17 @@ type Sync struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	// The id of the workspace that the sync belongs to
 	WorkspaceID string `json:"workspaceId"`
+}
+
+func (s Sync) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Sync) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Sync) GetConfiguration() map[string]interface{} {

@@ -13,7 +13,7 @@ DBT-cloud: the sync will be trigged based on a dbt cloud job
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Schedule`         | *interface{}*      | :heavy_check_mark: | N/A                |
-| `Type`             | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `Schedule`                                                          | [SyncScheduleSchedule](../../models/shared/syncscheduleschedule.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| `Type`                                                              | *string*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |

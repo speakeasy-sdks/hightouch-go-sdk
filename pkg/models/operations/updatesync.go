@@ -3,20 +3,11 @@
 package operations
 
 import (
+	"errors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 )
-
-type UpdateSyncSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *UpdateSyncSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
 
 type UpdateSyncRequest struct {
 	SyncUpdate shared.SyncUpdate `request:"mediaType=application/json"`
@@ -38,14 +29,99 @@ func (o *UpdateSyncRequest) GetSyncID() float64 {
 	return o.SyncID
 }
 
+type UpdateSync200ApplicationJSONType string
+
+const (
+	UpdateSync200ApplicationJSONTypeSync              UpdateSync200ApplicationJSONType = "Sync"
+	UpdateSync200ApplicationJSONTypeValidateErrorJSON UpdateSync200ApplicationJSONType = "ValidateErrorJSON"
+	UpdateSync200ApplicationJSONTypeStr               UpdateSync200ApplicationJSONType = "str"
+)
+
+type UpdateSync200ApplicationJSON struct {
+	Sync              *shared.Sync
+	ValidateErrorJSON *shared.ValidateErrorJSON
+	Str               *string
+
+	Type UpdateSync200ApplicationJSONType
+}
+
+func CreateUpdateSync200ApplicationJSONSync(sync shared.Sync) UpdateSync200ApplicationJSON {
+	typ := UpdateSync200ApplicationJSONTypeSync
+
+	return UpdateSync200ApplicationJSON{
+		Sync: &sync,
+		Type: typ,
+	}
+}
+
+func CreateUpdateSync200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) UpdateSync200ApplicationJSON {
+	typ := UpdateSync200ApplicationJSONTypeValidateErrorJSON
+
+	return UpdateSync200ApplicationJSON{
+		ValidateErrorJSON: &validateErrorJSON,
+		Type:              typ,
+	}
+}
+
+func CreateUpdateSync200ApplicationJSONStr(str string) UpdateSync200ApplicationJSON {
+	typ := UpdateSync200ApplicationJSONTypeStr
+
+	return UpdateSync200ApplicationJSON{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *UpdateSync200ApplicationJSON) UnmarshalJSON(data []byte) error {
+
+	validateErrorJSON := new(shared.ValidateErrorJSON)
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = validateErrorJSON
+		u.Type = UpdateSync200ApplicationJSONTypeValidateErrorJSON
+		return nil
+	}
+
+	sync := new(shared.Sync)
+	if err := utils.UnmarshalJSON(data, &sync, "", true, true); err == nil {
+		u.Sync = sync
+		u.Type = UpdateSync200ApplicationJSONTypeSync
+		return nil
+	}
+
+	str := new(string)
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = str
+		u.Type = UpdateSync200ApplicationJSONTypeStr
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u UpdateSync200ApplicationJSON) MarshalJSON() ([]byte, error) {
+	if u.Sync != nil {
+		return utils.MarshalJSON(u.Sync, "", true)
+	}
+
+	if u.ValidateErrorJSON != nil {
+		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type: all fields are null")
+}
+
 type UpdateSyncResponse struct {
 	ContentType string
 	// Something went wrong
-	InternalServerError *shared.InternalServerError
+	InternalServerError *string
 	StatusCode          int
 	RawResponse         *http.Response
 	// Ok
-	UpdateSync200ApplicationJSONAnyOf interface{}
+	UpdateSync200ApplicationJSONOneOf *UpdateSync200ApplicationJSON
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
 }
@@ -57,7 +133,7 @@ func (o *UpdateSyncResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *UpdateSyncResponse) GetInternalServerError() *shared.InternalServerError {
+func (o *UpdateSyncResponse) GetInternalServerError() *string {
 	if o == nil {
 		return nil
 	}
@@ -78,11 +154,11 @@ func (o *UpdateSyncResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdateSyncResponse) GetUpdateSync200ApplicationJSONAnyOf() interface{} {
+func (o *UpdateSyncResponse) GetUpdateSync200ApplicationJSONOneOf() *UpdateSync200ApplicationJSON {
 	if o == nil {
 		return nil
 	}
-	return o.UpdateSync200ApplicationJSONAnyOf
+	return o.UpdateSync200ApplicationJSONOneOf
 }
 
 func (o *UpdateSyncResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {

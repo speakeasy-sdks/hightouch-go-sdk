@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"time"
 )
 
@@ -139,6 +140,17 @@ type SyncRun struct {
 	Status SyncRunStatus `json:"status"`
 	// The number of rows that were successfully processed by the destination.
 	SuccessfulRows SyncRunSuccessfulRows `json:"successfulRows"`
+}
+
+func (s SyncRun) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncRun) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SyncRun) GetCompletionRatio() float64 {

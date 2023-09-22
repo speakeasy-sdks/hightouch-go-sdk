@@ -6,19 +6,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 )
-
-type ListDestinationSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *ListDestinationSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
 
 // ListDestinationOrderBy - Order the returned destinations
 type ListDestinationOrderBy string
@@ -59,15 +49,26 @@ func (e *ListDestinationOrderBy) UnmarshalJSON(data []byte) error {
 
 type ListDestinationRequest struct {
 	// limit the number of objects returned (default is 100)
-	Limit *float64 `queryParam:"style=form,explode=true,name=limit"`
+	Limit *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	// Filter based on the destination's name
 	Name *string `queryParam:"style=form,explode=true,name=name"`
 	// set the offset on results (for pagination)
-	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
+	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// Order the returned destinations
-	OrderBy *ListDestinationOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListDestinationOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// Filter based on destination's slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
+}
+
+func (l ListDestinationRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListDestinationRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListDestinationRequest) GetLimit() *float64 {

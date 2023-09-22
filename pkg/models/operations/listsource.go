@@ -6,19 +6,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 )
-
-type ListSourceSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *ListSourceSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
 
 // ListSourceOrderBy - specify the order
 type ListSourceOrderBy string
@@ -59,15 +49,26 @@ func (e *ListSourceOrderBy) UnmarshalJSON(data []byte) error {
 
 type ListSourceRequest struct {
 	// limit the number of objects returned (default is 100)
-	Limit *float64 `queryParam:"style=form,explode=true,name=limit"`
+	Limit *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	// filter based on name
 	Name *string `queryParam:"style=form,explode=true,name=name"`
 	// set the offset on results (for pagination)
-	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
+	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSourceOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSourceOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// filter based on slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
+}
+
+func (l ListSourceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListSourceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListSourceRequest) GetLimit() *float64 {

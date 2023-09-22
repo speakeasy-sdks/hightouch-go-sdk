@@ -7,16 +7,16 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.CreateDestinationSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -26,12 +26,12 @@ func main() {
         Name: "Ellis Mitchell",
         Slug: "illum",
         Type: "vel",
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CreateDestination200ApplicationJSONAnyOf != nil {
+    if res.CreateDestination200ApplicationJSONOneOf != nil {
         // handle response
     }
 }

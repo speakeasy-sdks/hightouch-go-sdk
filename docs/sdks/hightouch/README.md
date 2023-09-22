@@ -39,31 +39,31 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.CreateDestinationSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "error": "deserunt",
+            "molestiae": "minus",
         },
-        Name: "Willie Gulgowski DVM",
-        Slug: "tempora",
-        Type: "suscipit",
-    }, operationSecurity)
+        Name: "Ken Kshlerin",
+        Slug: "recusandae",
+        Type: "temporibus",
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CreateDestination200ApplicationJSONAnyOf != nil {
+    if res.CreateDestination200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -71,11 +71,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [shared.DestinationCreate](../../models/shared/destinationcreate.md)                         | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `security`                                                                                   | [operations.CreateDestinationSecurity](../../models/operations/createdestinationsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [shared.DestinationCreate](../../models/shared/destinationcreate.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
 
 
 ### Response
@@ -95,49 +94,49 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.CreateModelSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateModel(ctx, shared.ModelCreate{
         Custom: &shared.ModelCreateCustom{
-            Query: "molestiae",
+            Query: "ab",
         },
         Dbt: &shared.ModelCreateDbt{
-            ModelID: "minus",
+            ModelID: "quis",
         },
         IsSchema: false,
-        Name: "Ken Kshlerin",
-        PrimaryKey: "recusandae",
-        QueryType: "temporibus",
+        Name: "Iris Aufderhar",
+        PrimaryKey: "sapiente",
+        QueryType: "quo",
         Raw: &shared.ModelCreateRaw{
-            SQL: "ab",
+            SQL: "odit",
         },
-        Slug: "quis",
-        SourceID: "veritatis",
+        Slug: "at",
+        SourceID: "at",
         Table: &shared.ModelCreateTable{
-            Name: "Christopher Hills",
+            Name: "Javier Schmidt",
         },
         Visual: &shared.ModelCreateVisual{
-            Filter: "quo",
-            ParentID: "odit",
-            PrimaryLabel: "at",
-            SecondaryLabel: "at",
+            Filter: "totam",
+            ParentID: "porro",
+            PrimaryLabel: "dolorum",
+            SecondaryLabel: "dicta",
         },
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CreateModel200ApplicationJSONAnyOf != nil {
+    if res.CreateModel200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -145,11 +144,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [shared.ModelCreate](../../models/shared/modelcreate.md)                         | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `security`                                                                       | [operations.CreateModelSecurity](../../models/operations/createmodelsecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `request`                                                | [shared.ModelCreate](../../models/shared/modelcreate.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
 
 
 ### Response
@@ -169,31 +167,31 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.CreateSourceSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSource(ctx, shared.SourceCreate{
         Configuration: map[string]interface{}{
-            "maiores": "molestiae",
+            "nam": "officia",
         },
-        Name: "Forrest Koepp",
-        Slug: "dolorum",
-        Type: "dicta",
-    }, operationSecurity)
+        Name: "Wayne Lind",
+        Slug: "totam",
+        Type: "beatae",
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CreateSource200ApplicationJSONAnyOf != nil {
+    if res.CreateSource200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -201,11 +199,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [shared.SourceCreate](../../models/shared/sourcecreate.md)                         | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `security`                                                                         | [operations.CreateSourceSecurity](../../models/operations/createsourcesecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
+| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
+| `request`                                                  | [shared.SourceCreate](../../models/shared/sourcecreate.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
 
 
 ### Response
@@ -225,51 +222,36 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.CreateSyncSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSync(ctx, shared.SyncCreate{
         Configuration: map[string]interface{}{
-            "nam": "officia",
+            "commodi": "molestiae",
         },
-        DestinationID: "occaecati",
+        DestinationID: "modi",
         Disabled: false,
-        ModelID: "fugit",
-        Schedule: shared.SyncCreateSchedule{
-            Schedule: shared.VisualCronSchedule{
-                Expressions: []shared.VisualCronScheduleExpressions{
-                    shared.VisualCronScheduleExpressions{
-                        Days: shared.RecordDayBooleanOrUndefined{
-                            Friday: hightouch.Bool(false),
-                            Monday: hightouch.Bool(false),
-                            Saturday: hightouch.Bool(false),
-                            Sunday: hightouch.Bool(false),
-                            Thursday: hightouch.Bool(false),
-                            Tuesday: hightouch.Bool(false),
-                            Wednesday: hightouch.Bool(false),
-                        },
-                        Time: "hic",
-                    },
-                },
-            },
-            Type: "optio",
+        ModelID: "qui",
+        Schedule: &shared.SyncCreateSchedule{
+            Schedule: shared.SyncCreateScheduleSchedule{},
+            Type: "impedit",
         },
-        Slug: "totam",
-    }, operationSecurity)
+        Slug: "cum",
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.CreateSync200ApplicationJSONAnyOf != nil {
+    if res.CreateSync200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -277,11 +259,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [shared.SyncCreate](../../models/shared/synccreate.md)                         | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `security`                                                                     | [operations.CreateSyncSecurity](../../models/operations/createsyncsecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `ctx`                                                  | [context.Context](https://pkg.go.dev/context#Context)  | :heavy_check_mark:                                     | The context to use for the request.                    |
+| `request`                                              | [shared.SyncCreate](../../models/shared/synccreate.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
 
 
 ### Response
@@ -301,20 +282,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.GetDestinationSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.GetDestination(ctx, operations.GetDestinationRequest{
-        DestinationID: 1059.07,
-    }, operationSecurity)
+        DestinationID: 4561.5,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -327,11 +310,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetDestinationRequest](../../models/operations/getdestinationrequest.md)   | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `security`                                                                             | [operations.GetDestinationSecurity](../../models/operations/getdestinationsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetDestinationRequest](../../models/operations/getdestinationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 
 ### Response
@@ -351,20 +333,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.GetModelSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.GetModel(ctx, operations.GetModelRequest{
-        ModelID: 4146.62,
-    }, operationSecurity)
+        ModelID: 2165.5,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -377,11 +361,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.GetModelRequest](../../models/operations/getmodelrequest.md)   | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `security`                                                                 | [operations.GetModelSecurity](../../models/operations/getmodelsecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [operations.GetModelRequest](../../models/operations/getmodelrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
 
 ### Response
@@ -401,20 +384,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.GetSourceSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.GetSource(ctx, operations.GetSourceRequest{
-        SourceID: 4736,
-    }, operationSecurity)
+        SourceID: 5684.34,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -427,11 +412,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.GetSourceRequest](../../models/operations/getsourcerequest.md)   | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `security`                                                                   | [operations.GetSourceSecurity](../../models/operations/getsourcesecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [operations.GetSourceRequest](../../models/operations/getsourcerequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
 
 ### Response
@@ -451,20 +435,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.GetSyncSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.GetSync(ctx, operations.GetSyncRequest{
-        SyncID: 2645.55,
-    }, operationSecurity)
+        SyncID: 1352.18,
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -477,11 +463,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `request`                                                                | [operations.GetSyncRequest](../../models/operations/getsyncrequest.md)   | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `security`                                                               | [operations.GetSyncSecurity](../../models/operations/getsyncsecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `request`                                                              | [operations.GetSyncRequest](../../models/operations/getsyncrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 
 
 ### Response
@@ -501,24 +486,26 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.ListDestinationSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.ListDestination(ctx, operations.ListDestinationRequest{
-        Limit: hightouch.Float64(1863.32),
-        Name: hightouch.String("Jonathon Klocko"),
-        Offset: hightouch.Float64(1352.18),
-        OrderBy: operations.ListDestinationOrderByID.ToPointer(),
-        Slug: hightouch.String("ad"),
-    }, operationSecurity)
+        Limit: hightouchgosdk.Float64(187.89),
+        Name: hightouchgosdk.String("Faye Cormier"),
+        Offset: hightouchgosdk.Float64(6169.34),
+        OrderBy: operations.ListDestinationOrderByName.ToPointer(),
+        Slug: hightouchgosdk.String("hic"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -531,11 +518,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.ListDestinationRequest](../../models/operations/listdestinationrequest.md)   | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `security`                                                                               | [operations.ListDestinationSecurity](../../models/operations/listdestinationsecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.ListDestinationRequest](../../models/operations/listdestinationrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -555,24 +541,26 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.ListModelSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.ListModel(ctx, operations.ListModelRequest{
-        Limit: hightouch.Float64(6176.36),
-        Name: hightouch.String("Sheryl Fadel"),
-        Offset: hightouch.Float64(9437.49),
-        OrderBy: operations.ListModelOrderByUpdatedAt.ToPointer(),
-        Slug: hightouch.String("fuga"),
-    }, operationSecurity)
+        Limit: hightouchgosdk.Float64(9025.99),
+        Name: hightouchgosdk.String("Harvey Hessel"),
+        Offset: hightouchgosdk.Float64(9023.49),
+        OrderBy: operations.ListModelOrderByCreatedAt.ToPointer(),
+        Slug: hightouchgosdk.String("architecto"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -585,11 +573,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.ListModelRequest](../../models/operations/listmodelrequest.md)   | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `security`                                                                   | [operations.ListModelSecurity](../../models/operations/listmodelsecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [operations.ListModelRequest](../../models/operations/listmodelrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
 
 ### Response
@@ -609,24 +596,26 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.ListSourceSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSource(ctx, operations.ListSourceRequest{
-        Limit: hightouch.Float64(4499.5),
-        Name: hightouch.String("Sheryl Kertzmann"),
-        Offset: hightouch.Float64(992.8),
-        OrderBy: operations.ListSourceOrderByID.ToPointer(),
-        Slug: hightouch.String("reiciendis"),
-    }, operationSecurity)
+        Limit: hightouchgosdk.Float64(602.25),
+        Name: hightouchgosdk.String("Carlton O'Hara"),
+        Offset: hightouchgosdk.Float64(2103.82),
+        OrderBy: operations.ListSourceOrderByName.ToPointer(),
+        Slug: hightouchgosdk.String("explicabo"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -639,11 +628,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.ListSourceRequest](../../models/operations/listsourcerequest.md)   | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `security`                                                                     | [operations.ListSourceSecurity](../../models/operations/listsourcesecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.ListSourceRequest](../../models/operations/listsourcerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response
@@ -663,27 +651,29 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/types"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.ListSyncSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSync(ctx, operations.ListSyncRequest{
-        After: types.MustTimeFromString("2021-09-11T04:59:11.542Z"),
-        Before: types.MustTimeFromString("2022-08-29T05:39:49.755Z"),
-        Limit: hightouch.Float64(2103.82),
-        ModelID: hightouch.Float64(3581.52),
-        Offset: hightouch.Float64(1289.26),
-        OrderBy: operations.ListSyncOrderByCreatedAt.ToPointer(),
-        Slug: hightouch.String("enim"),
-    }, operationSecurity)
+        After: types.MustTimeFromString("2022-01-20T14:32:34.011Z"),
+        Before: types.MustTimeFromString("2022-04-10T11:47:13.463Z"),
+        Limit: hightouchgosdk.Float64(3250.47),
+        ModelID: hightouchgosdk.Float64(5701.97),
+        Offset: hightouchgosdk.Float64(384.25),
+        OrderBy: operations.ListSyncOrderBySlug.ToPointer(),
+        Slug: hightouchgosdk.String("culpa"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -696,11 +686,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.ListSyncRequest](../../models/operations/listsyncrequest.md)   | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `security`                                                                 | [operations.ListSyncSecurity](../../models/operations/listsyncsecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [operations.ListSyncRequest](../../models/operations/listsyncrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
 
 ### Response
@@ -720,28 +709,30 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/types"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.ListSyncRunsSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
-        After: types.MustTimeFromString("2022-04-10T11:47:13.463Z"),
-        Before: types.MustTimeFromString("2022-06-06T21:04:34.044Z"),
-        Limit: hightouch.Float64(384.25),
-        Offset: hightouch.Float64(4386.01),
-        OrderBy: operations.ListSyncRunsOrderByStartedAt.ToPointer(),
-        RunID: hightouch.Float64(9883.74),
-        SyncID: 9589.5,
-        Within: hightouch.Float64(1020.44),
-    }, operationSecurity)
+        After: types.MustTimeFromString("2020-02-15T22:48:47.492Z"),
+        Before: types.MustTimeFromString("2022-05-07T17:33:24.154Z"),
+        Limit: hightouchgosdk.Float64(2088.76),
+        Offset: hightouchgosdk.Float64(6350.59),
+        OrderBy: operations.ListSyncRunsOrderByID.ToPointer(),
+        RunID: hightouchgosdk.Float64(9953),
+        SyncID: 6531.08,
+        Within: hightouchgosdk.Float64(5818.5),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -754,11 +745,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.ListSyncRunsRequest](../../models/operations/listsyncrunsrequest.md)   | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `security`                                                                         | [operations.ListSyncRunsSecurity](../../models/operations/listsyncrunssecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.ListSyncRunsRequest](../../models/operations/listsyncrunsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 
 ### Response
@@ -781,24 +771,25 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.TriggerRunSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRun(ctx, operations.TriggerRunRequest{
         TriggerRunInput: &shared.TriggerRunInput{
-            FullResync: hightouch.Bool(false),
+            FullResync: hightouchgosdk.Bool(false),
         },
-        SyncID: "mollitia",
-    }, operationSecurity)
+        SyncID: "numquam",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -811,11 +802,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.TriggerRunRequest](../../models/operations/triggerrunrequest.md)   | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `security`                                                                     | [operations.TriggerRunSecurity](../../models/operations/triggerrunsecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.TriggerRunRequest](../../models/operations/triggerrunrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response
@@ -838,28 +828,28 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.TriggerRunCustomSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{
-        FullResync: hightouch.Bool(false),
-        SyncID: hightouch.String("dolorem"),
-        SyncSlug: hightouch.String("culpa"),
-    }, operationSecurity)
+        FullResync: hightouchgosdk.Bool(false),
+        SyncID: hightouchgosdk.String("commodi"),
+        SyncSlug: hightouchgosdk.String("quam"),
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.TriggerRunCustom200ApplicationJSONAnyOf != nil {
+    if res.TriggerRunCustom200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -867,11 +857,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [shared.TriggerRunCustomInput](../../models/shared/triggerruncustominput.md)               | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `security`                                                                                 | [operations.TriggerRunCustomSecurity](../../models/operations/triggerruncustomsecurity.md) | :heavy_check_mark:                                                                         | The security requirements to use for the request.                                          |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [shared.TriggerRunCustomInput](../../models/shared/triggerruncustominput.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response
@@ -889,24 +878,25 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.TriggerRunIDGraphSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
         TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{
-            FullRerun: hightouch.Bool(false),
+            FullRerun: hightouchgosdk.Bool(false),
         },
-        GraphID: "consequuntur",
-    }, operationSecurity)
+        GraphID: "molestiae",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -919,11 +909,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.TriggerRunIDGraphRequest](../../models/operations/triggerrunidgraphrequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `security`                                                                                   | [operations.TriggerRunIDGraphSecurity](../../models/operations/triggerrunidgraphsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.TriggerRunIDGraphRequest](../../models/operations/triggerrunidgraphrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response
@@ -945,32 +934,33 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.UpdateDestinationSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
         DestinationUpdate: shared.DestinationUpdate{
             Configuration: map[string]interface{}{
-                "repellat": "mollitia",
+                "velit": "error",
             },
-            Name: hightouch.String("Francis Jerde"),
+            Name: hightouchgosdk.String("Beatrice Brown"),
         },
-        DestinationID: 2444.25,
-    }, operationSecurity)
+        DestinationID: 3172.02,
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.UpdateDestination200ApplicationJSONAnyOf != nil {
+    if res.UpdateDestination200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -978,11 +968,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.UpdateDestinationRequest](../../models/operations/updatedestinationrequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `security`                                                                                   | [operations.UpdateDestinationSecurity](../../models/operations/updatedestinationsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.UpdateDestinationRequest](../../models/operations/updatedestinationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response
@@ -1004,49 +993,50 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.UpdateModelSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
         ModelUpdate: shared.ModelUpdate{
             Custom: &shared.ModelUpdateCustom{
-                Query: "error",
+                Query: "odit",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "quia",
+                ModelID: "quo",
             },
-            IsSchema: hightouch.Bool(false),
-            Name: hightouch.String("Gloria Padberg"),
-            PrimaryKey: hightouch.String("odit"),
+            IsSchema: hightouchgosdk.Bool(false),
+            Name: hightouchgosdk.String("Mandy Hills"),
+            PrimaryKey: hightouchgosdk.String("aut"),
             Raw: &shared.ModelUpdateRaw{
-                SQL: "quo",
+                SQL: "quasi",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "Mandy Hills",
+                Name: "Dr. Jake Pacocha",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "aut",
-                ParentID: "quasi",
-                PrimaryLabel: "error",
-                SecondaryLabel: "temporibus",
+                Filter: "vero",
+                ParentID: "nihil",
+                PrimaryLabel: "praesentium",
+                SecondaryLabel: "voluptatibus",
             },
         },
-        ModelID: 6736.6,
-    }, operationSecurity)
+        ModelID: 557.14,
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.UpdateModel200ApplicationJSONAnyOf != nil {
+    if res.UpdateModel200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -1054,11 +1044,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.UpdateModelRequest](../../models/operations/updatemodelrequest.md)   | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `security`                                                                       | [operations.UpdateModelSecurity](../../models/operations/updatemodelsecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.UpdateModelRequest](../../models/operations/updatemodelrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 
 ### Response
@@ -1080,32 +1069,33 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.UpdateSourceSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
         SourceUpdate: shared.SourceUpdate{
             Configuration: map[string]interface{}{
-                "quasi": "reiciendis",
+                "omnis": "voluptate",
             },
-            Name: hightouch.String("Caleb Koss"),
+            Name: hightouchgosdk.String("Thomas Batz"),
         },
-        SourceID: 557.14,
-    }, operationSecurity)
+        SourceID: 9795.87,
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.UpdateSource200ApplicationJSONAnyOf != nil {
+    if res.UpdateSource200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -1113,11 +1103,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.UpdateSourceRequest](../../models/operations/updatesourcerequest.md)   | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `security`                                                                         | [operations.UpdateSourceSecurity](../../models/operations/updatesourcesecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.UpdateSourceRequest](../../models/operations/updatesourcerequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 
 ### Response
@@ -1139,51 +1128,37 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 )
 
 func main() {
-    s := hightouch.New()
-    operationSecurity := operations.UpdateSyncSecurity{
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(shared.Security{
             BearerAuth: "",
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
         SyncUpdate: shared.SyncUpdate{
             Configuration: map[string]interface{}{
-                "omnis": "voluptate",
+                "dicta": "corporis",
             },
-            Disabled: hightouch.Bool(false),
+            Disabled: hightouchgosdk.Bool(false),
             Schedule: &shared.SyncUpdateSchedule{
-                Schedule: shared.VisualCronSchedule{
-                    Expressions: []shared.VisualCronScheduleExpressions{
-                        shared.VisualCronScheduleExpressions{
-                            Days: shared.RecordDayBooleanOrUndefined{
-                                Friday: hightouch.Bool(false),
-                                Monday: hightouch.Bool(false),
-                                Saturday: hightouch.Bool(false),
-                                Sunday: hightouch.Bool(false),
-                                Thursday: hightouch.Bool(false),
-                                Tuesday: hightouch.Bool(false),
-                                Wednesday: hightouch.Bool(false),
-                            },
-                            Time: "perferendis",
-                        },
-                    },
-                },
-                Type: "doloremque",
+                Schedule: shared.SyncUpdateScheduleSchedule{},
+                Type: "dolore",
             },
         },
-        SyncID: 4417.11,
-    }, operationSecurity)
+        SyncID: 4808.94,
+    })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.UpdateSync200ApplicationJSONAnyOf != nil {
+    if res.UpdateSync200ApplicationJSONOneOf != nil {
         // handle response
     }
 }
@@ -1191,11 +1166,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.UpdateSyncRequest](../../models/operations/updatesyncrequest.md)   | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `security`                                                                     | [operations.UpdateSyncSecurity](../../models/operations/updatesyncsecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.UpdateSyncRequest](../../models/operations/updatesyncrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response

@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type TriggerRunSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *TriggerRunSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
-
 type TriggerRunRequest struct {
 	TriggerRunInput *shared.TriggerRunInput `request:"mediaType=application/json"`
 	// The id of the sync to trigger a run

@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"time"
 )
 
@@ -31,6 +32,17 @@ type Source struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	// The id of the workspace that the source belongs to
 	WorkspaceID string `json:"workspaceId"`
+}
+
+func (s Source) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Source) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Source) GetConfiguration() map[string]interface{} {

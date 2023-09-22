@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type GetSourceSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *GetSourceSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
-
 type GetSourceRequest struct {
 	// The id of the source
 	SourceID float64 `pathParam:"style=simple,explode=false,name=sourceId"`

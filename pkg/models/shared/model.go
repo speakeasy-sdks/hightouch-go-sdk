@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"time"
 )
 
@@ -184,6 +185,17 @@ type Model struct {
 	Visual *ModelVisual `json:"visual,omitempty"`
 	// The id of the workspace where the model belongs to
 	WorkspaceID string `json:"workspaceId"`
+}
+
+func (m Model) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *Model) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Model) GetCreatedAt() time.Time {

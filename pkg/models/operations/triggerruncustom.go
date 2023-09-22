@@ -3,19 +3,73 @@
 package operations
 
 import (
+	"errors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 )
 
-type TriggerRunCustomSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+type TriggerRunCustom200ApplicationJSONType string
+
+const (
+	TriggerRunCustom200ApplicationJSONTypeTriggerRunOutput  TriggerRunCustom200ApplicationJSONType = "TriggerRunOutput"
+	TriggerRunCustom200ApplicationJSONTypeValidateErrorJSON TriggerRunCustom200ApplicationJSONType = "ValidateErrorJSON"
+)
+
+type TriggerRunCustom200ApplicationJSON struct {
+	TriggerRunOutput  *shared.TriggerRunOutput
+	ValidateErrorJSON *shared.ValidateErrorJSON
+
+	Type TriggerRunCustom200ApplicationJSONType
 }
 
-func (o *TriggerRunCustomSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
+func CreateTriggerRunCustom200ApplicationJSONTriggerRunOutput(triggerRunOutput shared.TriggerRunOutput) TriggerRunCustom200ApplicationJSON {
+	typ := TriggerRunCustom200ApplicationJSONTypeTriggerRunOutput
+
+	return TriggerRunCustom200ApplicationJSON{
+		TriggerRunOutput: &triggerRunOutput,
+		Type:             typ,
 	}
-	return o.BearerAuth
+}
+
+func CreateTriggerRunCustom200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) TriggerRunCustom200ApplicationJSON {
+	typ := TriggerRunCustom200ApplicationJSONTypeValidateErrorJSON
+
+	return TriggerRunCustom200ApplicationJSON{
+		ValidateErrorJSON: &validateErrorJSON,
+		Type:              typ,
+	}
+}
+
+func (u *TriggerRunCustom200ApplicationJSON) UnmarshalJSON(data []byte) error {
+
+	triggerRunOutput := new(shared.TriggerRunOutput)
+	if err := utils.UnmarshalJSON(data, &triggerRunOutput, "", true, true); err == nil {
+		u.TriggerRunOutput = triggerRunOutput
+		u.Type = TriggerRunCustom200ApplicationJSONTypeTriggerRunOutput
+		return nil
+	}
+
+	validateErrorJSON := new(shared.ValidateErrorJSON)
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = validateErrorJSON
+		u.Type = TriggerRunCustom200ApplicationJSONTypeValidateErrorJSON
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u TriggerRunCustom200ApplicationJSON) MarshalJSON() ([]byte, error) {
+	if u.TriggerRunOutput != nil {
+		return utils.MarshalJSON(u.TriggerRunOutput, "", true)
+	}
+
+	if u.ValidateErrorJSON != nil {
+		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type TriggerRunCustomResponse struct {
@@ -23,7 +77,7 @@ type TriggerRunCustomResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// Ok
-	TriggerRunCustom200ApplicationJSONAnyOf interface{}
+	TriggerRunCustom200ApplicationJSONOneOf *TriggerRunCustom200ApplicationJSON
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
 }
@@ -49,11 +103,11 @@ func (o *TriggerRunCustomResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *TriggerRunCustomResponse) GetTriggerRunCustom200ApplicationJSONAnyOf() interface{} {
+func (o *TriggerRunCustomResponse) GetTriggerRunCustom200ApplicationJSONOneOf() *TriggerRunCustom200ApplicationJSON {
 	if o == nil {
 		return nil
 	}
-	return o.TriggerRunCustom200ApplicationJSONAnyOf
+	return o.TriggerRunCustom200ApplicationJSONOneOf
 }
 
 func (o *TriggerRunCustomResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {

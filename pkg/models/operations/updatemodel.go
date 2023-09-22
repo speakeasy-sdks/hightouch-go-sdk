@@ -3,20 +3,11 @@
 package operations
 
 import (
+	"errors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 )
-
-type UpdateModelSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *UpdateModelSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
 
 type UpdateModelRequest struct {
 	ModelUpdate shared.ModelUpdate `request:"mediaType=application/json"`
@@ -38,14 +29,99 @@ func (o *UpdateModelRequest) GetModelID() float64 {
 	return o.ModelID
 }
 
+type UpdateModel200ApplicationJSONType string
+
+const (
+	UpdateModel200ApplicationJSONTypeModel             UpdateModel200ApplicationJSONType = "Model"
+	UpdateModel200ApplicationJSONTypeValidateErrorJSON UpdateModel200ApplicationJSONType = "ValidateErrorJSON"
+	UpdateModel200ApplicationJSONTypeStr               UpdateModel200ApplicationJSONType = "str"
+)
+
+type UpdateModel200ApplicationJSON struct {
+	Model             *shared.Model
+	ValidateErrorJSON *shared.ValidateErrorJSON
+	Str               *string
+
+	Type UpdateModel200ApplicationJSONType
+}
+
+func CreateUpdateModel200ApplicationJSONModel(model shared.Model) UpdateModel200ApplicationJSON {
+	typ := UpdateModel200ApplicationJSONTypeModel
+
+	return UpdateModel200ApplicationJSON{
+		Model: &model,
+		Type:  typ,
+	}
+}
+
+func CreateUpdateModel200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) UpdateModel200ApplicationJSON {
+	typ := UpdateModel200ApplicationJSONTypeValidateErrorJSON
+
+	return UpdateModel200ApplicationJSON{
+		ValidateErrorJSON: &validateErrorJSON,
+		Type:              typ,
+	}
+}
+
+func CreateUpdateModel200ApplicationJSONStr(str string) UpdateModel200ApplicationJSON {
+	typ := UpdateModel200ApplicationJSONTypeStr
+
+	return UpdateModel200ApplicationJSON{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *UpdateModel200ApplicationJSON) UnmarshalJSON(data []byte) error {
+
+	validateErrorJSON := new(shared.ValidateErrorJSON)
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = validateErrorJSON
+		u.Type = UpdateModel200ApplicationJSONTypeValidateErrorJSON
+		return nil
+	}
+
+	model := new(shared.Model)
+	if err := utils.UnmarshalJSON(data, &model, "", true, true); err == nil {
+		u.Model = model
+		u.Type = UpdateModel200ApplicationJSONTypeModel
+		return nil
+	}
+
+	str := new(string)
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = str
+		u.Type = UpdateModel200ApplicationJSONTypeStr
+		return nil
+	}
+
+	return errors.New("could not unmarshal into supported union types")
+}
+
+func (u UpdateModel200ApplicationJSON) MarshalJSON() ([]byte, error) {
+	if u.Model != nil {
+		return utils.MarshalJSON(u.Model, "", true)
+	}
+
+	if u.ValidateErrorJSON != nil {
+		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type: all fields are null")
+}
+
 type UpdateModelResponse struct {
 	ContentType string
 	// Something went wrong
-	InternalServerError *shared.InternalServerError
+	InternalServerError *string
 	StatusCode          int
 	RawResponse         *http.Response
 	// Ok
-	UpdateModel200ApplicationJSONAnyOf interface{}
+	UpdateModel200ApplicationJSONOneOf *UpdateModel200ApplicationJSON
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
 }
@@ -57,7 +133,7 @@ func (o *UpdateModelResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *UpdateModelResponse) GetInternalServerError() *shared.InternalServerError {
+func (o *UpdateModelResponse) GetInternalServerError() *string {
 	if o == nil {
 		return nil
 	}
@@ -78,11 +154,11 @@ func (o *UpdateModelResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdateModelResponse) GetUpdateModel200ApplicationJSONAnyOf() interface{} {
+func (o *UpdateModelResponse) GetUpdateModel200ApplicationJSONOneOf() *UpdateModel200ApplicationJSON {
 	if o == nil {
 		return nil
 	}
-	return o.UpdateModel200ApplicationJSONAnyOf
+	return o.UpdateModel200ApplicationJSONOneOf
 }
 
 func (o *UpdateModelResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {

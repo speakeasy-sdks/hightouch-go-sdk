@@ -6,20 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
 	"time"
 )
-
-type ListSyncRunsSecurity struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (o *ListSyncRunsSecurity) GetBearerAuth() string {
-	if o == nil {
-		return ""
-	}
-	return o.BearerAuth
-}
 
 // ListSyncRunsOrderBy - specify the order
 type ListSyncRunsOrderBy string
@@ -61,16 +51,27 @@ type ListSyncRunsRequest struct {
 	// select sync runs that are started before certain ISO timestamp
 	Before *time.Time `queryParam:"style=form,explode=true,name=before"`
 	// limit the number of objects returned (default is 5)
-	Limit *float64 `queryParam:"style=form,explode=true,name=limit"`
+	Limit *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	// set the offset on results (for pagination)
-	Offset *float64 `queryParam:"style=form,explode=true,name=offset"`
+	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSyncRunsOrderBy `queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSyncRunsOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// query for specific run id
 	RunID  *float64 `queryParam:"style=form,explode=true,name=runId"`
 	SyncID float64  `pathParam:"style=simple,explode=false,name=syncId"`
 	// select sync runs that are started within last given minutes
 	Within *float64 `queryParam:"style=form,explode=true,name=within"`
+}
+
+func (l ListSyncRunsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListSyncRunsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListSyncRunsRequest) GetAfter() *time.Time {
