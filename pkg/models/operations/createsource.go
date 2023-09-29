@@ -95,13 +95,16 @@ func (u CreateSource200ApplicationJSON) MarshalJSON() ([]byte, error) {
 }
 
 type CreateSourceResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Ok
 	CreateSource200ApplicationJSONOneOf *CreateSource200ApplicationJSON
 	// Something went wrong
 	InternalServerError *string
-	StatusCode          int
-	RawResponse         *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Conflict
 	ValidateErrorJSON *shared.ValidateErrorJSON
 }

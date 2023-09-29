@@ -20,10 +20,13 @@ func (o *GetDestinationRequest) GetDestinationID() float64 {
 }
 
 type GetDestinationResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Ok
 	Destination *shared.Destination
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

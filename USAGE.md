@@ -21,11 +21,11 @@ func main() {
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "corrupti": "provident",
+            "dignissimos": "Bugatti",
         },
-        Name: "Ellis Mitchell",
-        Slug: "illum",
-        Type: "vel",
+        Name: "greatly",
+        Slug: "kilogram Southwest",
+        Type: "blue wilt",
     })
     if err != nil {
         log.Fatal(err)

@@ -115,11 +115,14 @@ func (u UpdateSync200ApplicationJSON) MarshalJSON() ([]byte, error) {
 }
 
 type UpdateSyncResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Something went wrong
 	InternalServerError *string
-	StatusCode          int
-	RawResponse         *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 	// Ok
 	UpdateSync200ApplicationJSONOneOf *UpdateSync200ApplicationJSON
 	// Validation Failed

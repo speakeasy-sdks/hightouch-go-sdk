@@ -1,5 +1,6 @@
 # Hightouch SDK
 
+
 ## Overview
 
 Hightouch API: Hightouch Public Rest API to access syncs, models, sources and destinations
@@ -53,11 +54,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "molestiae": "minus",
+            "dignissimos": "Bugatti",
         },
-        Name: "Ken Kshlerin",
-        Slug: "recusandae",
-        Type: "temporibus",
+        Name: "greatly",
+        Slug: "kilogram Southwest",
+        Type: "blue wilt",
     })
     if err != nil {
         log.Fatal(err)
@@ -108,28 +109,28 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateModel(ctx, shared.ModelCreate{
         Custom: &shared.ModelCreateCustom{
-            Query: "ab",
+            Query: "zesty",
         },
         Dbt: &shared.ModelCreateDbt{
-            ModelID: "quis",
+            ModelID: "Northwest enterprise",
         },
         IsSchema: false,
-        Name: "Iris Aufderhar",
-        PrimaryKey: "sapiente",
-        QueryType: "quo",
+        Name: "Libyan Data Non",
+        PrimaryKey: "Dakota",
+        QueryType: "success Rochester Non",
         Raw: &shared.ModelCreateRaw{
-            SQL: "odit",
+            SQL: "Metal",
         },
-        Slug: "at",
-        SourceID: "at",
+        Slug: "payment",
+        SourceID: "Division",
         Table: &shared.ModelCreateTable{
-            Name: "Javier Schmidt",
+            Name: "application unloosen yahoo",
         },
         Visual: &shared.ModelCreateVisual{
-            Filter: "totam",
-            ParentID: "porro",
-            PrimaryLabel: "dolorum",
-            SecondaryLabel: "dicta",
+            Filter: "conglomeration",
+            ParentID: "Bugatti",
+            PrimaryLabel: "invoice",
+            SecondaryLabel: "Usability",
         },
     })
     if err != nil {
@@ -181,11 +182,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateSource(ctx, shared.SourceCreate{
         Configuration: map[string]interface{}{
-            "nam": "officia",
+            "aut": "Vermont",
         },
-        Name: "Wayne Lind",
-        Slug: "totam",
-        Type: "beatae",
+        Name: "Van deposit Lamborghini",
+        Slug: "York ouch Northwest",
+        Type: "Porsche Cadillac",
     })
     if err != nil {
         log.Fatal(err)
@@ -236,16 +237,16 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateSync(ctx, shared.SyncCreate{
         Configuration: map[string]interface{}{
-            "commodi": "molestiae",
+            "accusamus": "Concrete",
         },
-        DestinationID: "modi",
+        DestinationID: "North synergies Cambridgeshire",
         Disabled: false,
-        ModelID: "qui",
+        ModelID: "orchid Applications disintermediate",
         Schedule: &shared.SyncCreateSchedule{
             Schedule: shared.SyncCreateScheduleSchedule{},
-            Type: "impedit",
+            Type: "meanwhile",
         },
-        Slug: "cum",
+        Slug: "Electric SDD",
     })
     if err != nil {
         log.Fatal(err)
@@ -296,7 +297,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.GetDestination(ctx, operations.GetDestinationRequest{
-        DestinationID: 4561.5,
+        DestinationID: 4856.96,
     })
     if err != nil {
         log.Fatal(err)
@@ -347,7 +348,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.GetModel(ctx, operations.GetModelRequest{
-        ModelID: 2165.5,
+        ModelID: 7962.16,
     })
     if err != nil {
         log.Fatal(err)
@@ -398,7 +399,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.GetSource(ctx, operations.GetSourceRequest{
-        SourceID: 5684.34,
+        SourceID: 4378.62,
     })
     if err != nil {
         log.Fatal(err)
@@ -449,7 +450,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.GetSync(ctx, operations.GetSyncRequest{
-        SyncID: 1352.18,
+        SyncID: 7319.86,
     })
     if err != nil {
         log.Fatal(err)
@@ -500,11 +501,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.ListDestination(ctx, operations.ListDestinationRequest{
-        Limit: hightouchgosdk.Float64(187.89),
-        Name: hightouchgosdk.String("Faye Cormier"),
-        Offset: hightouchgosdk.Float64(6169.34),
-        OrderBy: operations.ListDestinationOrderByName.ToPointer(),
-        Slug: hightouchgosdk.String("hic"),
+        Limit: hightouchgosdk.Float64(898.03),
+        Name: hightouchgosdk.String("Alaska"),
+        Offset: hightouchgosdk.Float64(1026.89),
+        OrderBy: operations.ListDestinationOrderByCreatedAt.ToPointer(),
+        Slug: hightouchgosdk.String("quas"),
     })
     if err != nil {
         log.Fatal(err)
@@ -555,11 +556,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.ListModel(ctx, operations.ListModelRequest{
-        Limit: hightouchgosdk.Float64(9025.99),
-        Name: hightouchgosdk.String("Harvey Hessel"),
-        Offset: hightouchgosdk.Float64(9023.49),
-        OrderBy: operations.ListModelOrderByCreatedAt.ToPointer(),
-        Slug: hightouchgosdk.String("architecto"),
+        Limit: hightouchgosdk.Float64(4556.79),
+        Name: hightouchgosdk.String("times Automated portal"),
+        Offset: hightouchgosdk.Float64(1772.52),
+        OrderBy: operations.ListModelOrderBySlug.ToPointer(),
+        Slug: hightouchgosdk.String("deposit definite"),
     })
     if err != nil {
         log.Fatal(err)
@@ -610,11 +611,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSource(ctx, operations.ListSourceRequest{
-        Limit: hightouchgosdk.Float64(602.25),
-        Name: hightouchgosdk.String("Carlton O'Hara"),
-        Offset: hightouchgosdk.Float64(2103.82),
+        Limit: hightouchgosdk.Float64(3667.48),
+        Name: hightouchgosdk.String("facilis"),
+        Offset: hightouchgosdk.Float64(7285.7),
         OrderBy: operations.ListSourceOrderByName.ToPointer(),
-        Slug: hightouchgosdk.String("explicabo"),
+        Slug: hightouchgosdk.String("Francium spread Outdoors"),
     })
     if err != nil {
         log.Fatal(err)
@@ -666,13 +667,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSync(ctx, operations.ListSyncRequest{
-        After: types.MustTimeFromString("2022-01-20T14:32:34.011Z"),
-        Before: types.MustTimeFromString("2022-04-10T11:47:13.463Z"),
-        Limit: hightouchgosdk.Float64(3250.47),
-        ModelID: hightouchgosdk.Float64(5701.97),
-        Offset: hightouchgosdk.Float64(384.25),
+        After: types.MustTimeFromString("2021-12-29T02:44:53.348Z"),
+        Before: types.MustTimeFromString("2023-03-08T22:11:11.682Z"),
+        Limit: hightouchgosdk.Float64(8056.73),
+        ModelID: hightouchgosdk.Float64(2244.55),
+        Offset: hightouchgosdk.Float64(5024.07),
         OrderBy: operations.ListSyncOrderBySlug.ToPointer(),
-        Slug: hightouchgosdk.String("culpa"),
+        Slug: hightouchgosdk.String("Automated Sausages"),
     })
     if err != nil {
         log.Fatal(err)
@@ -724,14 +725,14 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
-        After: types.MustTimeFromString("2020-02-15T22:48:47.492Z"),
-        Before: types.MustTimeFromString("2022-05-07T17:33:24.154Z"),
-        Limit: hightouchgosdk.Float64(2088.76),
-        Offset: hightouchgosdk.Float64(6350.59),
-        OrderBy: operations.ListSyncRunsOrderByID.ToPointer(),
-        RunID: hightouchgosdk.Float64(9953),
-        SyncID: 6531.08,
-        Within: hightouchgosdk.Float64(5818.5),
+        After: types.MustTimeFromString("2023-08-29T00:26:30.425Z"),
+        Before: types.MustTimeFromString("2022-11-28T13:12:20.353Z"),
+        Limit: hightouchgosdk.Float64(3202.39),
+        Offset: hightouchgosdk.Float64(771.35),
+        OrderBy: operations.ListSyncRunsOrderByStartedAt.ToPointer(),
+        RunID: hightouchgosdk.Float64(2963.65),
+        SyncID: 7146.37,
+        Within: hightouchgosdk.Float64(4058.13),
     })
     if err != nil {
         log.Fatal(err)
@@ -788,7 +789,7 @@ func main() {
         TriggerRunInput: &shared.TriggerRunInput{
             FullResync: hightouchgosdk.Bool(false),
         },
-        SyncID: "numquam",
+        SyncID: "Digitized withdrawal Midland",
     })
     if err != nil {
         log.Fatal(err)
@@ -842,8 +843,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{
         FullResync: hightouchgosdk.Bool(false),
-        SyncID: hightouchgosdk.String("commodi"),
-        SyncSlug: hightouchgosdk.String("quam"),
+        SyncID: hightouchgosdk.String("female"),
+        SyncSlug: hightouchgosdk.String("Tellurium core"),
     })
     if err != nil {
         log.Fatal(err)
@@ -895,7 +896,7 @@ func main() {
         TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{
             FullRerun: hightouchgosdk.Bool(false),
         },
-        GraphID: "molestiae",
+        GraphID: "hop Bentley AI",
     })
     if err != nil {
         log.Fatal(err)
@@ -950,11 +951,11 @@ func main() {
     res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
         DestinationUpdate: shared.DestinationUpdate{
             Configuration: map[string]interface{}{
-                "velit": "error",
+                "debitis": "copying",
             },
-            Name: hightouchgosdk.String("Beatrice Brown"),
+            Name: hightouchgosdk.String("enable Northwest woot"),
         },
-        DestinationID: 3172.02,
+        DestinationID: 8585.6,
     })
     if err != nil {
         log.Fatal(err)
@@ -1009,28 +1010,28 @@ func main() {
     res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
         ModelUpdate: shared.ModelUpdate{
             Custom: &shared.ModelUpdateCustom{
-                Query: "odit",
+                Query: "Northwest",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "quo",
+                ModelID: "Ford till Customer",
             },
             IsSchema: hightouchgosdk.Bool(false),
-            Name: hightouchgosdk.String("Mandy Hills"),
-            PrimaryKey: hightouchgosdk.String("aut"),
+            Name: hightouchgosdk.String("users content"),
+            PrimaryKey: hightouchgosdk.String("New"),
             Raw: &shared.ModelUpdateRaw{
-                SQL: "quasi",
+                SQL: "reinvent male indigo",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "Dr. Jake Pacocha",
+                Name: "Rhodium mint Steel",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "vero",
-                ParentID: "nihil",
-                PrimaryLabel: "praesentium",
-                SecondaryLabel: "voluptatibus",
+                Filter: "array",
+                ParentID: "Gasoline Paradigm Mazda",
+                PrimaryLabel: "whenever Palladium Brand",
+                SecondaryLabel: "Buckinghamshire",
             },
         },
-        ModelID: 557.14,
+        ModelID: 6828.56,
     })
     if err != nil {
         log.Fatal(err)
@@ -1085,11 +1086,11 @@ func main() {
     res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
         SourceUpdate: shared.SourceUpdate{
             Configuration: map[string]interface{}{
-                "omnis": "voluptate",
+                "animi": "Land",
             },
-            Name: hightouchgosdk.String("Thomas Batz"),
+            Name: hightouchgosdk.String("Bismuth Bedfordshire Northwest"),
         },
-        SourceID: 9795.87,
+        SourceID: 2452.92,
     })
     if err != nil {
         log.Fatal(err)
@@ -1144,15 +1145,15 @@ func main() {
     res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
         SyncUpdate: shared.SyncUpdate{
             Configuration: map[string]interface{}{
-                "dicta": "corporis",
+                "praesentium": "Carolanne",
             },
             Disabled: hightouchgosdk.Bool(false),
             Schedule: &shared.SyncUpdateSchedule{
                 Schedule: shared.SyncUpdateScheduleSchedule{},
-                Type: "dolore",
+                Type: "Bedfordshire Chlorine",
             },
         },
-        SyncID: 4808.94,
+        SyncID: 6235.37,
     })
     if err != nil {
         log.Fatal(err)

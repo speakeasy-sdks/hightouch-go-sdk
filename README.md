@@ -49,11 +49,11 @@ func main() {
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "error": "deserunt",
+            "dignissimos": "Bugatti",
         },
-        Name: "Willie Gulgowski DVM",
-        Slug: "tempora",
-        Type: "suscipit",
+        Name: "greatly",
+        Slug: "kilogram Southwest",
+        Type: "blue wilt",
     })
     if err != nil {
         log.Fatal(err)
@@ -97,8 +97,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -111,8 +109,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 

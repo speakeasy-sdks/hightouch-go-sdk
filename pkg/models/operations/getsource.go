@@ -20,10 +20,13 @@ func (o *GetSourceRequest) GetSourceID() float64 {
 }
 
 type GetSourceResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Ok
-	Source      *shared.Source
-	StatusCode  int
+	Source *shared.Source
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Validation Failed
 	ValidateErrorJSON *shared.ValidateErrorJSON
