@@ -32,15 +32,15 @@ func (o *UpdateDestinationRequest) GetDestinationID() float64 {
 type UpdateDestination200ApplicationJSONType string
 
 const (
-	UpdateDestination200ApplicationJSONTypeDestination       UpdateDestination200ApplicationJSONType = "Destination"
-	UpdateDestination200ApplicationJSONTypeValidateErrorJSON UpdateDestination200ApplicationJSONType = "ValidateErrorJSON"
-	UpdateDestination200ApplicationJSONTypeStr               UpdateDestination200ApplicationJSONType = "str"
+	UpdateDestination200ApplicationJSONTypeDestination         UpdateDestination200ApplicationJSONType = "Destination"
+	UpdateDestination200ApplicationJSONTypeValidateErrorJSON   UpdateDestination200ApplicationJSONType = "ValidateErrorJSON"
+	UpdateDestination200ApplicationJSONTypeInternalServerError UpdateDestination200ApplicationJSONType = "InternalServerError"
 )
 
 type UpdateDestination200ApplicationJSON struct {
-	Destination       *shared.Destination
-	ValidateErrorJSON *shared.ValidateErrorJSON
-	Str               *string
+	Destination         *shared.Destination
+	ValidateErrorJSON   *shared.ValidateErrorJSON
+	InternalServerError *shared.InternalServerError
 
 	Type UpdateDestination200ApplicationJSONType
 }
@@ -63,12 +63,12 @@ func CreateUpdateDestination200ApplicationJSONValidateErrorJSON(validateErrorJSO
 	}
 }
 
-func CreateUpdateDestination200ApplicationJSONStr(str string) UpdateDestination200ApplicationJSON {
-	typ := UpdateDestination200ApplicationJSONTypeStr
+func CreateUpdateDestination200ApplicationJSONInternalServerError(internalServerError shared.InternalServerError) UpdateDestination200ApplicationJSON {
+	typ := UpdateDestination200ApplicationJSONTypeInternalServerError
 
 	return UpdateDestination200ApplicationJSON{
-		Str:  &str,
-		Type: typ,
+		InternalServerError: &internalServerError,
+		Type:                typ,
 	}
 }
 
@@ -88,10 +88,10 @@ func (u *UpdateDestination200ApplicationJSON) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	str := new(string)
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
-		u.Str = str
-		u.Type = UpdateDestination200ApplicationJSONTypeStr
+	internalServerError := new(shared.InternalServerError)
+	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
+		u.InternalServerError = internalServerError
+		u.Type = UpdateDestination200ApplicationJSONTypeInternalServerError
 		return nil
 	}
 
@@ -107,8 +107,8 @@ func (u UpdateDestination200ApplicationJSON) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
 	}
 
-	if u.Str != nil {
-		return utils.MarshalJSON(u.Str, "", true)
+	if u.InternalServerError != nil {
+		return utils.MarshalJSON(u.InternalServerError, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")
@@ -118,7 +118,7 @@ type UpdateDestinationResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
 	// Something went wrong
-	InternalServerError *string
+	InternalServerError *shared.InternalServerError
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -136,7 +136,7 @@ func (o *UpdateDestinationResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *UpdateDestinationResponse) GetInternalServerError() *string {
+func (o *UpdateDestinationResponse) GetInternalServerError() *shared.InternalServerError {
 	if o == nil {
 		return nil
 	}

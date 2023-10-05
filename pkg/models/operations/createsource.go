@@ -12,15 +12,15 @@ import (
 type CreateSource200ApplicationJSONType string
 
 const (
-	CreateSource200ApplicationJSONTypeSource            CreateSource200ApplicationJSONType = "Source"
-	CreateSource200ApplicationJSONTypeValidateErrorJSON CreateSource200ApplicationJSONType = "ValidateErrorJSON"
-	CreateSource200ApplicationJSONTypeStr               CreateSource200ApplicationJSONType = "str"
+	CreateSource200ApplicationJSONTypeSource              CreateSource200ApplicationJSONType = "Source"
+	CreateSource200ApplicationJSONTypeValidateErrorJSON   CreateSource200ApplicationJSONType = "ValidateErrorJSON"
+	CreateSource200ApplicationJSONTypeInternalServerError CreateSource200ApplicationJSONType = "InternalServerError"
 )
 
 type CreateSource200ApplicationJSON struct {
-	Source            *shared.Source
-	ValidateErrorJSON *shared.ValidateErrorJSON
-	Str               *string
+	Source              *shared.Source
+	ValidateErrorJSON   *shared.ValidateErrorJSON
+	InternalServerError *shared.InternalServerError
 
 	Type CreateSource200ApplicationJSONType
 }
@@ -43,12 +43,12 @@ func CreateCreateSource200ApplicationJSONValidateErrorJSON(validateErrorJSON sha
 	}
 }
 
-func CreateCreateSource200ApplicationJSONStr(str string) CreateSource200ApplicationJSON {
-	typ := CreateSource200ApplicationJSONTypeStr
+func CreateCreateSource200ApplicationJSONInternalServerError(internalServerError shared.InternalServerError) CreateSource200ApplicationJSON {
+	typ := CreateSource200ApplicationJSONTypeInternalServerError
 
 	return CreateSource200ApplicationJSON{
-		Str:  &str,
-		Type: typ,
+		InternalServerError: &internalServerError,
+		Type:                typ,
 	}
 }
 
@@ -68,10 +68,10 @@ func (u *CreateSource200ApplicationJSON) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	str := new(string)
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
-		u.Str = str
-		u.Type = CreateSource200ApplicationJSONTypeStr
+	internalServerError := new(shared.InternalServerError)
+	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
+		u.InternalServerError = internalServerError
+		u.Type = CreateSource200ApplicationJSONTypeInternalServerError
 		return nil
 	}
 
@@ -87,8 +87,8 @@ func (u CreateSource200ApplicationJSON) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
 	}
 
-	if u.Str != nil {
-		return utils.MarshalJSON(u.Str, "", true)
+	if u.InternalServerError != nil {
+		return utils.MarshalJSON(u.InternalServerError, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")
@@ -100,7 +100,7 @@ type CreateSourceResponse struct {
 	// Ok
 	CreateSource200ApplicationJSONOneOf *CreateSource200ApplicationJSON
 	// Something went wrong
-	InternalServerError *string
+	InternalServerError *shared.InternalServerError
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -123,7 +123,7 @@ func (o *CreateSourceResponse) GetCreateSource200ApplicationJSONOneOf() *CreateS
 	return o.CreateSource200ApplicationJSONOneOf
 }
 
-func (o *CreateSourceResponse) GetInternalServerError() *string {
+func (o *CreateSourceResponse) GetInternalServerError() *shared.InternalServerError {
 	if o == nil {
 		return nil
 	}

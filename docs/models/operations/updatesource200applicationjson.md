@@ -17,9 +17,9 @@ updateSource200ApplicationJSON := operations.CreateUpdateSource200ApplicationJSO
 updateSource200ApplicationJSON := operations.CreateUpdateSource200ApplicationJSONValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
 ```
 
-### 
+### InternalServerError
 
 ```go
-updateSource200ApplicationJSON := operations.CreateUpdateSource200ApplicationJSONStr(string{/* values here */})
+updateSource200ApplicationJSON := operations.CreateUpdateSource200ApplicationJSONInternalServerError(shared.InternalServerError{/* values here */})
 ```
 

@@ -17,9 +17,9 @@ createDestination200ApplicationJSON := operations.CreateCreateDestination200Appl
 createDestination200ApplicationJSON := operations.CreateCreateDestination200ApplicationJSONValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
 ```
 
-### 
+### InternalServerError
 
 ```go
-createDestination200ApplicationJSON := operations.CreateCreateDestination200ApplicationJSONStr(string{/* values here */})
+createDestination200ApplicationJSON := operations.CreateCreateDestination200ApplicationJSONInternalServerError(shared.InternalServerError{/* values here */})
 ```
 

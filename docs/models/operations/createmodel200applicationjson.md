@@ -17,9 +17,9 @@ createModel200ApplicationJSON := operations.CreateCreateModel200ApplicationJSONM
 createModel200ApplicationJSON := operations.CreateCreateModel200ApplicationJSONValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
 ```
 
-### 
+### InternalServerError
 
 ```go
-createModel200ApplicationJSON := operations.CreateCreateModel200ApplicationJSONStr(string{/* values here */})
+createModel200ApplicationJSON := operations.CreateCreateModel200ApplicationJSONInternalServerError(shared.InternalServerError{/* values here */})
 ```
 

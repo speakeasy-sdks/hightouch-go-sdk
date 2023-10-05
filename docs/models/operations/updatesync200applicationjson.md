@@ -17,9 +17,9 @@ updateSync200ApplicationJSON := operations.CreateUpdateSync200ApplicationJSONSyn
 updateSync200ApplicationJSON := operations.CreateUpdateSync200ApplicationJSONValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
 ```
 
-### 
+### InternalServerError
 
 ```go
-updateSync200ApplicationJSON := operations.CreateUpdateSync200ApplicationJSONStr(string{/* values here */})
+updateSync200ApplicationJSON := operations.CreateUpdateSync200ApplicationJSONInternalServerError(shared.InternalServerError{/* values here */})
 ```
 

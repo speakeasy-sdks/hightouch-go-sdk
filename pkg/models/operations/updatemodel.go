@@ -32,15 +32,15 @@ func (o *UpdateModelRequest) GetModelID() float64 {
 type UpdateModel200ApplicationJSONType string
 
 const (
-	UpdateModel200ApplicationJSONTypeModel             UpdateModel200ApplicationJSONType = "Model"
-	UpdateModel200ApplicationJSONTypeValidateErrorJSON UpdateModel200ApplicationJSONType = "ValidateErrorJSON"
-	UpdateModel200ApplicationJSONTypeStr               UpdateModel200ApplicationJSONType = "str"
+	UpdateModel200ApplicationJSONTypeModel               UpdateModel200ApplicationJSONType = "Model"
+	UpdateModel200ApplicationJSONTypeValidateErrorJSON   UpdateModel200ApplicationJSONType = "ValidateErrorJSON"
+	UpdateModel200ApplicationJSONTypeInternalServerError UpdateModel200ApplicationJSONType = "InternalServerError"
 )
 
 type UpdateModel200ApplicationJSON struct {
-	Model             *shared.Model
-	ValidateErrorJSON *shared.ValidateErrorJSON
-	Str               *string
+	Model               *shared.Model
+	ValidateErrorJSON   *shared.ValidateErrorJSON
+	InternalServerError *shared.InternalServerError
 
 	Type UpdateModel200ApplicationJSONType
 }
@@ -63,12 +63,12 @@ func CreateUpdateModel200ApplicationJSONValidateErrorJSON(validateErrorJSON shar
 	}
 }
 
-func CreateUpdateModel200ApplicationJSONStr(str string) UpdateModel200ApplicationJSON {
-	typ := UpdateModel200ApplicationJSONTypeStr
+func CreateUpdateModel200ApplicationJSONInternalServerError(internalServerError shared.InternalServerError) UpdateModel200ApplicationJSON {
+	typ := UpdateModel200ApplicationJSONTypeInternalServerError
 
 	return UpdateModel200ApplicationJSON{
-		Str:  &str,
-		Type: typ,
+		InternalServerError: &internalServerError,
+		Type:                typ,
 	}
 }
 
@@ -88,10 +88,10 @@ func (u *UpdateModel200ApplicationJSON) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	str := new(string)
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
-		u.Str = str
-		u.Type = UpdateModel200ApplicationJSONTypeStr
+	internalServerError := new(shared.InternalServerError)
+	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
+		u.InternalServerError = internalServerError
+		u.Type = UpdateModel200ApplicationJSONTypeInternalServerError
 		return nil
 	}
 
@@ -107,8 +107,8 @@ func (u UpdateModel200ApplicationJSON) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ValidateErrorJSON, "", true)
 	}
 
-	if u.Str != nil {
-		return utils.MarshalJSON(u.Str, "", true)
+	if u.InternalServerError != nil {
+		return utils.MarshalJSON(u.InternalServerError, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")
@@ -118,7 +118,7 @@ type UpdateModelResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
 	// Something went wrong
-	InternalServerError *string
+	InternalServerError *shared.InternalServerError
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
@@ -136,7 +136,7 @@ func (o *UpdateModelResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *UpdateModelResponse) GetInternalServerError() *string {
+func (o *UpdateModelResponse) GetInternalServerError() *shared.InternalServerError {
 	if o == nil {
 		return nil
 	}

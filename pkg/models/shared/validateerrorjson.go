@@ -3,23 +3,37 @@
 package shared
 
 import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
+	"encoding/json"
+	"fmt"
 )
 
-type ValidateErrorJSON struct {
-	Details map[string]interface{} `json:"details"`
-	message string                 `const:"Validation failed" json:"message"`
+type ValidateErrorJSONMessage string
+
+const (
+	ValidateErrorJSONMessageValidationFailed ValidateErrorJSONMessage = "Validation failed"
+)
+
+func (e ValidateErrorJSONMessage) ToPointer() *ValidateErrorJSONMessage {
+	return &e
 }
 
-func (v ValidateErrorJSON) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(v, "", false)
-}
-
-func (v *ValidateErrorJSON) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+func (e *ValidateErrorJSONMessage) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	return nil
+	switch v {
+	case "Validation failed":
+		*e = ValidateErrorJSONMessage(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ValidateErrorJSONMessage: %v", v)
+	}
+}
+
+type ValidateErrorJSON struct {
+	Details map[string]interface{}   `json:"details"`
+	Message ValidateErrorJSONMessage `json:"message"`
 }
 
 func (o *ValidateErrorJSON) GetDetails() map[string]interface{} {
@@ -29,6 +43,9 @@ func (o *ValidateErrorJSON) GetDetails() map[string]interface{} {
 	return o.Details
 }
 
-func (o *ValidateErrorJSON) GetMessage() string {
-	return "Validation failed"
+func (o *ValidateErrorJSON) GetMessage() ValidateErrorJSONMessage {
+	if o == nil {
+		return ValidateErrorJSONMessage("")
+	}
+	return o.Message
 }
