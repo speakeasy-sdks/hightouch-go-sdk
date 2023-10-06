@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 6c15b6978da01d8767c381eb7fb088bd
+  docChecksum: 5ad8162d87f93eda1b00b35882750661
   docVersion: 1.0.0
   speakeasyVersion: 1.94.0
   generationVersion: 2.147.0
@@ -16,6 +16,6 @@ features:
     globalServerURLs: 2.82.0
     unions: 2.83.1
 go:
-  version: 0.25.0
+  version: 0.25.1
   maxMethodParams: 0
   packageName: github.com/speakeasy-sdks/hightouch-go-sdk

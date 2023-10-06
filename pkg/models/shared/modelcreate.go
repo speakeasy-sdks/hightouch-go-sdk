@@ -90,8 +90,9 @@ func (o *ModelCreateVisual) GetSecondaryLabel() string {
 // ModelCreate - The input for creating a Model
 type ModelCreate struct {
 	// Custom query for sources that doesn't support sql. For example, Airtable.
-	Custom *ModelCreateCustom `json:"custom,omitempty"`
-	Dbt    *ModelCreateDbt    `json:"dbt,omitempty"`
+	Custom   *ModelCreateCustom `json:"custom,omitempty"`
+	Dbt      *ModelCreateDbt    `json:"dbt,omitempty"`
+	FolderID *string            `json:"folderId,omitempty"`
 	// If is_schema is true, the model is just used to build other models.
 	// Either as part of visual querying, or as the root of a visual query.
 	IsSchema bool `json:"isSchema"`
@@ -125,6 +126,13 @@ func (o *ModelCreate) GetDbt() *ModelCreateDbt {
 		return nil
 	}
 	return o.Dbt
+}
+
+func (o *ModelCreate) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *ModelCreate) GetIsSchema() bool {

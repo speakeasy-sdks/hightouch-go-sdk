@@ -155,7 +155,8 @@ type Model struct {
 	// Custom query for sources that doesn't support sql. For example, Airtable.
 	Custom *ModelCustom `json:"custom,omitempty"`
 	// Query that is based on a dbt model
-	Dbt *ModelDbt `json:"dbt,omitempty"`
+	Dbt      *ModelDbt `json:"dbt,omitempty"`
+	FolderID *string   `json:"folderId,omitempty"`
 	// The id of the model
 	ID string `json:"id"`
 	// If is_schema is true, the model is just used to build other models.
@@ -217,6 +218,13 @@ func (o *Model) GetDbt() *ModelDbt {
 		return nil
 	}
 	return o.Dbt
+}
+
+func (o *Model) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *Model) GetID() string {

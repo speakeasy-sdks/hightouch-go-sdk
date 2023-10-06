@@ -25,9 +25,8 @@ func (o *DBTScheduleJob) GetID() string {
 }
 
 type DBTSchedule struct {
-	Account         DBTScheduleAccount `json:"account"`
-	DbtCredentialID string             `json:"dbtCredentialId"`
-	Job             DBTScheduleJob     `json:"job"`
+	Account DBTScheduleAccount `json:"account"`
+	Job     DBTScheduleJob     `json:"job"`
 }
 
 func (o *DBTSchedule) GetAccount() DBTScheduleAccount {
@@ -35,13 +34,6 @@ func (o *DBTSchedule) GetAccount() DBTScheduleAccount {
 		return DBTScheduleAccount{}
 	}
 	return o.Account
-}
-
-func (o *DBTSchedule) GetDbtCredentialID() string {
-	if o == nil {
-		return ""
-	}
-	return o.DbtCredentialID
 }
 
 func (o *DBTSchedule) GetJob() DBTScheduleJob {

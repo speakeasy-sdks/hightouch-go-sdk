@@ -90,8 +90,9 @@ func (o *ModelUpdateVisual) GetSecondaryLabel() string {
 // ModelUpdate - The input for updating a Model
 type ModelUpdate struct {
 	// Custom query for sources that doesn't support sql. For example, Airtable.
-	Custom *ModelUpdateCustom `json:"custom,omitempty"`
-	Dbt    *ModelUpdateDbt    `json:"dbt,omitempty"`
+	Custom   *ModelUpdateCustom `json:"custom,omitempty"`
+	Dbt      *ModelUpdateDbt    `json:"dbt,omitempty"`
+	FolderID *string            `json:"folderId,omitempty"`
 	// If is_schema is true, the model is just used to build other models.
 	// Either as part of visual querying, or as the root of a visual query.
 	IsSchema *bool `json:"isSchema,omitempty"`
@@ -119,6 +120,13 @@ func (o *ModelUpdate) GetDbt() *ModelUpdateDbt {
 		return nil
 	}
 	return o.Dbt
+}
+
+func (o *ModelUpdate) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *ModelUpdate) GetIsSchema() *bool {

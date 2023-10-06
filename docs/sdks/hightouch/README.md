@@ -114,23 +114,24 @@ func main() {
         Dbt: &shared.ModelCreateDbt{
             ModelID: "Northwest enterprise",
         },
+        FolderID: hightouchgosdk.String("Libyan Data Non"),
         IsSchema: false,
-        Name: "Libyan Data Non",
-        PrimaryKey: "Dakota",
-        QueryType: "success Rochester Non",
+        Name: "Dakota",
+        PrimaryKey: "success Rochester Non",
+        QueryType: "Metal",
         Raw: &shared.ModelCreateRaw{
-            SQL: "Metal",
+            SQL: "payment",
         },
-        Slug: "payment",
-        SourceID: "Division",
+        Slug: "Division",
+        SourceID: "application unloosen yahoo",
         Table: &shared.ModelCreateTable{
-            Name: "application unloosen yahoo",
+            Name: "Practical Bike",
         },
         Visual: &shared.ModelCreateVisual{
-            Filter: "conglomeration",
-            ParentID: "Bugatti",
-            PrimaryLabel: "invoice",
-            SecondaryLabel: "Usability",
+            Filter: "Bugatti",
+            ParentID: "invoice",
+            PrimaryLabel: "Usability",
+            SecondaryLabel: "hack AI instead",
         },
     })
     if err != nil {
@@ -1015,23 +1016,24 @@ func main() {
             Dbt: &shared.ModelUpdateDbt{
                 ModelID: "Ford till Customer",
             },
+            FolderID: hightouchgosdk.String("users content"),
             IsSchema: hightouchgosdk.Bool(false),
-            Name: hightouchgosdk.String("users content"),
-            PrimaryKey: hightouchgosdk.String("New"),
+            Name: hightouchgosdk.String("New"),
+            PrimaryKey: hightouchgosdk.String("reinvent male indigo"),
             Raw: &shared.ModelUpdateRaw{
-                SQL: "reinvent male indigo",
+                SQL: "Rhodium mint Steel",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "Rhodium mint Steel",
+                Name: "systematic Gasoline",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "array",
-                ParentID: "Gasoline Paradigm Mazda",
-                PrimaryLabel: "whenever Palladium Brand",
-                SecondaryLabel: "Buckinghamshire",
+                Filter: "Paradigm",
+                ParentID: "Accountability whenever Palladium",
+                PrimaryLabel: "Metal green becquerel",
+                SecondaryLabel: "Hyundai bluetooth",
             },
         },
-        ModelID: 6828.56,
+        ModelID: 8592.48,
     })
     if err != nil {
         log.Fatal(err)
