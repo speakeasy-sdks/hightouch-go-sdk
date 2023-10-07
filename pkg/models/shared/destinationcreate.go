@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
+)
+
 // DestinationCreate - The input for creating a Destination
 type DestinationCreate struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The destination's configuration. This specifies general metadata about destination, like hostname and username.
 	// Hightouch will be using this configuration to connect to destination.
 	//
@@ -18,6 +23,24 @@ type DestinationCreate struct {
 	Slug string `json:"slug"`
 	// The destination's type (e.g. salesforce or hubspot).
 	Type string `json:"type"`
+}
+
+func (d DestinationCreate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DestinationCreate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *DestinationCreate) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *DestinationCreate) GetConfiguration() map[string]interface{} {

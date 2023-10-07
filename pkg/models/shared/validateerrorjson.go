@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 )
 
 type ValidateErrorJSONMessage string
@@ -32,8 +33,27 @@ func (e *ValidateErrorJSONMessage) UnmarshalJSON(data []byte) error {
 }
 
 type ValidateErrorJSON struct {
-	Details map[string]interface{}   `json:"details"`
-	Message ValidateErrorJSONMessage `json:"message"`
+	AdditionalProperties map[string]interface{}   `additionalProperties:"true" json:"-"`
+	Details              map[string]interface{}   `json:"details"`
+	Message              ValidateErrorJSONMessage `json:"message"`
+}
+
+func (v ValidateErrorJSON) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(v, "", false)
+}
+
+func (v *ValidateErrorJSON) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ValidateErrorJSON) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *ValidateErrorJSON) GetDetails() map[string]interface{} {

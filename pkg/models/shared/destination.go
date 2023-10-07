@@ -10,6 +10,7 @@ import (
 // Destination - The service receiving your data (e.g. Salesforce, Hubspot, Customer.io, or a
 // SFTP server)
 type Destination struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The destination's configuration. This specifies general metadata about destination, like hostname and username.
 	// Hightouch will be using this configuration to connect to destination.
 	//
@@ -45,6 +46,13 @@ func (d *Destination) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *Destination) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *Destination) GetConfiguration() map[string]interface{} {

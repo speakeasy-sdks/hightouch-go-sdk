@@ -144,6 +144,7 @@ func (o *SyncUpdateSchedule) GetType() string {
 
 // SyncUpdate - The input for updating a Sync
 type SyncUpdate struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The sync's configuration. This specifies how data is mapped, among other
 	// configuration.
 	//
@@ -164,6 +165,24 @@ type SyncUpdate struct {
 	//
 	// DBT-cloud: the sync will be trigged based on a dbt cloud job
 	Schedule *SyncUpdateSchedule `json:"schedule,omitempty"`
+}
+
+func (s SyncUpdate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncUpdate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *SyncUpdate) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *SyncUpdate) GetConfiguration() map[string]interface{} {

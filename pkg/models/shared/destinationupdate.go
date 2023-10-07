@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
+)
+
 // DestinationUpdate - The input for updating a Destination
 type DestinationUpdate struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The destination's configuration. This specifies general metadata about destination, like hostname and username.
 	// Hightouch will be using this configuration to connect to destination.
 	//
@@ -14,6 +19,24 @@ type DestinationUpdate struct {
 	Configuration map[string]interface{} `json:"configuration,omitempty"`
 	// The destination's name
 	Name *string `json:"name,omitempty"`
+}
+
+func (d DestinationUpdate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DestinationUpdate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *DestinationUpdate) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *DestinationUpdate) GetConfiguration() map[string]interface{} {

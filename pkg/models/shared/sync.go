@@ -147,6 +147,7 @@ func (o *SyncSchedule) GetType() string {
 // sync runs, Hightouch calculates the rows that have changed since the last
 // run, and syncs them to Sync's destination.
 type Sync struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The sync's configuration. This specifies how data is mapped, among other
 	// configuration.
 	//
@@ -200,6 +201,13 @@ func (s *Sync) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *Sync) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *Sync) GetConfiguration() map[string]interface{} {

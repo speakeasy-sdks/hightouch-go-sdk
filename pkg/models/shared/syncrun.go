@@ -108,6 +108,7 @@ func (o *SyncRunSuccessfulRows) GetRemovedCount() float64 {
 }
 
 type SyncRun struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The completion ratio of sync run, showing the progress of a sync run
 	CompletionRatio float64 `json:"completionRatio"`
 	// The timestamp when sync run was created. In most cases this will be
@@ -151,6 +152,13 @@ func (s *SyncRun) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *SyncRun) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *SyncRun) GetCompletionRatio() float64 {

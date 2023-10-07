@@ -53,12 +53,15 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
-        Configuration: map[string]interface{}{
-            "dignissimos": "Bugatti",
+        AdditionalProperties: map[string]interface{}{
+            "optical": "Sid",
         },
-        Name: "greatly",
-        Slug: "kilogram Southwest",
-        Type: "blue wilt",
+        Configuration: map[string]interface{}{
+            "kilogram": "Southwest",
+        },
+        Name: "blue wilt",
+        Slug: "Southeast Mobility",
+        Type: "Jaguar Ford",
     })
     if err != nil {
         log.Fatal(err)
@@ -108,30 +111,32 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateModel(ctx, shared.ModelCreate{
+        AdditionalProperties: map[string]interface{}{
+            "zesty": "veritatis",
+        },
         Custom: &shared.ModelCreateCustom{
-            Query: "zesty",
+            Query: "Specialist",
         },
         Dbt: &shared.ModelCreateDbt{
-            ModelID: "Northwest enterprise",
+            ModelID: "violet digital Data",
         },
-        FolderID: hightouchgosdk.String("Libyan Data Non"),
         IsSchema: false,
-        Name: "Dakota",
-        PrimaryKey: "success Rochester Non",
-        QueryType: "Metal",
+        Name: "nor North",
+        PrimaryKey: "solid success Rochester",
+        QueryType: "if East",
         Raw: &shared.ModelCreateRaw{
-            SQL: "payment",
+            SQL: "vortals Vanadium Division",
         },
-        Slug: "Division",
-        SourceID: "application unloosen yahoo",
+        Slug: "application unloosen yahoo",
+        SourceID: "Practical Bike",
         Table: &shared.ModelCreateTable{
-            Name: "Practical Bike",
+            Name: "Kentucky invoice South",
         },
         Visual: &shared.ModelCreateVisual{
-            Filter: "Bugatti",
-            ParentID: "invoice",
-            PrimaryLabel: "Usability",
-            SecondaryLabel: "hack AI instead",
+            Filter: "precedent",
+            ParentID: "Keebler instead",
+            PrimaryLabel: "Saint Brookline Bacon",
+            SecondaryLabel: "owlishly Principal Music",
         },
     })
     if err != nil {
@@ -182,12 +187,15 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSource(ctx, shared.SourceCreate{
-        Configuration: map[string]interface{}{
-            "aut": "Vermont",
+        AdditionalProperties: map[string]interface{}{
+            "North": "tightly",
         },
-        Name: "Van deposit Lamborghini",
-        Slug: "York ouch Northwest",
-        Type: "Porsche Cadillac",
+        Configuration: map[string]interface{}{
+            "Van": "deposit",
+        },
+        Name: "matrix York ouch",
+        Slug: "Architect",
+        Type: "gold Baby Interactions",
     })
     if err != nil {
         log.Fatal(err)
@@ -237,17 +245,33 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSync(ctx, shared.SyncCreate{
+        AdditionalProperties: map[string]interface{}{
+            "euphoric": "experiences",
+        },
         Configuration: map[string]interface{}{
-            "accusamus": "Concrete",
+            "North": "synergies",
         },
-        DestinationID: "North synergies Cambridgeshire",
+        DestinationID: "ranch",
         Disabled: false,
-        ModelID: "orchid Applications disintermediate",
+        ModelID: "International",
         Schedule: &shared.SyncCreateSchedule{
-            Schedule: shared.SyncCreateScheduleSchedule{},
-            Type: "meanwhile",
+            Schedule: shared.CreateSyncCreateScheduleScheduleIntervalSchedule(
+                    shared.IntervalSchedule{
+                        AdditionalProperties: map[string]interface{}{
+                            "mobile": "copying",
+                        },
+                        Interval: shared.Interval{
+                            AdditionalProperties: map[string]interface{}{
+                                "database": "meanwhile",
+                            },
+                            Quantity: 5827.46,
+                            Unit: shared.IntervalUnitWeek,
+                        },
+                    },
+            ),
+            Type: "SDD",
         },
-        Slug: "Electric SDD",
+        Slug: "Fremont",
     })
     if err != nil {
         log.Fatal(err)
@@ -501,13 +525,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListDestination(ctx, operations.ListDestinationRequest{
-        Limit: hightouchgosdk.Float64(898.03),
-        Name: hightouchgosdk.String("Alaska"),
-        Offset: hightouchgosdk.Float64(1026.89),
-        OrderBy: operations.ListDestinationOrderByCreatedAt.ToPointer(),
-        Slug: hightouchgosdk.String("quas"),
-    })
+    res, err := s.Hightouch.ListDestination(ctx, operations.ListDestinationRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -556,13 +574,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListModel(ctx, operations.ListModelRequest{
-        Limit: hightouchgosdk.Float64(4556.79),
-        Name: hightouchgosdk.String("times Automated portal"),
-        Offset: hightouchgosdk.Float64(1772.52),
-        OrderBy: operations.ListModelOrderBySlug.ToPointer(),
-        Slug: hightouchgosdk.String("deposit definite"),
-    })
+    res, err := s.Hightouch.ListModel(ctx, operations.ListModelRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -611,13 +623,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListSource(ctx, operations.ListSourceRequest{
-        Limit: hightouchgosdk.Float64(3667.48),
-        Name: hightouchgosdk.String("facilis"),
-        Offset: hightouchgosdk.Float64(7285.7),
-        OrderBy: operations.ListSourceOrderByName.ToPointer(),
-        Slug: hightouchgosdk.String("Francium spread Outdoors"),
-    })
+    res, err := s.Hightouch.ListSource(ctx, operations.ListSourceRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -656,7 +662,6 @@ import(
 	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/types"
 )
 
 func main() {
@@ -667,15 +672,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListSync(ctx, operations.ListSyncRequest{
-        After: types.MustTimeFromString("2021-12-29T02:44:53.348Z"),
-        Before: types.MustTimeFromString("2023-03-08T22:11:11.682Z"),
-        Limit: hightouchgosdk.Float64(8056.73),
-        ModelID: hightouchgosdk.Float64(2244.55),
-        Offset: hightouchgosdk.Float64(5024.07),
-        OrderBy: operations.ListSyncOrderBySlug.ToPointer(),
-        Slug: hightouchgosdk.String("Automated Sausages"),
-    })
+    res, err := s.Hightouch.ListSync(ctx, operations.ListSyncRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -714,7 +711,6 @@ import(
 	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/types"
 )
 
 func main() {
@@ -726,14 +722,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
-        After: types.MustTimeFromString("2023-08-29T00:26:30.425Z"),
-        Before: types.MustTimeFromString("2022-11-28T13:12:20.353Z"),
-        Limit: hightouchgosdk.Float64(3202.39),
-        Offset: hightouchgosdk.Float64(771.35),
-        OrderBy: operations.ListSyncRunsOrderByStartedAt.ToPointer(),
-        RunID: hightouchgosdk.Float64(2963.65),
-        SyncID: 7146.37,
-        Within: hightouchgosdk.Float64(4058.13),
+        SyncID: 8858.62,
     })
     if err != nil {
         log.Fatal(err)
@@ -787,9 +776,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRun(ctx, operations.TriggerRunRequest{
-        TriggerRunInput: &shared.TriggerRunInput{
-            FullResync: hightouchgosdk.Bool(false),
-        },
+        TriggerRunInput: &shared.TriggerRunInput{},
         SyncID: "Digitized withdrawal Midland",
     })
     if err != nil {
@@ -842,11 +829,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{
-        FullResync: hightouchgosdk.Bool(false),
-        SyncID: hightouchgosdk.String("female"),
-        SyncSlug: hightouchgosdk.String("Tellurium core"),
-    })
+    res, err := s.Hightouch.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{})
     if err != nil {
         log.Fatal(err)
     }
@@ -894,9 +877,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
-        TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{
-            FullRerun: hightouchgosdk.Bool(false),
-        },
+        TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{},
         GraphID: "hop Bentley AI",
     })
     if err != nil {
@@ -951,10 +932,12 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
         DestinationUpdate: shared.DestinationUpdate{
-            Configuration: map[string]interface{}{
-                "debitis": "copying",
+            AdditionalProperties: map[string]interface{}{
+                "nervously": "enable",
             },
-            Name: hightouchgosdk.String("enable Northwest woot"),
+            Configuration: map[string]interface{}{
+                "Northwest": "woot",
+            },
         },
         DestinationID: 8585.6,
     })
@@ -1010,30 +993,29 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
         ModelUpdate: shared.ModelUpdate{
+            AdditionalProperties: map[string]interface{}{
+                "Northwest": "gold",
+            },
             Custom: &shared.ModelUpdateCustom{
-                Query: "Northwest",
+                Query: "administration",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "Ford till Customer",
+                ModelID: "Xenogender East flexibility",
             },
-            FolderID: hightouchgosdk.String("users content"),
-            IsSchema: hightouchgosdk.Bool(false),
-            Name: hightouchgosdk.String("New"),
-            PrimaryKey: hightouchgosdk.String("reinvent male indigo"),
             Raw: &shared.ModelUpdateRaw{
-                SQL: "Rhodium mint Steel",
+                SQL: "content Chair reinvent",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "systematic Gasoline",
+                Name: "minus Gasoline Rhodium",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "Paradigm",
-                ParentID: "Accountability whenever Palladium",
-                PrimaryLabel: "Metal green becquerel",
-                SecondaryLabel: "Hyundai bluetooth",
+                Filter: "mint",
+                ParentID: "Madagascar",
+                PrimaryLabel: "stimulating alarm",
+                SecondaryLabel: "Mazda",
             },
         },
-        ModelID: 8592.48,
+        ModelID: 8905.93,
     })
     if err != nil {
         log.Fatal(err)
@@ -1087,12 +1069,14 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
         SourceUpdate: shared.SourceUpdate{
-            Configuration: map[string]interface{}{
-                "animi": "Land",
+            AdditionalProperties: map[string]interface{}{
+                "Internal": "esse",
             },
-            Name: hightouchgosdk.String("Bismuth Bedfordshire Northwest"),
+            Configuration: map[string]interface{}{
+                "selfish": "female",
+            },
         },
-        SourceID: 2452.92,
+        SourceID: 1942.93,
     })
     if err != nil {
         log.Fatal(err)
@@ -1146,16 +1130,30 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
         SyncUpdate: shared.SyncUpdate{
-            Configuration: map[string]interface{}{
-                "praesentium": "Carolanne",
+            AdditionalProperties: map[string]interface{}{
+                "hacking": "Keyboard",
             },
-            Disabled: hightouchgosdk.Bool(false),
+            Configuration: map[string]interface{}{
+                "deposit": "Bulgarian",
+            },
             Schedule: &shared.SyncUpdateSchedule{
-                Schedule: shared.SyncUpdateScheduleSchedule{},
-                Type: "Bedfordshire Chlorine",
+                Schedule: shared.CreateSyncUpdateScheduleScheduleVisualCronSchedule(
+                        shared.VisualCronSchedule{
+                            AdditionalProperties: map[string]interface{}{
+                                "York": "intensely",
+                            },
+                            Expressions: []shared.VisualCronScheduleExpressions{
+                                shared.VisualCronScheduleExpressions{
+                                    Days: shared.RecordDayBooleanOrUndefined{},
+                                    Time: "Buckinghamshire",
+                                },
+                            },
+                        },
+                ),
+                Type: "Convertible",
             },
         },
-        SyncID: 6235.37,
+        SyncID: 8847.7,
     })
     if err != nil {
         log.Fatal(err)

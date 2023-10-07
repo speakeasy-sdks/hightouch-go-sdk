@@ -2,8 +2,13 @@
 
 package shared
 
+import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
+)
+
 // SourceUpdate - The input for updating a Source
 type SourceUpdate struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The source's configuration. This specifies general metadata about sources, like connection details
 	// Hightouch will use this configuration to connect to underlying source.
 	//
@@ -14,6 +19,24 @@ type SourceUpdate struct {
 	Configuration map[string]interface{} `json:"configuration,omitempty"`
 	// The source's name
 	Name *string `json:"name,omitempty"`
+}
+
+func (s SourceUpdate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SourceUpdate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *SourceUpdate) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *SourceUpdate) GetConfiguration() map[string]interface{} {

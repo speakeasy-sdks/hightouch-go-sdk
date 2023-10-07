@@ -2,9 +2,32 @@
 
 package shared
 
+import (
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
+)
+
 type TriggerRunIDGraphOutput struct {
+	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The id of the triggered run.
 	ID string `json:"id"`
+}
+
+func (t TriggerRunIDGraphOutput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TriggerRunIDGraphOutput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TriggerRunIDGraphOutput) GetAdditionalProperties() map[string]interface{} {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 func (o *TriggerRunIDGraphOutput) GetID() string {
