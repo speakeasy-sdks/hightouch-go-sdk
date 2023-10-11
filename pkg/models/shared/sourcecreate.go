@@ -2,13 +2,8 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 // SourceCreate - The input for creating a Source
 type SourceCreate struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The source's configuration. This specifies general metadata about sources, like connection details
 	// Hightouch will use this configuration to connect to underlying source.
 	//
@@ -23,24 +18,6 @@ type SourceCreate struct {
 	Slug string `json:"slug"`
 	// The source's type (e.g. snowflake or postgres).
 	Type string `json:"type"`
-}
-
-func (s SourceCreate) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SourceCreate) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *SourceCreate) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *SourceCreate) GetConfiguration() map[string]interface{} {

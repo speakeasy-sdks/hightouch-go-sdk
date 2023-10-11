@@ -2,31 +2,8 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 type IntervalSchedule struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
-	Interval             Interval               `json:"interval"`
-}
-
-func (i IntervalSchedule) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(i, "", false)
-}
-
-func (i *IntervalSchedule) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *IntervalSchedule) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	Interval Interval `json:"interval"`
 }
 
 func (o *IntervalSchedule) GetInterval() Interval {

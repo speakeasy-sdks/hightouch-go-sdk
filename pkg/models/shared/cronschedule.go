@@ -2,31 +2,8 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 type CronSchedule struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
-	Expression           string                 `json:"expression"`
-}
-
-func (c CronSchedule) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CronSchedule) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *CronSchedule) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	Expression string `json:"expression"`
 }
 
 func (o *CronSchedule) GetExpression() string {

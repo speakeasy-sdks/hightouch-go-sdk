@@ -46,21 +46,16 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
-        AdditionalProperties: map[string]interface{}{
+        Configuration: map[string]interface{}{
             "optical": "Sid",
         },
-        Configuration: map[string]interface{}{
-            "kilogram": "Southwest",
-        },
-        Name: "blue wilt",
-        Slug: "Southeast Mobility",
+        Name: "Ergonomic mumble blue",
+        Slug: "hollow Southeast Mobility",
         Type: "Jaguar Ford",
     })
     if err != nil {
@@ -104,39 +99,34 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateModel(ctx, shared.ModelCreate{
-        AdditionalProperties: map[string]interface{}{
-            "zesty": "veritatis",
-        },
         Custom: &shared.ModelCreateCustom{
-            Query: "Specialist",
+            Query: "zesty",
         },
         Dbt: &shared.ModelCreateDbt{
-            ModelID: "violet digital Data",
+            ModelID: "Northwest enterprise",
         },
         IsSchema: false,
-        Name: "nor North",
-        PrimaryKey: "solid success Rochester",
-        QueryType: "if East",
+        Name: "Libyan Data Non",
+        PrimaryKey: "Dakota",
+        QueryType: "success Rochester Non",
         Raw: &shared.ModelCreateRaw{
-            SQL: "vortals Vanadium Division",
+            SQL: "Metal",
         },
-        Slug: "application unloosen yahoo",
-        SourceID: "Practical Bike",
+        Slug: "payment",
+        SourceID: "Division",
         Table: &shared.ModelCreateTable{
-            Name: "Kentucky invoice South",
+            Name: "application unloosen yahoo",
         },
         Visual: &shared.ModelCreateVisual{
-            Filter: "precedent",
-            ParentID: "Keebler instead",
-            PrimaryLabel: "Saint Brookline Bacon",
-            SecondaryLabel: "owlishly Principal Music",
+            Filter: "conglomeration",
+            ParentID: "Bugatti",
+            PrimaryLabel: "invoice",
+            SecondaryLabel: "Usability",
         },
     })
     if err != nil {
@@ -180,22 +170,17 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSource(ctx, shared.SourceCreate{
-        AdditionalProperties: map[string]interface{}{
+        Configuration: map[string]interface{}{
             "North": "tightly",
         },
-        Configuration: map[string]interface{}{
-            "Van": "deposit",
-        },
-        Name: "matrix York ouch",
-        Slug: "Architect",
-        Type: "gold Baby Interactions",
+        Name: "Agent deposit Lamborghini",
+        Slug: "York ouch Northwest",
+        Type: "Porsche Cadillac",
     })
     if err != nil {
         log.Fatal(err)
@@ -238,40 +223,31 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.CreateSync(ctx, shared.SyncCreate{
-        AdditionalProperties: map[string]interface{}{
+        Configuration: map[string]interface{}{
             "euphoric": "experiences",
         },
-        Configuration: map[string]interface{}{
-            "North": "synergies",
-        },
-        DestinationID: "ranch",
+        DestinationID: "pink",
         Disabled: false,
-        ModelID: "International",
+        ModelID: "Cambridgeshire",
         Schedule: &shared.SyncCreateSchedule{
-            Schedule: shared.CreateSyncCreateScheduleScheduleIntervalSchedule(
-                    shared.IntervalSchedule{
-                        AdditionalProperties: map[string]interface{}{
-                            "mobile": "copying",
-                        },
-                        Interval: shared.Interval{
-                            AdditionalProperties: map[string]interface{}{
-                                "database": "meanwhile",
+            Schedule: shared.CreateSyncCreateScheduleScheduleVisualCronSchedule(
+                    shared.VisualCronSchedule{
+                        Expressions: []shared.VisualCronScheduleExpressions{
+                            shared.VisualCronScheduleExpressions{
+                                Days: shared.RecordDayBooleanOrUndefined{},
+                                Time: "International",
                             },
-                            Quantity: 5827.46,
-                            Unit: shared.IntervalUnitWeek,
                         },
                     },
             ),
-            Type: "SDD",
+            Type: "mobile",
         },
-        Slug: "Fremont",
+        Slug: "disintermediate Fresh",
     })
     if err != nil {
         log.Fatal(err)
@@ -315,9 +291,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -366,9 +340,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -417,9 +389,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -468,9 +438,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -519,9 +487,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -568,9 +534,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -617,9 +581,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -666,9 +628,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -715,9 +675,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -769,9 +727,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -823,9 +779,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -870,9 +824,7 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -924,22 +876,17 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
         DestinationUpdate: shared.DestinationUpdate{
-            AdditionalProperties: map[string]interface{}{
+            Configuration: map[string]interface{}{
                 "nervously": "enable",
             },
-            Configuration: map[string]interface{}{
-                "Northwest": "woot",
-            },
         },
-        DestinationID: 8585.6,
+        DestinationID: 1030.32,
     })
     if err != nil {
         log.Fatal(err)
@@ -985,37 +932,32 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
         ModelUpdate: shared.ModelUpdate{
-            AdditionalProperties: map[string]interface{}{
-                "Northwest": "gold",
-            },
             Custom: &shared.ModelUpdateCustom{
-                Query: "administration",
+                Query: "Northwest",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "Xenogender East flexibility",
+                ModelID: "Ford till Customer",
             },
             Raw: &shared.ModelUpdateRaw{
-                SQL: "content Chair reinvent",
+                SQL: "users content",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "minus Gasoline Rhodium",
+                Name: "New",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "mint",
-                ParentID: "Madagascar",
-                PrimaryLabel: "stimulating alarm",
-                SecondaryLabel: "Mazda",
+                Filter: "female",
+                ParentID: "male",
+                PrimaryLabel: "Gasoline Rhodium mint",
+                SecondaryLabel: "Madagascar",
             },
         },
-        ModelID: 8905.93,
+        ModelID: 3730.58,
     })
     if err != nil {
         log.Fatal(err)
@@ -1061,22 +1003,17 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
         SourceUpdate: shared.SourceUpdate{
-            AdditionalProperties: map[string]interface{}{
+            Configuration: map[string]interface{}{
                 "Internal": "esse",
             },
-            Configuration: map[string]interface{}{
-                "selfish": "female",
-            },
         },
-        SourceID: 1942.93,
+        SourceID: 8737.26,
     })
     if err != nil {
         log.Fatal(err)
@@ -1122,38 +1059,25 @@ import(
 
 func main() {
     s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(shared.Security{
-            BearerAuth: "",
-        }),
+        hightouchgosdk.WithSecurity(""),
     )
 
     ctx := context.Background()
     res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
         SyncUpdate: shared.SyncUpdate{
-            AdditionalProperties: map[string]interface{}{
+            Configuration: map[string]interface{}{
                 "hacking": "Keyboard",
             },
-            Configuration: map[string]interface{}{
-                "deposit": "Bulgarian",
-            },
             Schedule: &shared.SyncUpdateSchedule{
-                Schedule: shared.CreateSyncUpdateScheduleScheduleVisualCronSchedule(
-                        shared.VisualCronSchedule{
-                            AdditionalProperties: map[string]interface{}{
-                                "York": "intensely",
-                            },
-                            Expressions: []shared.VisualCronScheduleExpressions{
-                                shared.VisualCronScheduleExpressions{
-                                    Days: shared.RecordDayBooleanOrUndefined{},
-                                    Time: "Buckinghamshire",
-                                },
-                            },
+                Schedule: shared.CreateSyncUpdateScheduleScheduleCronSchedule(
+                        shared.CronSchedule{
+                            Expression: "Bulgarian",
                         },
                 ),
-                Type: "Convertible",
+                Type: "York intensely optimize",
             },
         },
-        SyncID: 8847.7,
+        SyncID: 7148.52,
     })
     if err != nil {
         log.Fatal(err)

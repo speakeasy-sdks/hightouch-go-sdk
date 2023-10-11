@@ -2,32 +2,9 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 type Interval struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
-	Quantity             float64                `json:"quantity"`
-	Unit                 IntervalUnit           `json:"unit"`
-}
-
-func (i Interval) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(i, "", false)
-}
-
-func (i *Interval) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *Interval) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	Quantity float64      `json:"quantity"`
+	Unit     IntervalUnit `json:"unit"`
 }
 
 func (o *Interval) GetQuantity() float64 {

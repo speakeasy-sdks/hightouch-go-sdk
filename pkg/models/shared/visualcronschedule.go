@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 type VisualCronScheduleExpressions struct {
 	// Construct a type with a set of properties K of type T
 	Days RecordDayBooleanOrUndefined `json:"days"`
@@ -27,26 +23,7 @@ func (o *VisualCronScheduleExpressions) GetTime() string {
 }
 
 type VisualCronSchedule struct {
-	AdditionalProperties map[string]interface{}          `additionalProperties:"true" json:"-"`
-	Expressions          []VisualCronScheduleExpressions `json:"expressions"`
-}
-
-func (v VisualCronSchedule) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(v, "", false)
-}
-
-func (v *VisualCronSchedule) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *VisualCronSchedule) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	Expressions []VisualCronScheduleExpressions `json:"expressions"`
 }
 
 func (o *VisualCronSchedule) GetExpressions() []VisualCronScheduleExpressions {

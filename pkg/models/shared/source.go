@@ -10,7 +10,6 @@ import (
 // Source - The database or warehouse where your data is stored. The starting point for
 // a Hightouch data pipeline.
 type Source struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The source's configuration. This specifies general metadata about sources, like connection details
 	// Hightouch will use this configuration to connect to underlying source.
 	//
@@ -44,13 +43,6 @@ func (s *Source) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *Source) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *Source) GetConfiguration() map[string]interface{} {

@@ -144,7 +144,6 @@ func (o *SyncCreateSchedule) GetType() string {
 
 // SyncCreate - The input for creating a Sync
 type SyncCreate struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The sync's configuration. This specifies how data is mapped, among other
 	// configuration.
 	//
@@ -171,24 +170,6 @@ type SyncCreate struct {
 	Schedule *SyncCreateSchedule `json:"schedule"`
 	// The sync's slug
 	Slug string `json:"slug"`
-}
-
-func (s SyncCreate) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SyncCreate) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *SyncCreate) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *SyncCreate) GetConfiguration() map[string]interface{} {

@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 type DBTScheduleAccount struct {
 	ID string `json:"id"`
 }
@@ -29,27 +25,8 @@ func (o *DBTScheduleJob) GetID() string {
 }
 
 type DBTSchedule struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
-	Account              DBTScheduleAccount     `json:"account"`
-	Job                  DBTScheduleJob         `json:"job"`
-}
-
-func (d DBTSchedule) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
-}
-
-func (d *DBTSchedule) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *DBTSchedule) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
+	Account DBTScheduleAccount `json:"account"`
+	Job     DBTScheduleJob     `json:"job"`
 }
 
 func (o *DBTSchedule) GetAccount() DBTScheduleAccount {

@@ -150,7 +150,6 @@ func (o *ModelVisual) GetSecondaryLabel() string {
 // Model - The SQL query that pulls data from your source to send to your destination.
 // We send your SQL query directly to your source so any SQL that is valid for your source (including functions) is valid in Hightouch.
 type Model struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// The timestamp when model was created
 	CreatedAt time.Time `json:"createdAt"`
 	// Custom query for sources that doesn't support sql. For example, Airtable.
@@ -198,13 +197,6 @@ func (m *Model) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (o *Model) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *Model) GetCreatedAt() time.Time {

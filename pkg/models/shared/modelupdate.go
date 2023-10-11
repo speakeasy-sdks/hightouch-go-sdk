@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 // ModelUpdateCustom - Custom query for sources that doesn't support sql. For example, Airtable.
 type ModelUpdateCustom struct {
 	Query interface{} `json:"query"`
@@ -93,7 +89,6 @@ func (o *ModelUpdateVisual) GetSecondaryLabel() string {
 
 // ModelUpdate - The input for updating a Model
 type ModelUpdate struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Custom query for sources that doesn't support sql. For example, Airtable.
 	Custom   *ModelUpdateCustom `json:"custom,omitempty"`
 	Dbt      *ModelUpdateDbt    `json:"dbt,omitempty"`
@@ -111,24 +106,6 @@ type ModelUpdate struct {
 	Table *ModelUpdateTable `json:"table,omitempty"`
 	// Visual query, used by audience
 	Visual *ModelUpdateVisual `json:"visual,omitempty"`
-}
-
-func (m ModelUpdate) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
-}
-
-func (m *ModelUpdate) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *ModelUpdate) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *ModelUpdate) GetCustom() *ModelUpdateCustom {

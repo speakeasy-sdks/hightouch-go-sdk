@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
-)
-
 // ModelCreateCustom - Custom query for sources that doesn't support sql. For example, Airtable.
 type ModelCreateCustom struct {
 	Query interface{} `json:"query"`
@@ -93,7 +89,6 @@ func (o *ModelCreateVisual) GetSecondaryLabel() string {
 
 // ModelCreate - The input for creating a Model
 type ModelCreate struct {
-	AdditionalProperties map[string]interface{} `additionalProperties:"true" json:"-"`
 	// Custom query for sources that doesn't support sql. For example, Airtable.
 	Custom   *ModelCreateCustom `json:"custom,omitempty"`
 	Dbt      *ModelCreateDbt    `json:"dbt,omitempty"`
@@ -117,24 +112,6 @@ type ModelCreate struct {
 	Table *ModelCreateTable `json:"table,omitempty"`
 	// Visual query, used by audience
 	Visual *ModelCreateVisual `json:"visual,omitempty"`
-}
-
-func (m ModelCreate) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
-}
-
-func (m *ModelCreate) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *ModelCreate) GetAdditionalProperties() map[string]interface{} {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *ModelCreate) GetCustom() *ModelCreateCustom {
