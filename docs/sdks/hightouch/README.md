@@ -54,9 +54,9 @@ func main() {
         Configuration: map[string]interface{}{
             "optical": "Sid",
         },
-        Name: "Ergonomic mumble blue",
-        Slug: "hollow Southeast Mobility",
-        Type: "Jaguar Ford",
+        Name: "kilogram",
+        Slug: "Southwest",
+        Type: "transmit",
     })
     if err != nil {
         log.Fatal(err)
@@ -108,25 +108,25 @@ func main() {
             Query: "zesty",
         },
         Dbt: &shared.ModelCreateDbt{
-            ModelID: "Northwest enterprise",
+            ModelID: "veritatis",
         },
         IsSchema: false,
-        Name: "Libyan Data Non",
-        PrimaryKey: "Dakota",
-        QueryType: "success Rochester Non",
+        Name: "Specialist",
+        PrimaryKey: "Touring",
+        QueryType: "digital",
         Raw: &shared.ModelCreateRaw{
-            SQL: "Metal",
+            SQL: "Data",
         },
-        Slug: "payment",
-        SourceID: "Division",
+        Slug: "Non",
+        SourceID: "North",
         Table: &shared.ModelCreateTable{
-            Name: "application unloosen yahoo",
+            Name: "Coordinator",
         },
         Visual: &shared.ModelCreateVisual{
-            Filter: "conglomeration",
-            ParentID: "Bugatti",
-            PrimaryLabel: "invoice",
-            SecondaryLabel: "Usability",
+            Filter: "Rochester",
+            ParentID: "Non",
+            PrimaryLabel: "East",
+            SecondaryLabel: "newton",
         },
     })
     if err != nil {
@@ -178,9 +178,9 @@ func main() {
         Configuration: map[string]interface{}{
             "North": "tightly",
         },
-        Name: "Agent deposit Lamborghini",
-        Slug: "York ouch Northwest",
-        Type: "Porsche Cadillac",
+        Name: "Van",
+        Slug: "deposit",
+        Type: "Lamborghini",
     })
     if err != nil {
         log.Fatal(err)
@@ -231,23 +231,21 @@ func main() {
         Configuration: map[string]interface{}{
             "euphoric": "experiences",
         },
-        DestinationID: "pink",
+        DestinationID: "North",
         Disabled: false,
-        ModelID: "Cambridgeshire",
+        ModelID: "synergies",
         Schedule: &shared.SyncCreateSchedule{
-            Schedule: shared.CreateSyncCreateScheduleScheduleVisualCronSchedule(
-                    shared.VisualCronSchedule{
-                        Expressions: []shared.VisualCronScheduleExpressions{
-                            shared.VisualCronScheduleExpressions{
-                                Days: shared.RecordDayBooleanOrUndefined{},
-                                Time: "International",
-                            },
+            Schedule: shared.CreateSyncCreateScheduleScheduleIntervalSchedule(
+                    shared.IntervalSchedule{
+                        Interval: shared.Interval{
+                            Quantity: 9557.24,
+                            Unit: shared.IntervalUnitDay,
                         },
                     },
             ),
-            Type: "mobile",
+            Type: "orchid",
         },
-        Slug: "disintermediate Fresh",
+        Slug: "Applications",
     })
     if err != nil {
         log.Fatal(err)
@@ -733,7 +731,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRun(ctx, operations.TriggerRunRequest{
         TriggerRunInput: &shared.TriggerRunInput{},
-        SyncID: "Digitized withdrawal Midland",
+        SyncID: "incidentally",
     })
     if err != nil {
         log.Fatal(err)
@@ -830,7 +828,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
         TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{},
-        GraphID: "hop Bentley AI",
+        GraphID: "vanilla",
     })
     if err != nil {
         log.Fatal(err)
@@ -942,22 +940,22 @@ func main() {
                 Query: "Northwest",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "Ford till Customer",
+                ModelID: "gold",
             },
             Raw: &shared.ModelUpdateRaw{
-                SQL: "users content",
+                SQL: "administration",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "New",
+                Name: "Customer",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "female",
-                ParentID: "male",
-                PrimaryLabel: "Gasoline Rhodium mint",
-                SecondaryLabel: "Madagascar",
+                Filter: "flexibility",
+                ParentID: "Fitness",
+                PrimaryLabel: "Chair",
+                SecondaryLabel: "reinvent",
             },
         },
-        ModelID: 3730.58,
+        ModelID: 7146.06,
     })
     if err != nil {
         log.Fatal(err)
@@ -1071,13 +1069,13 @@ func main() {
             Schedule: &shared.SyncUpdateSchedule{
                 Schedule: shared.CreateSyncUpdateScheduleScheduleCronSchedule(
                         shared.CronSchedule{
-                            Expression: "Bulgarian",
+                            Expression: "Divide",
                         },
                 ),
-                Type: "York intensely optimize",
+                Type: "York",
             },
         },
-        SyncID: 7148.52,
+        SyncID: 8880.52,
     })
     if err != nil {
         log.Fatal(err)

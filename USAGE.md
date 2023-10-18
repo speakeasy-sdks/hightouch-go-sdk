@@ -21,9 +21,9 @@ func main() {
 		Configuration: map[string]interface{}{
 			"optical": "Sid",
 		},
-		Name: "Ergonomic mumble blue",
-		Slug: "hollow Southeast Mobility",
-		Type: "Jaguar Ford",
+		Name: "kilogram",
+		Slug: "Southwest",
+		Type: "transmit",
 	})
 	if err != nil {
 		log.Fatal(err)
