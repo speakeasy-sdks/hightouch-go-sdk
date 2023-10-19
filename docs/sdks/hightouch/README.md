@@ -15,6 +15,7 @@ Hightouch API: Hightouch Public Rest API to access syncs, models, sources and de
 * [GetModel](#getmodel) - Get Model
 * [GetSource](#getsource) - Get Source
 * [GetSync](#getsync) - Get Sync
+* [GetSyncSequenceRun](#getsyncsequencerun) - Sync sequence status
 * [ListDestination](#listdestination) - List Destinations
 * [ListModel](#listmodel) - List Models
 * [ListSource](#listsource) - List Sources
@@ -23,6 +24,7 @@ Hightouch API: Hightouch Public Rest API to access syncs, models, sources and de
 * [TriggerRun](#triggerrun) - Trigger Sync
 * [TriggerRunCustom](#triggerruncustom) - Trigger Sync From ID or Slug
 * [TriggerRunIDGraph](#triggerrunidgraph)
+* [TriggerSequenceRun](#triggersequencerun) - Trigger Sync sequence
 * [UpdateDestination](#updatedestination) - Update Destination
 * [UpdateModel](#updatemodel) - Update Model
 * [UpdateSource](#updatesource) - Update Source
@@ -466,6 +468,55 @@ func main() {
 **[*operations.GetSyncResponse](../../models/operations/getsyncresponse.md), error**
 
 
+## GetSyncSequenceRun
+
+Get the status of a sync sequence run.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+)
+
+func main() {
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
+
+    ctx := context.Background()
+    res, err := s.Hightouch.GetSyncSequenceRun(ctx, operations.GetSyncSequenceRunRequest{
+        SyncSequenceRunID: "positively",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.SyncSequenceStatusOutput != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetSyncSequenceRunRequest](../../models/operations/getsyncsequencerunrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[*operations.GetSyncSequenceRunResponse](../../models/operations/getsyncsequencerunresponse.md), error**
+
+
 ## ListDestination
 
 List the destinations in the user's workspace
@@ -851,6 +902,58 @@ func main() {
 ### Response
 
 **[*operations.TriggerRunIDGraphResponse](../../models/operations/triggerrunidgraphresponse.md), error**
+
+
+## TriggerSequenceRun
+
+Trigger a new run for the given sync sequence.
+
+If a run is already in progress, this queues a sync sequence run that will be
+executed immediately after the current run completes.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+)
+
+func main() {
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
+
+    ctx := context.Background()
+    res, err := s.Hightouch.TriggerSequenceRun(ctx, operations.TriggerSequenceRunRequest{
+        SyncSequenceID: "Frozen",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.TriggerSequenceRunOutput != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.TriggerSequenceRunRequest](../../models/operations/triggersequencerunrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[*operations.TriggerSequenceRunResponse](../../models/operations/triggersequencerunresponse.md), error**
 
 
 ## UpdateDestination

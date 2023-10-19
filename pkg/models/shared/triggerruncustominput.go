@@ -11,6 +11,8 @@ type TriggerRunCustomInput struct {
 	// Whether to resync all the rows in the query (i.e. ignoring previously
 	// synced rows).
 	FullResync *bool `default:"false" json:"fullResync"`
+	// Whether to sync all the rows in the query without executing changes on the destination.
+	ResetCDC *bool `default:"false" json:"resetCDC"`
 	// Trigger run based on sync id
 	SyncID *string `json:"syncId,omitempty"`
 	// Trigger run based on sync slug
@@ -33,6 +35,13 @@ func (o *TriggerRunCustomInput) GetFullResync() *bool {
 		return nil
 	}
 	return o.FullResync
+}
+
+func (o *TriggerRunCustomInput) GetResetCDC() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ResetCDC
 }
 
 func (o *TriggerRunCustomInput) GetSyncID() *string {

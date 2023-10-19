@@ -78,6 +78,7 @@ func main() {
 * [GetModel](docs/sdks/hightouch/README.md#getmodel) - Get Model
 * [GetSource](docs/sdks/hightouch/README.md#getsource) - Get Source
 * [GetSync](docs/sdks/hightouch/README.md#getsync) - Get Sync
+* [GetSyncSequenceRun](docs/sdks/hightouch/README.md#getsyncsequencerun) - Sync sequence status
 * [ListDestination](docs/sdks/hightouch/README.md#listdestination) - List Destinations
 * [ListModel](docs/sdks/hightouch/README.md#listmodel) - List Models
 * [ListSource](docs/sdks/hightouch/README.md#listsource) - List Sources
@@ -86,6 +87,7 @@ func main() {
 * [TriggerRun](docs/sdks/hightouch/README.md#triggerrun) - Trigger Sync
 * [TriggerRunCustom](docs/sdks/hightouch/README.md#triggerruncustom) - Trigger Sync From ID or Slug
 * [TriggerRunIDGraph](docs/sdks/hightouch/README.md#triggerrunidgraph)
+* [TriggerSequenceRun](docs/sdks/hightouch/README.md#triggersequencerun) - Trigger Sync sequence
 * [UpdateDestination](docs/sdks/hightouch/README.md#updatedestination) - Update Destination
 * [UpdateModel](docs/sdks/hightouch/README.md#updatemodel) - Update Model
 * [UpdateSource](docs/sdks/hightouch/README.md#updatesource) - Update Source

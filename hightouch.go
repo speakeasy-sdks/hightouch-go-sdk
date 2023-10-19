@@ -136,9 +136,9 @@ func New(opts ...SDKOption) *Hightouch {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.25.4",
+			SDKVersion:        "0.25.5",
 			GenVersion:        "2.161.0",
-			UserAgent:         "speakeasy-sdk/go 0.25.4 2.161.0 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
+			UserAgent:         "speakeasy-sdk/go 0.25.5 2.161.0 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
 		},
 	}
 	for _, opt := range opts {
@@ -784,6 +784,79 @@ func (s *Hightouch) GetSync(ctx context.Context, request operations.GetSyncReque
 	return res, nil
 }
 
+// GetSyncSequenceRun - Sync sequence status
+// Get the status of a sync sequence run.
+func (s *Hightouch) GetSyncSequenceRun(ctx context.Context, request operations.GetSyncSequenceRunRequest) (*operations.GetSyncSequenceRunResponse, error) {
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/sync-sequences/runs/{syncSequenceRunId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+
+	client := s.sdkConfiguration.SecurityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.GetSyncSequenceRunResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out shared.SyncSequenceStatusOutput
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.SyncSequenceStatusOutput = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out shared.ValidateErrorJSON
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.ValidateErrorJSON = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	}
+
+	return res, nil
+}
+
 // ListDestination - List Destinations
 // List the destinations in the user's workspace
 func (s *Hightouch) ListDestination(ctx context.Context, request operations.ListDestinationRequest) (*operations.ListDestinationResponse, error) {
@@ -1366,6 +1439,82 @@ func (s *Hightouch) TriggerRunIDGraph(ctx context.Context, request operations.Tr
 			}
 
 			res.TriggerRunIDGraphOutput = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out shared.ValidateErrorJSON
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.ValidateErrorJSON = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	}
+
+	return res, nil
+}
+
+// TriggerSequenceRun - Trigger Sync sequence
+// Trigger a new run for the given sync sequence.
+//
+// If a run is already in progress, this queues a sync sequence run that will be
+// executed immediately after the current run completes.
+func (s *Hightouch) TriggerSequenceRun(ctx context.Context, request operations.TriggerSequenceRunRequest) (*operations.TriggerSequenceRunResponse, error) {
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/sync-sequences/{syncSequenceId}/trigger", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+
+	client := s.sdkConfiguration.SecurityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.TriggerSequenceRunResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out shared.TriggerSequenceRunOutput
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.TriggerSequenceRunOutput = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
