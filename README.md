@@ -47,11 +47,11 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
 		Configuration: map[string]interface{}{
-			"optical": "Sid",
+			"key": "string",
 		},
-		Name: "kilogram",
-		Slug: "Southwest",
-		Type: "transmit",
+		Name: "string",
+		Slug: "string",
+		Type: "string",
 	})
 	if err != nil {
 		log.Fatal(err)

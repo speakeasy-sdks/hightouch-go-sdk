@@ -54,11 +54,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "optical": "Sid",
+            "key": "string",
         },
-        Name: "kilogram",
-        Slug: "Southwest",
-        Type: "transmit",
+        Name: "string",
+        Slug: "string",
+        Type: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -107,28 +107,28 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateModel(ctx, shared.ModelCreate{
         Custom: &shared.ModelCreateCustom{
-            Query: "zesty",
+            Query: "string",
         },
         Dbt: &shared.ModelCreateDbt{
-            ModelID: "veritatis",
+            ModelID: "string",
         },
         IsSchema: false,
-        Name: "Specialist",
-        PrimaryKey: "Touring",
-        QueryType: "digital",
+        Name: "string",
+        PrimaryKey: "string",
+        QueryType: "string",
         Raw: &shared.ModelCreateRaw{
-            SQL: "Data",
+            SQL: "string",
         },
-        Slug: "Non",
-        SourceID: "North",
+        Slug: "string",
+        SourceID: "string",
         Table: &shared.ModelCreateTable{
-            Name: "Coordinator",
+            Name: "string",
         },
         Visual: &shared.ModelCreateVisual{
-            Filter: "Rochester",
-            ParentID: "Non",
-            PrimaryLabel: "East",
-            SecondaryLabel: "newton",
+            Filter: "string",
+            ParentID: "string",
+            PrimaryLabel: "string",
+            SecondaryLabel: "string",
         },
     })
     if err != nil {
@@ -178,11 +178,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateSource(ctx, shared.SourceCreate{
         Configuration: map[string]interface{}{
-            "North": "tightly",
+            "key": "string",
         },
-        Name: "Van",
-        Slug: "deposit",
-        Type: "Lamborghini",
+        Name: "string",
+        Slug: "string",
+        Type: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -231,23 +231,25 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.CreateSync(ctx, shared.SyncCreate{
         Configuration: map[string]interface{}{
-            "euphoric": "experiences",
+            "key": "string",
         },
-        DestinationID: "North",
+        DestinationID: "string",
         Disabled: false,
-        ModelID: "synergies",
+        ModelID: "string",
         Schedule: &shared.SyncCreateSchedule{
-            Schedule: shared.CreateSyncCreateScheduleScheduleIntervalSchedule(
-                    shared.IntervalSchedule{
-                        Interval: shared.Interval{
-                            Quantity: 9557.24,
-                            Unit: shared.IntervalUnitDay,
+            Schedule: shared.CreateSyncCreateScheduleScheduleDBTSchedule(
+                    shared.DBTSchedule{
+                        Account: shared.DBTScheduleAccount{
+                            ID: "<ID>",
+                        },
+                        Job: shared.DBTScheduleJob{
+                            ID: "<ID>",
                         },
                     },
             ),
-            Type: "orchid",
+            Type: "string",
         },
-        Slug: "Applications",
+        Slug: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -492,7 +494,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.GetSyncSequenceRun(ctx, operations.GetSyncSequenceRunRequest{
-        SyncSequenceRunID: "positively",
+        SyncSequenceRunID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -782,7 +784,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRun(ctx, operations.TriggerRunRequest{
         TriggerRunInput: &shared.TriggerRunInput{},
-        SyncID: "incidentally",
+        SyncID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -879,7 +881,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Hightouch.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
         TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{},
-        GraphID: "vanilla",
+        GraphID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -931,7 +933,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Hightouch.TriggerSequenceRun(ctx, operations.TriggerSequenceRunRequest{
-        SyncSequenceID: "Frozen",
+        SyncSequenceID: "string",
     })
     if err != nil {
         log.Fatal(err)
@@ -984,10 +986,10 @@ func main() {
     res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
         DestinationUpdate: shared.DestinationUpdate{
             Configuration: map[string]interface{}{
-                "nervously": "enable",
+                "key": "string",
             },
         },
-        DestinationID: 1030.32,
+        DestinationID: 8928.88,
     })
     if err != nil {
         log.Fatal(err)
@@ -1040,25 +1042,25 @@ func main() {
     res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
         ModelUpdate: shared.ModelUpdate{
             Custom: &shared.ModelUpdateCustom{
-                Query: "Northwest",
+                Query: "string",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "gold",
+                ModelID: "string",
             },
             Raw: &shared.ModelUpdateRaw{
-                SQL: "administration",
+                SQL: "string",
             },
             Table: &shared.ModelUpdateTable{
-                Name: "Customer",
+                Name: "string",
             },
             Visual: &shared.ModelUpdateVisual{
-                Filter: "flexibility",
-                ParentID: "Fitness",
-                PrimaryLabel: "Chair",
-                SecondaryLabel: "reinvent",
+                Filter: "string",
+                ParentID: "string",
+                PrimaryLabel: "string",
+                SecondaryLabel: "string",
             },
         },
-        ModelID: 7146.06,
+        ModelID: 1027.03,
     })
     if err != nil {
         log.Fatal(err)
@@ -1111,10 +1113,10 @@ func main() {
     res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
         SourceUpdate: shared.SourceUpdate{
             Configuration: map[string]interface{}{
-                "Internal": "esse",
+                "key": "string",
             },
         },
-        SourceID: 8737.26,
+        SourceID: 6585.68,
     })
     if err != nil {
         log.Fatal(err)
@@ -1167,18 +1169,23 @@ func main() {
     res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
         SyncUpdate: shared.SyncUpdate{
             Configuration: map[string]interface{}{
-                "hacking": "Keyboard",
+                "key": "string",
             },
             Schedule: &shared.SyncUpdateSchedule{
-                Schedule: shared.CreateSyncUpdateScheduleScheduleCronSchedule(
-                        shared.CronSchedule{
-                            Expression: "Divide",
+                Schedule: shared.CreateSyncUpdateScheduleScheduleVisualCronSchedule(
+                        shared.VisualCronSchedule{
+                            Expressions: []shared.VisualCronScheduleExpressions{
+                                shared.VisualCronScheduleExpressions{
+                                    Days: shared.RecordDayBooleanOrUndefined{},
+                                    Time: "string",
+                                },
+                            },
                         },
                 ),
-                Type: "York",
+                Type: "string",
             },
         },
-        SyncID: 8880.52,
+        SyncID: 1402.89,
     })
     if err != nil {
         log.Fatal(err)
