@@ -74,23 +74,23 @@ func CreateUpdateDestination200ApplicationJSONInternalServerError(internalServer
 
 func (u *UpdateDestination200ApplicationJSON) UnmarshalJSON(data []byte) error {
 
-	validateErrorJSON := new(shared.ValidateErrorJSON)
+	validateErrorJSON := shared.ValidateErrorJSON{}
 	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
-		u.ValidateErrorJSON = validateErrorJSON
+		u.ValidateErrorJSON = &validateErrorJSON
 		u.Type = UpdateDestination200ApplicationJSONTypeValidateErrorJSON
 		return nil
 	}
 
-	destination := new(shared.Destination)
+	destination := shared.Destination{}
 	if err := utils.UnmarshalJSON(data, &destination, "", true, true); err == nil {
-		u.Destination = destination
+		u.Destination = &destination
 		u.Type = UpdateDestination200ApplicationJSONTypeDestination
 		return nil
 	}
 
-	internalServerError := new(shared.InternalServerError)
+	internalServerError := shared.InternalServerError("")
 	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
-		u.InternalServerError = internalServerError
+		u.InternalServerError = &internalServerError
 		u.Type = UpdateDestination200ApplicationJSONTypeInternalServerError
 		return nil
 	}

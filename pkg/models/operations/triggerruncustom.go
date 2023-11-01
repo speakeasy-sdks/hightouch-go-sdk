@@ -43,16 +43,16 @@ func CreateTriggerRunCustom200ApplicationJSONValidateErrorJSON(validateErrorJSON
 
 func (u *TriggerRunCustom200ApplicationJSON) UnmarshalJSON(data []byte) error {
 
-	triggerRunOutput := new(shared.TriggerRunOutput)
+	triggerRunOutput := shared.TriggerRunOutput{}
 	if err := utils.UnmarshalJSON(data, &triggerRunOutput, "", true, true); err == nil {
-		u.TriggerRunOutput = triggerRunOutput
+		u.TriggerRunOutput = &triggerRunOutput
 		u.Type = TriggerRunCustom200ApplicationJSONTypeTriggerRunOutput
 		return nil
 	}
 
-	validateErrorJSON := new(shared.ValidateErrorJSON)
+	validateErrorJSON := shared.ValidateErrorJSON{}
 	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
-		u.ValidateErrorJSON = validateErrorJSON
+		u.ValidateErrorJSON = &validateErrorJSON
 		u.Type = TriggerRunCustom200ApplicationJSONTypeValidateErrorJSON
 		return nil
 	}

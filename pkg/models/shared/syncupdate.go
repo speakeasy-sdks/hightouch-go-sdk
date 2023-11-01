@@ -63,30 +63,30 @@ func CreateSyncUpdateScheduleScheduleDBTSchedule(dbtSchedule DBTSchedule) SyncUp
 
 func (u *SyncUpdateScheduleSchedule) UnmarshalJSON(data []byte) error {
 
-	intervalSchedule := new(IntervalSchedule)
+	intervalSchedule := IntervalSchedule{}
 	if err := utils.UnmarshalJSON(data, &intervalSchedule, "", true, true); err == nil {
-		u.IntervalSchedule = intervalSchedule
+		u.IntervalSchedule = &intervalSchedule
 		u.Type = SyncUpdateScheduleScheduleTypeIntervalSchedule
 		return nil
 	}
 
-	cronSchedule := new(CronSchedule)
+	cronSchedule := CronSchedule{}
 	if err := utils.UnmarshalJSON(data, &cronSchedule, "", true, true); err == nil {
-		u.CronSchedule = cronSchedule
+		u.CronSchedule = &cronSchedule
 		u.Type = SyncUpdateScheduleScheduleTypeCronSchedule
 		return nil
 	}
 
-	visualCronSchedule := new(VisualCronSchedule)
+	visualCronSchedule := VisualCronSchedule{}
 	if err := utils.UnmarshalJSON(data, &visualCronSchedule, "", true, true); err == nil {
-		u.VisualCronSchedule = visualCronSchedule
+		u.VisualCronSchedule = &visualCronSchedule
 		u.Type = SyncUpdateScheduleScheduleTypeVisualCronSchedule
 		return nil
 	}
 
-	dbtSchedule := new(DBTSchedule)
+	dbtSchedule := DBTSchedule{}
 	if err := utils.UnmarshalJSON(data, &dbtSchedule, "", true, true); err == nil {
-		u.DBTSchedule = dbtSchedule
+		u.DBTSchedule = &dbtSchedule
 		u.Type = SyncUpdateScheduleScheduleTypeDBTSchedule
 		return nil
 	}

@@ -74,23 +74,23 @@ func CreateUpdateModel200ApplicationJSONInternalServerError(internalServerError 
 
 func (u *UpdateModel200ApplicationJSON) UnmarshalJSON(data []byte) error {
 
-	validateErrorJSON := new(shared.ValidateErrorJSON)
+	validateErrorJSON := shared.ValidateErrorJSON{}
 	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
-		u.ValidateErrorJSON = validateErrorJSON
+		u.ValidateErrorJSON = &validateErrorJSON
 		u.Type = UpdateModel200ApplicationJSONTypeValidateErrorJSON
 		return nil
 	}
 
-	model := new(shared.Model)
+	model := shared.Model{}
 	if err := utils.UnmarshalJSON(data, &model, "", true, true); err == nil {
-		u.Model = model
+		u.Model = &model
 		u.Type = UpdateModel200ApplicationJSONTypeModel
 		return nil
 	}
 
-	internalServerError := new(shared.InternalServerError)
+	internalServerError := shared.InternalServerError("")
 	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
-		u.InternalServerError = internalServerError
+		u.InternalServerError = &internalServerError
 		u.Type = UpdateModel200ApplicationJSONTypeInternalServerError
 		return nil
 	}
