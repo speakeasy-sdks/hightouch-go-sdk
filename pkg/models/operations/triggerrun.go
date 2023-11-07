@@ -36,8 +36,6 @@ type TriggerRunResponse struct {
 	RawResponse *http.Response
 	// Ok
 	TriggerRunOutput *shared.TriggerRunOutput
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
 }
 
 func (o *TriggerRunResponse) GetContentType() string {
@@ -66,11 +64,4 @@ func (o *TriggerRunResponse) GetTriggerRunOutput() *shared.TriggerRunOutput {
 		return nil
 	}
 	return o.TriggerRunOutput
-}
-
-func (o *TriggerRunResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateErrorJSON
 }

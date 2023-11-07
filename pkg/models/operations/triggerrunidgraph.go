@@ -35,8 +35,6 @@ type TriggerRunIDGraphResponse struct {
 	RawResponse *http.Response
 	// Ok
 	TriggerRunIDGraphOutput *shared.TriggerRunIDGraphOutput
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
 }
 
 func (o *TriggerRunIDGraphResponse) GetContentType() string {
@@ -65,11 +63,4 @@ func (o *TriggerRunIDGraphResponse) GetTriggerRunIDGraphOutput() *shared.Trigger
 		return nil
 	}
 	return o.TriggerRunIDGraphOutput
-}
-
-func (o *TriggerRunIDGraphResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateErrorJSON
 }

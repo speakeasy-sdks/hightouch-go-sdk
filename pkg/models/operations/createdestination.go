@@ -9,76 +9,76 @@ import (
 	"net/http"
 )
 
-type CreateDestination200ApplicationJSONType string
+type CreateDestinationResponseBodyType string
 
 const (
-	CreateDestination200ApplicationJSONTypeDestination         CreateDestination200ApplicationJSONType = "Destination"
-	CreateDestination200ApplicationJSONTypeValidateErrorJSON   CreateDestination200ApplicationJSONType = "ValidateErrorJSON"
-	CreateDestination200ApplicationJSONTypeInternalServerError CreateDestination200ApplicationJSONType = "InternalServerError"
+	CreateDestinationResponseBodyTypeDestination         CreateDestinationResponseBodyType = "Destination"
+	CreateDestinationResponseBodyTypeValidateErrorJSON   CreateDestinationResponseBodyType = "ValidateErrorJSON"
+	CreateDestinationResponseBodyTypeInternalServerError CreateDestinationResponseBodyType = "InternalServerError"
 )
 
-type CreateDestination200ApplicationJSON struct {
+type CreateDestinationResponseBody struct {
 	Destination         *shared.Destination
 	ValidateErrorJSON   *shared.ValidateErrorJSON
 	InternalServerError *shared.InternalServerError
 
-	Type CreateDestination200ApplicationJSONType
+	Type CreateDestinationResponseBodyType
 }
 
-func CreateCreateDestination200ApplicationJSONDestination(destination shared.Destination) CreateDestination200ApplicationJSON {
-	typ := CreateDestination200ApplicationJSONTypeDestination
+func CreateCreateDestinationResponseBodyDestination(destination shared.Destination) CreateDestinationResponseBody {
+	typ := CreateDestinationResponseBodyTypeDestination
 
-	return CreateDestination200ApplicationJSON{
+	return CreateDestinationResponseBody{
 		Destination: &destination,
 		Type:        typ,
 	}
 }
 
-func CreateCreateDestination200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateDestination200ApplicationJSON {
-	typ := CreateDestination200ApplicationJSONTypeValidateErrorJSON
+func CreateCreateDestinationResponseBodyValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateDestinationResponseBody {
+	typ := CreateDestinationResponseBodyTypeValidateErrorJSON
 
-	return CreateDestination200ApplicationJSON{
+	return CreateDestinationResponseBody{
 		ValidateErrorJSON: &validateErrorJSON,
 		Type:              typ,
 	}
 }
 
-func CreateCreateDestination200ApplicationJSONInternalServerError(internalServerError shared.InternalServerError) CreateDestination200ApplicationJSON {
-	typ := CreateDestination200ApplicationJSONTypeInternalServerError
+func CreateCreateDestinationResponseBodyInternalServerError(internalServerError shared.InternalServerError) CreateDestinationResponseBody {
+	typ := CreateDestinationResponseBodyTypeInternalServerError
 
-	return CreateDestination200ApplicationJSON{
+	return CreateDestinationResponseBody{
 		InternalServerError: &internalServerError,
 		Type:                typ,
 	}
 }
 
-func (u *CreateDestination200ApplicationJSON) UnmarshalJSON(data []byte) error {
+func (u *CreateDestinationResponseBody) UnmarshalJSON(data []byte) error {
 
 	validateErrorJSON := shared.ValidateErrorJSON{}
 	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
 		u.ValidateErrorJSON = &validateErrorJSON
-		u.Type = CreateDestination200ApplicationJSONTypeValidateErrorJSON
+		u.Type = CreateDestinationResponseBodyTypeValidateErrorJSON
 		return nil
 	}
 
 	destination := shared.Destination{}
 	if err := utils.UnmarshalJSON(data, &destination, "", true, true); err == nil {
 		u.Destination = &destination
-		u.Type = CreateDestination200ApplicationJSONTypeDestination
+		u.Type = CreateDestinationResponseBodyTypeDestination
 		return nil
 	}
 
 	internalServerError := shared.InternalServerError("")
 	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
 		u.InternalServerError = &internalServerError
-		u.Type = CreateDestination200ApplicationJSONTypeInternalServerError
+		u.Type = CreateDestinationResponseBodyTypeInternalServerError
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u CreateDestination200ApplicationJSON) MarshalJSON() ([]byte, error) {
+func (u CreateDestinationResponseBody) MarshalJSON() ([]byte, error) {
 	if u.Destination != nil {
 		return utils.MarshalJSON(u.Destination, "", true)
 	}
@@ -97,16 +97,12 @@ func (u CreateDestination200ApplicationJSON) MarshalJSON() ([]byte, error) {
 type CreateDestinationResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Ok
-	CreateDestination200ApplicationJSONOneOf *CreateDestination200ApplicationJSON
-	// Something went wrong
-	InternalServerError *shared.InternalServerError
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Conflict
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	// Ok
+	OneOf *CreateDestinationResponseBody
 }
 
 func (o *CreateDestinationResponse) GetContentType() string {
@@ -114,20 +110,6 @@ func (o *CreateDestinationResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *CreateDestinationResponse) GetCreateDestination200ApplicationJSONOneOf() *CreateDestination200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateDestination200ApplicationJSONOneOf
-}
-
-func (o *CreateDestinationResponse) GetInternalServerError() *shared.InternalServerError {
-	if o == nil {
-		return nil
-	}
-	return o.InternalServerError
 }
 
 func (o *CreateDestinationResponse) GetStatusCode() int {
@@ -144,9 +126,9 @@ func (o *CreateDestinationResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *CreateDestinationResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+func (o *CreateDestinationResponse) GetOneOf() *CreateDestinationResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateErrorJSON
+	return o.OneOf
 }

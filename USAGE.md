@@ -17,7 +17,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
+	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
 		Configuration: map[string]interface{}{
 			"key": "string",
 		},
@@ -29,7 +29,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if res.CreateDestination200ApplicationJSONOneOf != nil {
+	if res.OneOf != nil {
 		// handle response
 	}
 }

@@ -28,8 +28,6 @@ type GetSourceResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
 }
 
 func (o *GetSourceResponse) GetContentType() string {
@@ -58,11 +56,4 @@ func (o *GetSourceResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *GetSourceResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateErrorJSON
 }

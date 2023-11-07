@@ -2,22 +2,22 @@
 
 package shared
 
-type DBTScheduleAccount struct {
+type Account struct {
 	ID string `json:"id"`
 }
 
-func (o *DBTScheduleAccount) GetID() string {
+func (o *Account) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-type DBTScheduleJob struct {
+type Job struct {
 	ID string `json:"id"`
 }
 
-func (o *DBTScheduleJob) GetID() string {
+func (o *Job) GetID() string {
 	if o == nil {
 		return ""
 	}
@@ -25,20 +25,20 @@ func (o *DBTScheduleJob) GetID() string {
 }
 
 type DBTSchedule struct {
-	Account DBTScheduleAccount `json:"account"`
-	Job     DBTScheduleJob     `json:"job"`
+	Account Account `json:"account"`
+	Job     Job     `json:"job"`
 }
 
-func (o *DBTSchedule) GetAccount() DBTScheduleAccount {
+func (o *DBTSchedule) GetAccount() Account {
 	if o == nil {
-		return DBTScheduleAccount{}
+		return Account{}
 	}
 	return o.Account
 }
 
-func (o *DBTSchedule) GetJob() DBTScheduleJob {
+func (o *DBTSchedule) GetJob() Job {
 	if o == nil {
-		return DBTScheduleJob{}
+		return Job{}
 	}
 	return o.Job
 }

@@ -11,21 +11,21 @@ import (
 	"time"
 )
 
-// ListSyncRunsOrderBy - specify the order
-type ListSyncRunsOrderBy string
+// ListSyncRunsQueryParamOrderBy - specify the order
+type ListSyncRunsQueryParamOrderBy string
 
 const (
-	ListSyncRunsOrderByID         ListSyncRunsOrderBy = "id"
-	ListSyncRunsOrderByCreatedAt  ListSyncRunsOrderBy = "createdAt"
-	ListSyncRunsOrderByStartedAt  ListSyncRunsOrderBy = "startedAt"
-	ListSyncRunsOrderByFinishedAt ListSyncRunsOrderBy = "finishedAt"
+	ListSyncRunsQueryParamOrderByID         ListSyncRunsQueryParamOrderBy = "id"
+	ListSyncRunsQueryParamOrderByCreatedAt  ListSyncRunsQueryParamOrderBy = "createdAt"
+	ListSyncRunsQueryParamOrderByStartedAt  ListSyncRunsQueryParamOrderBy = "startedAt"
+	ListSyncRunsQueryParamOrderByFinishedAt ListSyncRunsQueryParamOrderBy = "finishedAt"
 )
 
-func (e ListSyncRunsOrderBy) ToPointer() *ListSyncRunsOrderBy {
+func (e ListSyncRunsQueryParamOrderBy) ToPointer() *ListSyncRunsQueryParamOrderBy {
 	return &e
 }
 
-func (e *ListSyncRunsOrderBy) UnmarshalJSON(data []byte) error {
+func (e *ListSyncRunsQueryParamOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -38,10 +38,10 @@ func (e *ListSyncRunsOrderBy) UnmarshalJSON(data []byte) error {
 	case "startedAt":
 		fallthrough
 	case "finishedAt":
-		*e = ListSyncRunsOrderBy(v)
+		*e = ListSyncRunsQueryParamOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSyncRunsOrderBy: %v", v)
+		return fmt.Errorf("invalid value for ListSyncRunsQueryParamOrderBy: %v", v)
 	}
 }
 
@@ -55,7 +55,7 @@ type ListSyncRunsRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSyncRunsOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSyncRunsQueryParamOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// query for specific run id
 	RunID  *float64 `queryParam:"style=form,explode=true,name=runId"`
 	SyncID float64  `pathParam:"style=simple,explode=false,name=syncId"`
@@ -102,7 +102,7 @@ func (o *ListSyncRunsRequest) GetOffset() *float64 {
 	return o.Offset
 }
 
-func (o *ListSyncRunsRequest) GetOrderBy() *ListSyncRunsOrderBy {
+func (o *ListSyncRunsRequest) GetOrderBy() *ListSyncRunsQueryParamOrderBy {
 	if o == nil {
 		return nil
 	}
@@ -130,20 +130,20 @@ func (o *ListSyncRunsRequest) GetWithin() *float64 {
 	return o.Within
 }
 
-// ListSyncRuns200ApplicationJSON - Ok
-type ListSyncRuns200ApplicationJSON struct {
+// ListSyncRunsResponseBody - Ok
+type ListSyncRunsResponseBody struct {
 	Data    []shared.SyncRun `json:"data"`
 	HasMore bool             `json:"hasMore"`
 }
 
-func (o *ListSyncRuns200ApplicationJSON) GetData() []shared.SyncRun {
+func (o *ListSyncRunsResponseBody) GetData() []shared.SyncRun {
 	if o == nil {
 		return []shared.SyncRun{}
 	}
 	return o.Data
 }
 
-func (o *ListSyncRuns200ApplicationJSON) GetHasMore() bool {
+func (o *ListSyncRunsResponseBody) GetHasMore() bool {
 	if o == nil {
 		return false
 	}
@@ -153,14 +153,12 @@ func (o *ListSyncRuns200ApplicationJSON) GetHasMore() bool {
 type ListSyncRunsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Ok
-	ListSyncRuns200ApplicationJSONObject *ListSyncRuns200ApplicationJSON
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	// Ok
+	Object *ListSyncRunsResponseBody
 }
 
 func (o *ListSyncRunsResponse) GetContentType() string {
@@ -168,13 +166,6 @@ func (o *ListSyncRunsResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListSyncRunsResponse) GetListSyncRuns200ApplicationJSONObject() *ListSyncRuns200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListSyncRuns200ApplicationJSONObject
 }
 
 func (o *ListSyncRunsResponse) GetStatusCode() int {
@@ -191,9 +182,9 @@ func (o *ListSyncRunsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ListSyncRunsResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+func (o *ListSyncRunsResponse) GetObject() *ListSyncRunsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateErrorJSON
+	return o.Object
 }

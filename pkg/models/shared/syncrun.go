@@ -7,12 +7,12 @@ import (
 	"time"
 )
 
-// SyncRunFailedRows - The number of rows that we attempted to sync, but were rejected by the
+// FailedRows - The number of rows that we attempted to sync, but were rejected by the
 // destination.
 //
 // This does not include rows that weren't attempted due to the sync being
 // cancelled.
-type SyncRunFailedRows struct {
+type FailedRows struct {
 	// The number of failed adds.
 	AddedCount float64 `json:"addedCount"`
 	// The number of failed changes.
@@ -21,32 +21,32 @@ type SyncRunFailedRows struct {
 	RemovedCount float64 `json:"removedCount"`
 }
 
-func (o *SyncRunFailedRows) GetAddedCount() float64 {
+func (o *FailedRows) GetAddedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.AddedCount
 }
 
-func (o *SyncRunFailedRows) GetChangedCount() float64 {
+func (o *FailedRows) GetChangedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.ChangedCount
 }
 
-func (o *SyncRunFailedRows) GetRemovedCount() float64 {
+func (o *FailedRows) GetRemovedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.RemovedCount
 }
 
-// SyncRunPlannedRows - The number of planned rows that this sync run was supposed to execute.
+// PlannedRows - The number of planned rows that this sync run was supposed to execute.
 //
 // Note that the counts for `successfulRows` and `failedRows` may not add up
 // to `plannedRows` if the sync was cancelled.
-type SyncRunPlannedRows struct {
+type PlannedRows struct {
 	// The number of added rows.
 	AddedCount float64 `json:"addedCount"`
 	// The number of changed rows.
@@ -55,29 +55,29 @@ type SyncRunPlannedRows struct {
 	RemovedCount float64 `json:"removedCount"`
 }
 
-func (o *SyncRunPlannedRows) GetAddedCount() float64 {
+func (o *PlannedRows) GetAddedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.AddedCount
 }
 
-func (o *SyncRunPlannedRows) GetChangedCount() float64 {
+func (o *PlannedRows) GetChangedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.ChangedCount
 }
 
-func (o *SyncRunPlannedRows) GetRemovedCount() float64 {
+func (o *PlannedRows) GetRemovedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.RemovedCount
 }
 
-// SyncRunSuccessfulRows - The number of rows that were successfully processed by the destination.
-type SyncRunSuccessfulRows struct {
+// SuccessfulRows - The number of rows that were successfully processed by the destination.
+type SuccessfulRows struct {
 	// The number of successful adds.
 	AddedCount float64 `json:"addedCount"`
 	// The number of successful changes.
@@ -86,21 +86,21 @@ type SyncRunSuccessfulRows struct {
 	RemovedCount float64 `json:"removedCount"`
 }
 
-func (o *SyncRunSuccessfulRows) GetAddedCount() float64 {
+func (o *SuccessfulRows) GetAddedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.AddedCount
 }
 
-func (o *SyncRunSuccessfulRows) GetChangedCount() float64 {
+func (o *SuccessfulRows) GetChangedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.ChangedCount
 }
 
-func (o *SyncRunSuccessfulRows) GetRemovedCount() float64 {
+func (o *SuccessfulRows) GetRemovedCount() float64 {
 	if o == nil {
 		return 0.0
 	}
@@ -122,7 +122,7 @@ type SyncRun struct {
 	//
 	// This does not include rows that weren't attempted due to the sync being
 	// cancelled.
-	FailedRows SyncRunFailedRows `json:"failedRows"`
+	FailedRows FailedRows `json:"failedRows"`
 	// The timestamp when the sync run finished
 	FinishedAt time.Time `json:"finishedAt"`
 	// The sync run's id
@@ -131,7 +131,7 @@ type SyncRun struct {
 	//
 	// Note that the counts for `successfulRows` and `failedRows` may not add up
 	// to `plannedRows` if the sync was cancelled.
-	PlannedRows SyncRunPlannedRows `json:"plannedRows"`
+	PlannedRows PlannedRows `json:"plannedRows"`
 	// The number of rows in the query.
 	QuerySize float64 `json:"querySize"`
 	// The timestamp when the sync run started
@@ -139,7 +139,7 @@ type SyncRun struct {
 	// The status of sync runs
 	Status SyncRunStatus `json:"status"`
 	// The number of rows that were successfully processed by the destination.
-	SuccessfulRows SyncRunSuccessfulRows `json:"successfulRows"`
+	SuccessfulRows SuccessfulRows `json:"successfulRows"`
 }
 
 func (s SyncRun) MarshalJSON() ([]byte, error) {
@@ -174,9 +174,9 @@ func (o *SyncRun) GetError() *string {
 	return o.Error
 }
 
-func (o *SyncRun) GetFailedRows() SyncRunFailedRows {
+func (o *SyncRun) GetFailedRows() FailedRows {
 	if o == nil {
-		return SyncRunFailedRows{}
+		return FailedRows{}
 	}
 	return o.FailedRows
 }
@@ -195,9 +195,9 @@ func (o *SyncRun) GetID() string {
 	return o.ID
 }
 
-func (o *SyncRun) GetPlannedRows() SyncRunPlannedRows {
+func (o *SyncRun) GetPlannedRows() PlannedRows {
 	if o == nil {
-		return SyncRunPlannedRows{}
+		return PlannedRows{}
 	}
 	return o.PlannedRows
 }
@@ -223,9 +223,9 @@ func (o *SyncRun) GetStatus() SyncRunStatus {
 	return o.Status
 }
 
-func (o *SyncRun) GetSuccessfulRows() SyncRunSuccessfulRows {
+func (o *SyncRun) GetSuccessfulRows() SuccessfulRows {
 	if o == nil {
-		return SyncRunSuccessfulRows{}
+		return SuccessfulRows{}
 	}
 	return o.SuccessfulRows
 }

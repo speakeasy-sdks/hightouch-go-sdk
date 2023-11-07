@@ -10,22 +10,22 @@ import (
 	"net/http"
 )
 
-// ListModelOrderBy - specify the order
-type ListModelOrderBy string
+// QueryParamOrderBy - specify the order
+type QueryParamOrderBy string
 
 const (
-	ListModelOrderByID        ListModelOrderBy = "id"
-	ListModelOrderByName      ListModelOrderBy = "name"
-	ListModelOrderBySlug      ListModelOrderBy = "slug"
-	ListModelOrderByCreatedAt ListModelOrderBy = "createdAt"
-	ListModelOrderByUpdatedAt ListModelOrderBy = "updatedAt"
+	QueryParamOrderByID        QueryParamOrderBy = "id"
+	QueryParamOrderByName      QueryParamOrderBy = "name"
+	QueryParamOrderBySlug      QueryParamOrderBy = "slug"
+	QueryParamOrderByCreatedAt QueryParamOrderBy = "createdAt"
+	QueryParamOrderByUpdatedAt QueryParamOrderBy = "updatedAt"
 )
 
-func (e ListModelOrderBy) ToPointer() *ListModelOrderBy {
+func (e QueryParamOrderBy) ToPointer() *QueryParamOrderBy {
 	return &e
 }
 
-func (e *ListModelOrderBy) UnmarshalJSON(data []byte) error {
+func (e *QueryParamOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -40,10 +40,10 @@ func (e *ListModelOrderBy) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListModelOrderBy(v)
+		*e = QueryParamOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListModelOrderBy: %v", v)
+		return fmt.Errorf("invalid value for QueryParamOrderBy: %v", v)
 	}
 }
 
@@ -55,7 +55,7 @@ type ListModelRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListModelOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *QueryParamOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// filter based on slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
@@ -92,7 +92,7 @@ func (o *ListModelRequest) GetOffset() *float64 {
 	return o.Offset
 }
 
-func (o *ListModelRequest) GetOrderBy() *ListModelOrderBy {
+func (o *ListModelRequest) GetOrderBy() *QueryParamOrderBy {
 	if o == nil {
 		return nil
 	}
@@ -106,12 +106,12 @@ func (o *ListModelRequest) GetSlug() *string {
 	return o.Slug
 }
 
-// ListModel200ApplicationJSON - Ok
-type ListModel200ApplicationJSON struct {
+// ListModelResponseBody - Ok
+type ListModelResponseBody struct {
 	Data []shared.Model `json:"data"`
 }
 
-func (o *ListModel200ApplicationJSON) GetData() []shared.Model {
+func (o *ListModelResponseBody) GetData() []shared.Model {
 	if o == nil {
 		return []shared.Model{}
 	}
@@ -121,14 +121,12 @@ func (o *ListModel200ApplicationJSON) GetData() []shared.Model {
 type ListModelResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Ok
-	ListModel200ApplicationJSONObject *ListModel200ApplicationJSON
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	// Ok
+	Object *ListModelResponseBody
 }
 
 func (o *ListModelResponse) GetContentType() string {
@@ -136,13 +134,6 @@ func (o *ListModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListModelResponse) GetListModel200ApplicationJSONObject() *ListModel200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListModel200ApplicationJSONObject
 }
 
 func (o *ListModelResponse) GetStatusCode() int {
@@ -159,9 +150,9 @@ func (o *ListModelResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ListModelResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+func (o *ListModelResponse) GetObject() *ListModelResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateErrorJSON
+	return o.Object
 }

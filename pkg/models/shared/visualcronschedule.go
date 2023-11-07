@@ -2,20 +2,20 @@
 
 package shared
 
-type VisualCronScheduleExpressions struct {
+type Expressions struct {
 	// Construct a type with a set of properties K of type T
 	Days RecordDayBooleanOrUndefined `json:"days"`
 	Time string                      `json:"time"`
 }
 
-func (o *VisualCronScheduleExpressions) GetDays() RecordDayBooleanOrUndefined {
+func (o *Expressions) GetDays() RecordDayBooleanOrUndefined {
 	if o == nil {
 		return RecordDayBooleanOrUndefined{}
 	}
 	return o.Days
 }
 
-func (o *VisualCronScheduleExpressions) GetTime() string {
+func (o *Expressions) GetTime() string {
 	if o == nil {
 		return ""
 	}
@@ -23,12 +23,12 @@ func (o *VisualCronScheduleExpressions) GetTime() string {
 }
 
 type VisualCronSchedule struct {
-	Expressions []VisualCronScheduleExpressions `json:"expressions"`
+	Expressions []Expressions `json:"expressions"`
 }
 
-func (o *VisualCronSchedule) GetExpressions() []VisualCronScheduleExpressions {
+func (o *VisualCronSchedule) GetExpressions() []Expressions {
 	if o == nil {
-		return []VisualCronScheduleExpressions{}
+		return []Expressions{}
 	}
 	return o.Expressions
 }

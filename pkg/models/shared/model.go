@@ -7,20 +7,20 @@ import (
 	"time"
 )
 
-// ModelCustom - Custom query for sources that doesn't support sql. For example, Airtable.
-type ModelCustom struct {
+// Custom query for sources that doesn't support sql. For example, Airtable.
+type Custom struct {
 	Query interface{} `json:"query"`
 }
 
-func (o *ModelCustom) GetQuery() interface{} {
+func (o *Custom) GetQuery() interface{} {
 	if o == nil {
 		return nil
 	}
 	return o.Query
 }
 
-// ModelDbt - Query that is based on a dbt model
-type ModelDbt struct {
+// Dbt - Query that is based on a dbt model
+type Dbt struct {
 	// Compiled SQL in the dbt model
 	CompiledSQL string `json:"compiledSql"`
 	// Name of the database containing the generated table
@@ -37,81 +37,81 @@ type ModelDbt struct {
 	Schema string `json:"schema"`
 }
 
-func (o *ModelDbt) GetCompiledSQL() string {
+func (o *Dbt) GetCompiledSQL() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompiledSQL
 }
 
-func (o *ModelDbt) GetDatabase() string {
+func (o *Dbt) GetDatabase() string {
 	if o == nil {
 		return ""
 	}
 	return o.Database
 }
 
-func (o *ModelDbt) GetDbtUniqueID() string {
+func (o *Dbt) GetDbtUniqueID() string {
 	if o == nil {
 		return ""
 	}
 	return o.DbtUniqueID
 }
 
-func (o *ModelDbt) GetModelID() string {
+func (o *Dbt) GetModelID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ModelID
 }
 
-func (o *ModelDbt) GetName() string {
+func (o *Dbt) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *ModelDbt) GetRawSQL() string {
+func (o *Dbt) GetRawSQL() string {
 	if o == nil {
 		return ""
 	}
 	return o.RawSQL
 }
 
-func (o *ModelDbt) GetSchema() string {
+func (o *Dbt) GetSchema() string {
 	if o == nil {
 		return ""
 	}
 	return o.Schema
 }
 
-// ModelRaw - Standard raw SQL query
-type ModelRaw struct {
+// Raw - Standard raw SQL query
+type Raw struct {
 	SQL string `json:"sql"`
 }
 
-func (o *ModelRaw) GetSQL() string {
+func (o *Raw) GetSQL() string {
 	if o == nil {
 		return ""
 	}
 	return o.SQL
 }
 
-// ModelTable - Table-based query that fetches on a table instead of SQL
-type ModelTable struct {
+// Table - Table-based query that fetches on a table instead of SQL
+type Table struct {
 	Name string `json:"name"`
 }
 
-func (o *ModelTable) GetName() string {
+func (o *Table) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-// ModelVisual - Visual query, used by audience
-type ModelVisual struct {
+// Visual query, used by audience
+type Visual struct {
 	Filter interface{} `json:"filter"`
 	// Parent id of the schema that visual query is based on
 	ParentID       string `json:"parentId"`
@@ -119,28 +119,28 @@ type ModelVisual struct {
 	SecondaryLabel string `json:"secondaryLabel"`
 }
 
-func (o *ModelVisual) GetFilter() interface{} {
+func (o *Visual) GetFilter() interface{} {
 	if o == nil {
 		return nil
 	}
 	return o.Filter
 }
 
-func (o *ModelVisual) GetParentID() string {
+func (o *Visual) GetParentID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ParentID
 }
 
-func (o *ModelVisual) GetPrimaryLabel() string {
+func (o *Visual) GetPrimaryLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.PrimaryLabel
 }
 
-func (o *ModelVisual) GetSecondaryLabel() string {
+func (o *Visual) GetSecondaryLabel() string {
 	if o == nil {
 		return ""
 	}
@@ -153,10 +153,10 @@ type Model struct {
 	// The timestamp when model was created
 	CreatedAt time.Time `json:"createdAt"`
 	// Custom query for sources that doesn't support sql. For example, Airtable.
-	Custom *ModelCustom `json:"custom,omitempty"`
+	Custom *Custom `json:"custom,omitempty"`
 	// Query that is based on a dbt model
-	Dbt      *ModelDbt `json:"dbt,omitempty"`
-	FolderID *string   `json:"folderId,omitempty"`
+	Dbt      *Dbt    `json:"dbt,omitempty"`
+	FolderID *string `json:"folderId,omitempty"`
 	// The id of the model
 	ID string `json:"id"`
 	// If is_schema is true, the model is just used to build other models.
@@ -169,7 +169,7 @@ type Model struct {
 	// The type of the query. Available options: custom, raw_sql, tabel, dbt and visual.
 	QueryType string `json:"queryType"`
 	// Standard raw SQL query
-	Raw *ModelRaw `json:"raw,omitempty"`
+	Raw *Raw `json:"raw,omitempty"`
 	// The slug of the model
 	Slug string `json:"slug"`
 	// The id of the source that model is connected to
@@ -177,13 +177,13 @@ type Model struct {
 	// The list of id of syncs that uses this model
 	Syncs []string `json:"syncs"`
 	// Table-based query that fetches on a table instead of SQL
-	Table *ModelTable `json:"table,omitempty"`
+	Table *Table `json:"table,omitempty"`
 	// The tags of the model
 	Tags map[string]string `json:"tags"`
 	// The timestamp when model was lastly updated
 	UpdatedAt time.Time `json:"updatedAt"`
 	// Visual query, used by audience
-	Visual *ModelVisual `json:"visual,omitempty"`
+	Visual *Visual `json:"visual,omitempty"`
 	// The id of the workspace where the model belongs to
 	WorkspaceID string `json:"workspaceId"`
 }
@@ -206,14 +206,14 @@ func (o *Model) GetCreatedAt() time.Time {
 	return o.CreatedAt
 }
 
-func (o *Model) GetCustom() *ModelCustom {
+func (o *Model) GetCustom() *Custom {
 	if o == nil {
 		return nil
 	}
 	return o.Custom
 }
 
-func (o *Model) GetDbt() *ModelDbt {
+func (o *Model) GetDbt() *Dbt {
 	if o == nil {
 		return nil
 	}
@@ -262,7 +262,7 @@ func (o *Model) GetQueryType() string {
 	return o.QueryType
 }
 
-func (o *Model) GetRaw() *ModelRaw {
+func (o *Model) GetRaw() *Raw {
 	if o == nil {
 		return nil
 	}
@@ -290,7 +290,7 @@ func (o *Model) GetSyncs() []string {
 	return o.Syncs
 }
 
-func (o *Model) GetTable() *ModelTable {
+func (o *Model) GetTable() *Table {
 	if o == nil {
 		return nil
 	}
@@ -311,7 +311,7 @@ func (o *Model) GetUpdatedAt() time.Time {
 	return o.UpdatedAt
 }
 
-func (o *Model) GetVisual() *ModelVisual {
+func (o *Model) GetVisual() *Visual {
 	if o == nil {
 		return nil
 	}

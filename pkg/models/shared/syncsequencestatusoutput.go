@@ -2,7 +2,7 @@
 
 package shared
 
-type SyncSequenceStatusOutputSyncRuns struct {
+type SyncRuns struct {
 	FinishedAt string `json:"finishedAt"`
 	// The status of sync runs
 	Status    SyncRunStatus `json:"status"`
@@ -10,28 +10,28 @@ type SyncSequenceStatusOutputSyncRuns struct {
 	SyncRunID string        `json:"syncRunId"`
 }
 
-func (o *SyncSequenceStatusOutputSyncRuns) GetFinishedAt() string {
+func (o *SyncRuns) GetFinishedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.FinishedAt
 }
 
-func (o *SyncSequenceStatusOutputSyncRuns) GetStatus() SyncRunStatus {
+func (o *SyncRuns) GetStatus() SyncRunStatus {
 	if o == nil {
 		return SyncRunStatus("")
 	}
 	return o.Status
 }
 
-func (o *SyncSequenceStatusOutputSyncRuns) GetSyncID() string {
+func (o *SyncRuns) GetSyncID() string {
 	if o == nil {
 		return ""
 	}
 	return o.SyncID
 }
 
-func (o *SyncSequenceStatusOutputSyncRuns) GetSyncRunID() string {
+func (o *SyncRuns) GetSyncRunID() string {
 	if o == nil {
 		return ""
 	}
@@ -41,9 +41,9 @@ func (o *SyncSequenceStatusOutputSyncRuns) GetSyncRunID() string {
 // SyncSequenceStatusOutput - The status of a given sync sequence run at both a high level and the individual
 // sync-run level.
 type SyncSequenceStatusOutput struct {
-	ID       string                             `json:"id"`
-	Status   SyncSequenceRequestStatus          `json:"status"`
-	SyncRuns []SyncSequenceStatusOutputSyncRuns `json:"syncRuns"`
+	ID       string                    `json:"id"`
+	Status   SyncSequenceRequestStatus `json:"status"`
+	SyncRuns []SyncRuns                `json:"syncRuns"`
 }
 
 func (o *SyncSequenceStatusOutput) GetID() string {
@@ -60,9 +60,9 @@ func (o *SyncSequenceStatusOutput) GetStatus() SyncSequenceRequestStatus {
 	return o.Status
 }
 
-func (o *SyncSequenceStatusOutput) GetSyncRuns() []SyncSequenceStatusOutputSyncRuns {
+func (o *SyncSequenceStatusOutput) GetSyncRuns() []SyncRuns {
 	if o == nil {
-		return []SyncSequenceStatusOutputSyncRuns{}
+		return []SyncRuns{}
 	}
 	return o.SyncRuns
 }

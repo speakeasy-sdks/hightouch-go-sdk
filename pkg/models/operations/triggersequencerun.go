@@ -28,8 +28,6 @@ type TriggerSequenceRunResponse struct {
 	RawResponse *http.Response
 	// Ok
 	TriggerSequenceRunOutput *shared.TriggerSequenceRunOutput
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
 }
 
 func (o *TriggerSequenceRunResponse) GetContentType() string {
@@ -58,11 +56,4 @@ func (o *TriggerSequenceRunResponse) GetTriggerSequenceRunOutput() *shared.Trigg
 		return nil
 	}
 	return o.TriggerSequenceRunOutput
-}
-
-func (o *TriggerSequenceRunResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateErrorJSON
 }

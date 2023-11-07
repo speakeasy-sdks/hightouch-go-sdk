@@ -29,76 +29,76 @@ func (o *UpdateSourceRequest) GetSourceID() float64 {
 	return o.SourceID
 }
 
-type UpdateSource200ApplicationJSONType string
+type UpdateSourceResponseBodyType string
 
 const (
-	UpdateSource200ApplicationJSONTypeSource              UpdateSource200ApplicationJSONType = "Source"
-	UpdateSource200ApplicationJSONTypeValidateErrorJSON   UpdateSource200ApplicationJSONType = "ValidateErrorJSON"
-	UpdateSource200ApplicationJSONTypeInternalServerError UpdateSource200ApplicationJSONType = "InternalServerError"
+	UpdateSourceResponseBodyTypeSource              UpdateSourceResponseBodyType = "Source"
+	UpdateSourceResponseBodyTypeValidateErrorJSON   UpdateSourceResponseBodyType = "ValidateErrorJSON"
+	UpdateSourceResponseBodyTypeInternalServerError UpdateSourceResponseBodyType = "InternalServerError"
 )
 
-type UpdateSource200ApplicationJSON struct {
+type UpdateSourceResponseBody struct {
 	Source              *shared.Source
 	ValidateErrorJSON   *shared.ValidateErrorJSON
 	InternalServerError *shared.InternalServerError
 
-	Type UpdateSource200ApplicationJSONType
+	Type UpdateSourceResponseBodyType
 }
 
-func CreateUpdateSource200ApplicationJSONSource(source shared.Source) UpdateSource200ApplicationJSON {
-	typ := UpdateSource200ApplicationJSONTypeSource
+func CreateUpdateSourceResponseBodySource(source shared.Source) UpdateSourceResponseBody {
+	typ := UpdateSourceResponseBodyTypeSource
 
-	return UpdateSource200ApplicationJSON{
+	return UpdateSourceResponseBody{
 		Source: &source,
 		Type:   typ,
 	}
 }
 
-func CreateUpdateSource200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) UpdateSource200ApplicationJSON {
-	typ := UpdateSource200ApplicationJSONTypeValidateErrorJSON
+func CreateUpdateSourceResponseBodyValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) UpdateSourceResponseBody {
+	typ := UpdateSourceResponseBodyTypeValidateErrorJSON
 
-	return UpdateSource200ApplicationJSON{
+	return UpdateSourceResponseBody{
 		ValidateErrorJSON: &validateErrorJSON,
 		Type:              typ,
 	}
 }
 
-func CreateUpdateSource200ApplicationJSONInternalServerError(internalServerError shared.InternalServerError) UpdateSource200ApplicationJSON {
-	typ := UpdateSource200ApplicationJSONTypeInternalServerError
+func CreateUpdateSourceResponseBodyInternalServerError(internalServerError shared.InternalServerError) UpdateSourceResponseBody {
+	typ := UpdateSourceResponseBodyTypeInternalServerError
 
-	return UpdateSource200ApplicationJSON{
+	return UpdateSourceResponseBody{
 		InternalServerError: &internalServerError,
 		Type:                typ,
 	}
 }
 
-func (u *UpdateSource200ApplicationJSON) UnmarshalJSON(data []byte) error {
+func (u *UpdateSourceResponseBody) UnmarshalJSON(data []byte) error {
 
 	validateErrorJSON := shared.ValidateErrorJSON{}
 	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
 		u.ValidateErrorJSON = &validateErrorJSON
-		u.Type = UpdateSource200ApplicationJSONTypeValidateErrorJSON
+		u.Type = UpdateSourceResponseBodyTypeValidateErrorJSON
 		return nil
 	}
 
 	source := shared.Source{}
 	if err := utils.UnmarshalJSON(data, &source, "", true, true); err == nil {
 		u.Source = &source
-		u.Type = UpdateSource200ApplicationJSONTypeSource
+		u.Type = UpdateSourceResponseBodyTypeSource
 		return nil
 	}
 
 	internalServerError := shared.InternalServerError("")
 	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
 		u.InternalServerError = &internalServerError
-		u.Type = UpdateSource200ApplicationJSONTypeInternalServerError
+		u.Type = UpdateSourceResponseBodyTypeInternalServerError
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u UpdateSource200ApplicationJSON) MarshalJSON() ([]byte, error) {
+func (u UpdateSourceResponseBody) MarshalJSON() ([]byte, error) {
 	if u.Source != nil {
 		return utils.MarshalJSON(u.Source, "", true)
 	}
@@ -117,16 +117,12 @@ func (u UpdateSource200ApplicationJSON) MarshalJSON() ([]byte, error) {
 type UpdateSourceResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Something went wrong
-	InternalServerError *shared.InternalServerError
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Ok
-	UpdateSource200ApplicationJSONOneOf *UpdateSource200ApplicationJSON
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	OneOf *UpdateSourceResponseBody
 }
 
 func (o *UpdateSourceResponse) GetContentType() string {
@@ -134,13 +130,6 @@ func (o *UpdateSourceResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *UpdateSourceResponse) GetInternalServerError() *shared.InternalServerError {
-	if o == nil {
-		return nil
-	}
-	return o.InternalServerError
 }
 
 func (o *UpdateSourceResponse) GetStatusCode() int {
@@ -157,16 +146,9 @@ func (o *UpdateSourceResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdateSourceResponse) GetUpdateSource200ApplicationJSONOneOf() *UpdateSource200ApplicationJSON {
+func (o *UpdateSourceResponse) GetOneOf() *UpdateSourceResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.UpdateSource200ApplicationJSONOneOf
-}
-
-func (o *UpdateSourceResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateErrorJSON
+	return o.OneOf
 }

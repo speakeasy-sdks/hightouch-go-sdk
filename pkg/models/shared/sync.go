@@ -8,94 +8,94 @@ import (
 	"time"
 )
 
-type SyncScheduleScheduleType string
+type SyncScheduleType string
 
 const (
-	SyncScheduleScheduleTypeIntervalSchedule   SyncScheduleScheduleType = "IntervalSchedule"
-	SyncScheduleScheduleTypeCronSchedule       SyncScheduleScheduleType = "CronSchedule"
-	SyncScheduleScheduleTypeVisualCronSchedule SyncScheduleScheduleType = "VisualCronSchedule"
-	SyncScheduleScheduleTypeDBTSchedule        SyncScheduleScheduleType = "DBTSchedule"
+	SyncScheduleTypeIntervalSchedule   SyncScheduleType = "IntervalSchedule"
+	SyncScheduleTypeCronSchedule       SyncScheduleType = "CronSchedule"
+	SyncScheduleTypeVisualCronSchedule SyncScheduleType = "VisualCronSchedule"
+	SyncScheduleTypeDBTSchedule        SyncScheduleType = "DBTSchedule"
 )
 
-type SyncScheduleSchedule struct {
+type SyncSchedule struct {
 	IntervalSchedule   *IntervalSchedule
 	CronSchedule       *CronSchedule
 	VisualCronSchedule *VisualCronSchedule
 	DBTSchedule        *DBTSchedule
 
-	Type SyncScheduleScheduleType
+	Type SyncScheduleType
 }
 
-func CreateSyncScheduleScheduleIntervalSchedule(intervalSchedule IntervalSchedule) SyncScheduleSchedule {
-	typ := SyncScheduleScheduleTypeIntervalSchedule
+func CreateSyncScheduleIntervalSchedule(intervalSchedule IntervalSchedule) SyncSchedule {
+	typ := SyncScheduleTypeIntervalSchedule
 
-	return SyncScheduleSchedule{
+	return SyncSchedule{
 		IntervalSchedule: &intervalSchedule,
 		Type:             typ,
 	}
 }
 
-func CreateSyncScheduleScheduleCronSchedule(cronSchedule CronSchedule) SyncScheduleSchedule {
-	typ := SyncScheduleScheduleTypeCronSchedule
+func CreateSyncScheduleCronSchedule(cronSchedule CronSchedule) SyncSchedule {
+	typ := SyncScheduleTypeCronSchedule
 
-	return SyncScheduleSchedule{
+	return SyncSchedule{
 		CronSchedule: &cronSchedule,
 		Type:         typ,
 	}
 }
 
-func CreateSyncScheduleScheduleVisualCronSchedule(visualCronSchedule VisualCronSchedule) SyncScheduleSchedule {
-	typ := SyncScheduleScheduleTypeVisualCronSchedule
+func CreateSyncScheduleVisualCronSchedule(visualCronSchedule VisualCronSchedule) SyncSchedule {
+	typ := SyncScheduleTypeVisualCronSchedule
 
-	return SyncScheduleSchedule{
+	return SyncSchedule{
 		VisualCronSchedule: &visualCronSchedule,
 		Type:               typ,
 	}
 }
 
-func CreateSyncScheduleScheduleDBTSchedule(dbtSchedule DBTSchedule) SyncScheduleSchedule {
-	typ := SyncScheduleScheduleTypeDBTSchedule
+func CreateSyncScheduleDBTSchedule(dbtSchedule DBTSchedule) SyncSchedule {
+	typ := SyncScheduleTypeDBTSchedule
 
-	return SyncScheduleSchedule{
+	return SyncSchedule{
 		DBTSchedule: &dbtSchedule,
 		Type:        typ,
 	}
 }
 
-func (u *SyncScheduleSchedule) UnmarshalJSON(data []byte) error {
+func (u *SyncSchedule) UnmarshalJSON(data []byte) error {
 
 	intervalSchedule := IntervalSchedule{}
 	if err := utils.UnmarshalJSON(data, &intervalSchedule, "", true, true); err == nil {
 		u.IntervalSchedule = &intervalSchedule
-		u.Type = SyncScheduleScheduleTypeIntervalSchedule
+		u.Type = SyncScheduleTypeIntervalSchedule
 		return nil
 	}
 
 	cronSchedule := CronSchedule{}
 	if err := utils.UnmarshalJSON(data, &cronSchedule, "", true, true); err == nil {
 		u.CronSchedule = &cronSchedule
-		u.Type = SyncScheduleScheduleTypeCronSchedule
+		u.Type = SyncScheduleTypeCronSchedule
 		return nil
 	}
 
 	visualCronSchedule := VisualCronSchedule{}
 	if err := utils.UnmarshalJSON(data, &visualCronSchedule, "", true, true); err == nil {
 		u.VisualCronSchedule = &visualCronSchedule
-		u.Type = SyncScheduleScheduleTypeVisualCronSchedule
+		u.Type = SyncScheduleTypeVisualCronSchedule
 		return nil
 	}
 
 	dbtSchedule := DBTSchedule{}
 	if err := utils.UnmarshalJSON(data, &dbtSchedule, "", true, true); err == nil {
 		u.DBTSchedule = &dbtSchedule
-		u.Type = SyncScheduleScheduleTypeDBTSchedule
+		u.Type = SyncScheduleTypeDBTSchedule
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u SyncScheduleSchedule) MarshalJSON() ([]byte, error) {
+func (u SyncSchedule) MarshalJSON() ([]byte, error) {
 	if u.IntervalSchedule != nil {
 		return utils.MarshalJSON(u.IntervalSchedule, "", true)
 	}
@@ -115,7 +115,7 @@ func (u SyncScheduleSchedule) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-// SyncSchedule - The scheduling configuration. It can be triggerd based on several ways:
+// Schedule - The scheduling configuration. It can be triggerd based on several ways:
 //
 // Interval: the sync will be trigged based on certain interval(minutes/hours/days/weeks)
 //
@@ -124,19 +124,19 @@ func (u SyncScheduleSchedule) MarshalJSON() ([]byte, error) {
 // Visual: the sync will be trigged based a visual cron configuration on UI
 //
 // DBT-cloud: the sync will be trigged based on a dbt cloud job
-type SyncSchedule struct {
-	Schedule SyncScheduleSchedule `json:"schedule"`
-	Type     string               `json:"type"`
+type Schedule struct {
+	Schedule SyncSchedule `json:"schedule"`
+	Type     string       `json:"type"`
 }
 
-func (o *SyncSchedule) GetSchedule() SyncScheduleSchedule {
+func (o *Schedule) GetSchedule() SyncSchedule {
 	if o == nil {
-		return SyncScheduleSchedule{}
+		return SyncSchedule{}
 	}
 	return o.Schedule
 }
 
-func (o *SyncSchedule) GetType() string {
+func (o *Schedule) GetType() string {
 	if o == nil {
 		return ""
 	}
@@ -180,7 +180,7 @@ type Sync struct {
 	// Visual: the sync will be trigged based a visual cron configuration on UI
 	//
 	// DBT-cloud: the sync will be trigged based on a dbt cloud job
-	Schedule *SyncSchedule `json:"schedule"`
+	Schedule *Schedule `json:"schedule"`
 	// The sync's slug
 	Slug string `json:"slug"`
 	// SyncStatus
@@ -265,7 +265,7 @@ func (o *Sync) GetReferencedColumns() []string {
 	return o.ReferencedColumns
 }
 
-func (o *Sync) GetSchedule() *SyncSchedule {
+func (o *Sync) GetSchedule() *Schedule {
 	if o == nil {
 		return nil
 	}

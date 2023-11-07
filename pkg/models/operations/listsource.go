@@ -10,22 +10,22 @@ import (
 	"net/http"
 )
 
-// ListSourceOrderBy - specify the order
-type ListSourceOrderBy string
+// ListSourceQueryParamOrderBy - specify the order
+type ListSourceQueryParamOrderBy string
 
 const (
-	ListSourceOrderByID        ListSourceOrderBy = "id"
-	ListSourceOrderByName      ListSourceOrderBy = "name"
-	ListSourceOrderBySlug      ListSourceOrderBy = "slug"
-	ListSourceOrderByCreatedAt ListSourceOrderBy = "createdAt"
-	ListSourceOrderByUpdatedAt ListSourceOrderBy = "updatedAt"
+	ListSourceQueryParamOrderByID        ListSourceQueryParamOrderBy = "id"
+	ListSourceQueryParamOrderByName      ListSourceQueryParamOrderBy = "name"
+	ListSourceQueryParamOrderBySlug      ListSourceQueryParamOrderBy = "slug"
+	ListSourceQueryParamOrderByCreatedAt ListSourceQueryParamOrderBy = "createdAt"
+	ListSourceQueryParamOrderByUpdatedAt ListSourceQueryParamOrderBy = "updatedAt"
 )
 
-func (e ListSourceOrderBy) ToPointer() *ListSourceOrderBy {
+func (e ListSourceQueryParamOrderBy) ToPointer() *ListSourceQueryParamOrderBy {
 	return &e
 }
 
-func (e *ListSourceOrderBy) UnmarshalJSON(data []byte) error {
+func (e *ListSourceQueryParamOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -40,10 +40,10 @@ func (e *ListSourceOrderBy) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListSourceOrderBy(v)
+		*e = ListSourceQueryParamOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSourceOrderBy: %v", v)
+		return fmt.Errorf("invalid value for ListSourceQueryParamOrderBy: %v", v)
 	}
 }
 
@@ -55,7 +55,7 @@ type ListSourceRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSourceOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSourceQueryParamOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// filter based on slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
@@ -92,7 +92,7 @@ func (o *ListSourceRequest) GetOffset() *float64 {
 	return o.Offset
 }
 
-func (o *ListSourceRequest) GetOrderBy() *ListSourceOrderBy {
+func (o *ListSourceRequest) GetOrderBy() *ListSourceQueryParamOrderBy {
 	if o == nil {
 		return nil
 	}
@@ -106,12 +106,12 @@ func (o *ListSourceRequest) GetSlug() *string {
 	return o.Slug
 }
 
-// ListSource200ApplicationJSON - Ok
-type ListSource200ApplicationJSON struct {
+// ListSourceResponseBody - Ok
+type ListSourceResponseBody struct {
 	Data []shared.Source `json:"data"`
 }
 
-func (o *ListSource200ApplicationJSON) GetData() []shared.Source {
+func (o *ListSourceResponseBody) GetData() []shared.Source {
 	if o == nil {
 		return []shared.Source{}
 	}
@@ -121,12 +121,12 @@ func (o *ListSource200ApplicationJSON) GetData() []shared.Source {
 type ListSourceResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Ok
-	ListSource200ApplicationJSONObject *ListSource200ApplicationJSON
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Ok
+	Object *ListSourceResponseBody
 }
 
 func (o *ListSourceResponse) GetContentType() string {
@@ -134,13 +134,6 @@ func (o *ListSourceResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListSourceResponse) GetListSource200ApplicationJSONObject() *ListSource200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListSource200ApplicationJSONObject
 }
 
 func (o *ListSourceResponse) GetStatusCode() int {
@@ -155,4 +148,11 @@ func (o *ListSourceResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *ListSourceResponse) GetObject() *ListSourceResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

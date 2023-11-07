@@ -7,33 +7,33 @@ import (
 	"fmt"
 )
 
-type ValidateErrorJSONMessage string
+type Message string
 
 const (
-	ValidateErrorJSONMessageValidationFailed ValidateErrorJSONMessage = "Validation failed"
+	MessageValidationFailed Message = "Validation failed"
 )
 
-func (e ValidateErrorJSONMessage) ToPointer() *ValidateErrorJSONMessage {
+func (e Message) ToPointer() *Message {
 	return &e
 }
 
-func (e *ValidateErrorJSONMessage) UnmarshalJSON(data []byte) error {
+func (e *Message) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Validation failed":
-		*e = ValidateErrorJSONMessage(v)
+		*e = Message(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ValidateErrorJSONMessage: %v", v)
+		return fmt.Errorf("invalid value for Message: %v", v)
 	}
 }
 
 type ValidateErrorJSON struct {
-	Details map[string]interface{}   `json:"details"`
-	Message ValidateErrorJSONMessage `json:"message"`
+	Details map[string]interface{} `json:"details"`
+	Message Message                `json:"message"`
 }
 
 func (o *ValidateErrorJSON) GetDetails() map[string]interface{} {
@@ -43,9 +43,9 @@ func (o *ValidateErrorJSON) GetDetails() map[string]interface{} {
 	return o.Details
 }
 
-func (o *ValidateErrorJSON) GetMessage() ValidateErrorJSONMessage {
+func (o *ValidateErrorJSON) GetMessage() Message {
 	if o == nil {
-		return ValidateErrorJSONMessage("")
+		return Message("")
 	}
 	return o.Message
 }

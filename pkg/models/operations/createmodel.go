@@ -9,76 +9,76 @@ import (
 	"net/http"
 )
 
-type CreateModel200ApplicationJSONType string
+type CreateModelResponseBodyType string
 
 const (
-	CreateModel200ApplicationJSONTypeModel               CreateModel200ApplicationJSONType = "Model"
-	CreateModel200ApplicationJSONTypeValidateErrorJSON   CreateModel200ApplicationJSONType = "ValidateErrorJSON"
-	CreateModel200ApplicationJSONTypeInternalServerError CreateModel200ApplicationJSONType = "InternalServerError"
+	CreateModelResponseBodyTypeModel               CreateModelResponseBodyType = "Model"
+	CreateModelResponseBodyTypeValidateErrorJSON   CreateModelResponseBodyType = "ValidateErrorJSON"
+	CreateModelResponseBodyTypeInternalServerError CreateModelResponseBodyType = "InternalServerError"
 )
 
-type CreateModel200ApplicationJSON struct {
+type CreateModelResponseBody struct {
 	Model               *shared.Model
 	ValidateErrorJSON   *shared.ValidateErrorJSON
 	InternalServerError *shared.InternalServerError
 
-	Type CreateModel200ApplicationJSONType
+	Type CreateModelResponseBodyType
 }
 
-func CreateCreateModel200ApplicationJSONModel(model shared.Model) CreateModel200ApplicationJSON {
-	typ := CreateModel200ApplicationJSONTypeModel
+func CreateCreateModelResponseBodyModel(model shared.Model) CreateModelResponseBody {
+	typ := CreateModelResponseBodyTypeModel
 
-	return CreateModel200ApplicationJSON{
+	return CreateModelResponseBody{
 		Model: &model,
 		Type:  typ,
 	}
 }
 
-func CreateCreateModel200ApplicationJSONValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateModel200ApplicationJSON {
-	typ := CreateModel200ApplicationJSONTypeValidateErrorJSON
+func CreateCreateModelResponseBodyValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateModelResponseBody {
+	typ := CreateModelResponseBodyTypeValidateErrorJSON
 
-	return CreateModel200ApplicationJSON{
+	return CreateModelResponseBody{
 		ValidateErrorJSON: &validateErrorJSON,
 		Type:              typ,
 	}
 }
 
-func CreateCreateModel200ApplicationJSONInternalServerError(internalServerError shared.InternalServerError) CreateModel200ApplicationJSON {
-	typ := CreateModel200ApplicationJSONTypeInternalServerError
+func CreateCreateModelResponseBodyInternalServerError(internalServerError shared.InternalServerError) CreateModelResponseBody {
+	typ := CreateModelResponseBodyTypeInternalServerError
 
-	return CreateModel200ApplicationJSON{
+	return CreateModelResponseBody{
 		InternalServerError: &internalServerError,
 		Type:                typ,
 	}
 }
 
-func (u *CreateModel200ApplicationJSON) UnmarshalJSON(data []byte) error {
+func (u *CreateModelResponseBody) UnmarshalJSON(data []byte) error {
 
 	validateErrorJSON := shared.ValidateErrorJSON{}
 	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
 		u.ValidateErrorJSON = &validateErrorJSON
-		u.Type = CreateModel200ApplicationJSONTypeValidateErrorJSON
+		u.Type = CreateModelResponseBodyTypeValidateErrorJSON
 		return nil
 	}
 
 	model := shared.Model{}
 	if err := utils.UnmarshalJSON(data, &model, "", true, true); err == nil {
 		u.Model = &model
-		u.Type = CreateModel200ApplicationJSONTypeModel
+		u.Type = CreateModelResponseBodyTypeModel
 		return nil
 	}
 
 	internalServerError := shared.InternalServerError("")
 	if err := utils.UnmarshalJSON(data, &internalServerError, "", true, true); err == nil {
 		u.InternalServerError = &internalServerError
-		u.Type = CreateModel200ApplicationJSONTypeInternalServerError
+		u.Type = CreateModelResponseBodyTypeInternalServerError
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u CreateModel200ApplicationJSON) MarshalJSON() ([]byte, error) {
+func (u CreateModelResponseBody) MarshalJSON() ([]byte, error) {
 	if u.Model != nil {
 		return utils.MarshalJSON(u.Model, "", true)
 	}
@@ -97,16 +97,12 @@ func (u CreateModel200ApplicationJSON) MarshalJSON() ([]byte, error) {
 type CreateModelResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Ok
-	CreateModel200ApplicationJSONOneOf *CreateModel200ApplicationJSON
-	// Something went wrong
-	InternalServerError *shared.InternalServerError
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Conflict
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	// Ok
+	OneOf *CreateModelResponseBody
 }
 
 func (o *CreateModelResponse) GetContentType() string {
@@ -114,20 +110,6 @@ func (o *CreateModelResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *CreateModelResponse) GetCreateModel200ApplicationJSONOneOf() *CreateModel200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CreateModel200ApplicationJSONOneOf
-}
-
-func (o *CreateModelResponse) GetInternalServerError() *shared.InternalServerError {
-	if o == nil {
-		return nil
-	}
-	return o.InternalServerError
 }
 
 func (o *CreateModelResponse) GetStatusCode() int {
@@ -144,9 +126,9 @@ func (o *CreateModelResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *CreateModelResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+func (o *CreateModelResponse) GetOneOf() *CreateModelResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateErrorJSON
+	return o.OneOf
 }

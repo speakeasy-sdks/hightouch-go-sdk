@@ -28,8 +28,6 @@ type GetSyncSequenceRunResponse struct {
 	RawResponse *http.Response
 	// Ok
 	SyncSequenceStatusOutput *shared.SyncSequenceStatusOutput
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
 }
 
 func (o *GetSyncSequenceRunResponse) GetContentType() string {
@@ -58,11 +56,4 @@ func (o *GetSyncSequenceRunResponse) GetSyncSequenceStatusOutput() *shared.SyncS
 		return nil
 	}
 	return o.SyncSequenceStatusOutput
-}
-
-func (o *GetSyncSequenceRunResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ValidateErrorJSON
 }

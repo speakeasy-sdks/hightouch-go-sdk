@@ -52,7 +52,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
+    res, err := s.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
             "key": "string",
         },
@@ -64,7 +64,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CreateDestination200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -105,7 +105,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.CreateModel(ctx, shared.ModelCreate{
+    res, err := s.CreateModel(ctx, shared.ModelCreate{
         Custom: &shared.ModelCreateCustom{
             Query: "string",
         },
@@ -135,7 +135,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CreateModel200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -176,7 +176,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.CreateSource(ctx, shared.SourceCreate{
+    res, err := s.CreateSource(ctx, shared.SourceCreate{
         Configuration: map[string]interface{}{
             "key": "string",
         },
@@ -188,7 +188,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CreateSource200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -229,7 +229,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.CreateSync(ctx, shared.SyncCreate{
+    res, err := s.CreateSync(ctx, shared.SyncCreate{
         Configuration: map[string]interface{}{
             "key": "string",
         },
@@ -237,12 +237,12 @@ func main() {
         Disabled: false,
         ModelID: "string",
         Schedule: &shared.SyncCreateSchedule{
-            Schedule: shared.CreateSyncCreateScheduleScheduleDBTSchedule(
+            Schedule: shared.CreateSyncCreateSchemasScheduleDBTSchedule(
                     shared.DBTSchedule{
-                        Account: shared.DBTScheduleAccount{
+                        Account: shared.Account{
                             ID: "<ID>",
                         },
-                        Job: shared.DBTScheduleJob{
+                        Job: shared.Job{
                             ID: "<ID>",
                         },
                     },
@@ -255,7 +255,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CreateSync200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -297,7 +297,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.GetDestination(ctx, operations.GetDestinationRequest{
+    res, err := s.GetDestination(ctx, operations.GetDestinationRequest{
         DestinationID: 4856.96,
     })
     if err != nil {
@@ -346,7 +346,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.GetModel(ctx, operations.GetModelRequest{
+    res, err := s.GetModel(ctx, operations.GetModelRequest{
         ModelID: 7962.16,
     })
     if err != nil {
@@ -395,7 +395,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.GetSource(ctx, operations.GetSourceRequest{
+    res, err := s.GetSource(ctx, operations.GetSourceRequest{
         SourceID: 4378.62,
     })
     if err != nil {
@@ -444,7 +444,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.GetSync(ctx, operations.GetSyncRequest{
+    res, err := s.GetSync(ctx, operations.GetSyncRequest{
         SyncID: 7319.86,
     })
     if err != nil {
@@ -493,7 +493,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.GetSyncSequenceRun(ctx, operations.GetSyncSequenceRunRequest{
+    res, err := s.GetSyncSequenceRun(ctx, operations.GetSyncSequenceRunRequest{
         SyncSequenceRunID: "string",
     })
     if err != nil {
@@ -542,12 +542,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListDestination(ctx, operations.ListDestinationRequest{})
+    res, err := s.ListDestination(ctx, operations.ListDestinationRequest{})
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.ListDestination200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -589,12 +589,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListModel(ctx, operations.ListModelRequest{})
+    res, err := s.ListModel(ctx, operations.ListModelRequest{})
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.ListModel200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -636,12 +636,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListSource(ctx, operations.ListSourceRequest{})
+    res, err := s.ListSource(ctx, operations.ListSourceRequest{})
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.ListSource200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -683,12 +683,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListSync(ctx, operations.ListSyncRequest{})
+    res, err := s.ListSync(ctx, operations.ListSyncRequest{})
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.ListSync200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -730,14 +730,14 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
+    res, err := s.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
         SyncID: 8858.62,
     })
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.ListSyncRuns200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -782,7 +782,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.TriggerRun(ctx, operations.TriggerRunRequest{
+    res, err := s.TriggerRun(ctx, operations.TriggerRunRequest{
         TriggerRunInput: &shared.TriggerRunInput{},
         SyncID: "string",
     })
@@ -834,12 +834,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{})
+    res, err := s.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{})
     if err != nil {
         log.Fatal(err)
     }
 
-    if res.TriggerRunCustom200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -879,7 +879,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
+    res, err := s.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
         TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{},
         GraphID: "string",
     })
@@ -932,7 +932,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.TriggerSequenceRun(ctx, operations.TriggerSequenceRunRequest{
+    res, err := s.TriggerSequenceRun(ctx, operations.TriggerSequenceRunRequest{
         SyncSequenceID: "string",
     })
     if err != nil {
@@ -983,7 +983,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.UpdateDestination(ctx, operations.UpdateDestinationRequest{
+    res, err := s.UpdateDestination(ctx, operations.UpdateDestinationRequest{
         DestinationUpdate: shared.DestinationUpdate{
             Configuration: map[string]interface{}{
                 "key": "string",
@@ -995,7 +995,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.UpdateDestination200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -1039,7 +1039,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.UpdateModel(ctx, operations.UpdateModelRequest{
+    res, err := s.UpdateModel(ctx, operations.UpdateModelRequest{
         ModelUpdate: shared.ModelUpdate{
             Custom: &shared.ModelUpdateCustom{
                 Query: "string",
@@ -1066,7 +1066,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.UpdateModel200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -1110,7 +1110,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.UpdateSource(ctx, operations.UpdateSourceRequest{
+    res, err := s.UpdateSource(ctx, operations.UpdateSourceRequest{
         SourceUpdate: shared.SourceUpdate{
             Configuration: map[string]interface{}{
                 "key": "string",
@@ -1122,7 +1122,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.UpdateSource200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -1166,16 +1166,16 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Hightouch.UpdateSync(ctx, operations.UpdateSyncRequest{
+    res, err := s.UpdateSync(ctx, operations.UpdateSyncRequest{
         SyncUpdate: shared.SyncUpdate{
             Configuration: map[string]interface{}{
                 "key": "string",
             },
             Schedule: &shared.SyncUpdateSchedule{
-                Schedule: shared.CreateSyncUpdateScheduleScheduleVisualCronSchedule(
+                Schedule: shared.CreateSyncUpdateSchemasScheduleVisualCronSchedule(
                         shared.VisualCronSchedule{
-                            Expressions: []shared.VisualCronScheduleExpressions{
-                                shared.VisualCronScheduleExpressions{
+                            Expressions: []shared.Expressions{
+                                shared.Expressions{
                                     Days: shared.RecordDayBooleanOrUndefined{},
                                     Time: "string",
                                 },
@@ -1191,7 +1191,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.UpdateSync200ApplicationJSONOneOf != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }

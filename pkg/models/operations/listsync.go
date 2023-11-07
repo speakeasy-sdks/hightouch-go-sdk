@@ -11,22 +11,22 @@ import (
 	"time"
 )
 
-// ListSyncOrderBy - specify the order
-type ListSyncOrderBy string
+// ListSyncQueryParamOrderBy - specify the order
+type ListSyncQueryParamOrderBy string
 
 const (
-	ListSyncOrderByID        ListSyncOrderBy = "id"
-	ListSyncOrderByName      ListSyncOrderBy = "name"
-	ListSyncOrderBySlug      ListSyncOrderBy = "slug"
-	ListSyncOrderByCreatedAt ListSyncOrderBy = "createdAt"
-	ListSyncOrderByUpdatedAt ListSyncOrderBy = "updatedAt"
+	ListSyncQueryParamOrderByID        ListSyncQueryParamOrderBy = "id"
+	ListSyncQueryParamOrderByName      ListSyncQueryParamOrderBy = "name"
+	ListSyncQueryParamOrderBySlug      ListSyncQueryParamOrderBy = "slug"
+	ListSyncQueryParamOrderByCreatedAt ListSyncQueryParamOrderBy = "createdAt"
+	ListSyncQueryParamOrderByUpdatedAt ListSyncQueryParamOrderBy = "updatedAt"
 )
 
-func (e ListSyncOrderBy) ToPointer() *ListSyncOrderBy {
+func (e ListSyncQueryParamOrderBy) ToPointer() *ListSyncQueryParamOrderBy {
 	return &e
 }
 
-func (e *ListSyncOrderBy) UnmarshalJSON(data []byte) error {
+func (e *ListSyncQueryParamOrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -41,10 +41,10 @@ func (e *ListSyncOrderBy) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListSyncOrderBy(v)
+		*e = ListSyncQueryParamOrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSyncOrderBy: %v", v)
+		return fmt.Errorf("invalid value for ListSyncQueryParamOrderBy: %v", v)
 	}
 }
 
@@ -60,7 +60,7 @@ type ListSyncRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// specify the order
-	OrderBy *ListSyncOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *ListSyncQueryParamOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// filter based on slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
@@ -111,7 +111,7 @@ func (o *ListSyncRequest) GetOffset() *float64 {
 	return o.Offset
 }
 
-func (o *ListSyncRequest) GetOrderBy() *ListSyncOrderBy {
+func (o *ListSyncRequest) GetOrderBy() *ListSyncQueryParamOrderBy {
 	if o == nil {
 		return nil
 	}
@@ -125,20 +125,20 @@ func (o *ListSyncRequest) GetSlug() *string {
 	return o.Slug
 }
 
-// ListSync200ApplicationJSON - Ok
-type ListSync200ApplicationJSON struct {
+// ListSyncResponseBody - Ok
+type ListSyncResponseBody struct {
 	Data    []shared.Sync `json:"data"`
 	HasMore bool          `json:"hasMore"`
 }
 
-func (o *ListSync200ApplicationJSON) GetData() []shared.Sync {
+func (o *ListSyncResponseBody) GetData() []shared.Sync {
 	if o == nil {
 		return []shared.Sync{}
 	}
 	return o.Data
 }
 
-func (o *ListSync200ApplicationJSON) GetHasMore() bool {
+func (o *ListSyncResponseBody) GetHasMore() bool {
 	if o == nil {
 		return false
 	}
@@ -148,14 +148,12 @@ func (o *ListSync200ApplicationJSON) GetHasMore() bool {
 type ListSyncResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Ok
-	ListSync200ApplicationJSONObject *ListSync200ApplicationJSON
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	// Ok
+	Object *ListSyncResponseBody
 }
 
 func (o *ListSyncResponse) GetContentType() string {
@@ -163,13 +161,6 @@ func (o *ListSyncResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListSyncResponse) GetListSync200ApplicationJSONObject() *ListSync200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListSync200ApplicationJSONObject
 }
 
 func (o *ListSyncResponse) GetStatusCode() int {
@@ -186,9 +177,9 @@ func (o *ListSyncResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ListSyncResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+func (o *ListSyncResponse) GetObject() *ListSyncResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateErrorJSON
+	return o.Object
 }

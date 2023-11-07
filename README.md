@@ -45,7 +45,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
+	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
 		Configuration: map[string]interface{}{
 			"key": "string",
 		},
@@ -57,7 +57,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if res.CreateDestination200ApplicationJSONOneOf != nil {
+	if res.OneOf != nil {
 		// handle response
 	}
 }
@@ -126,6 +126,44 @@ Here's an example of one such pagination call:
 Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
 
+## Example
+
+```go
+package main
+
+import (
+	"context"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := hightouchgosdk.New(
+		hightouchgosdk.WithSecurity(""),
+	)
+
+	ctx := context.Background()
+	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
+		Configuration: map[string]interface{}{
+			"key": "string",
+		},
+		Name: "string",
+		Slug: "string",
+		Type: "string",
+	})
+	if err != nil {
+
+		var e *sdkerrors.ValidateErrorJSON
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+	}
+}
+
+```
 <!-- End Error Handling -->
 
 
@@ -143,7 +181,6 @@ You can override the default server globally using the `WithServerIndex` option 
 
 For example:
 
-
 ```go
 package main
 
@@ -156,12 +193,12 @@ import (
 
 func main() {
 	s := hightouchgosdk.New(
-		hightouchgosdk.WithSecurity(""),
 		hightouchgosdk.WithServerIndex(0),
+		hightouchgosdk.WithSecurity(""),
 	)
 
 	ctx := context.Background()
-	res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
+	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
 		Configuration: map[string]interface{}{
 			"key": "string",
 		},
@@ -173,7 +210,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if res.CreateDestination200ApplicationJSONOneOf != nil {
+	if res.OneOf != nil {
 		// handle response
 	}
 }
@@ -185,7 +222,6 @@ func main() {
 
 The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
 
-
 ```go
 package main
 
@@ -198,12 +234,12 @@ import (
 
 func main() {
 	s := hightouchgosdk.New(
-		hightouchgosdk.WithSecurity(""),
 		hightouchgosdk.WithServerURL("https://api.hightouch.com/api/v1"),
+		hightouchgosdk.WithSecurity(""),
 	)
 
 	ctx := context.Background()
-	res, err := s.Hightouch.CreateDestination(ctx, shared.DestinationCreate{
+	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
 		Configuration: map[string]interface{}{
 			"key": "string",
 		},
@@ -215,7 +251,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if res.CreateDestination200ApplicationJSONOneOf != nil {
+	if res.OneOf != nil {
 		// handle response
 	}
 }
@@ -253,6 +289,58 @@ var (
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client -->
+
+
+
+<!-- Start Authentication -->
+
+# Authentication
+
+## Per-Client Security Schemes
+
+Your SDK supports the following security scheme globally:
+
+| Name         | Type         | Scheme       |
+| ------------ | ------------ | ------------ |
+| `BearerAuth` | http         | HTTP Bearer  |
+
+You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
+
+```go
+package main
+
+import (
+	"context"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := hightouchgosdk.New(
+		hightouchgosdk.WithSecurity(""),
+	)
+
+	ctx := context.Background()
+	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
+		Configuration: map[string]interface{}{
+			"key": "string",
+		},
+		Name: "string",
+		Slug: "string",
+		Type: "string",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.OneOf != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

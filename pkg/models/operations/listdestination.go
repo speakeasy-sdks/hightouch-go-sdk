@@ -10,22 +10,22 @@ import (
 	"net/http"
 )
 
-// ListDestinationOrderBy - Order the returned destinations
-type ListDestinationOrderBy string
+// OrderBy - Order the returned destinations
+type OrderBy string
 
 const (
-	ListDestinationOrderByID        ListDestinationOrderBy = "id"
-	ListDestinationOrderByName      ListDestinationOrderBy = "name"
-	ListDestinationOrderBySlug      ListDestinationOrderBy = "slug"
-	ListDestinationOrderByCreatedAt ListDestinationOrderBy = "createdAt"
-	ListDestinationOrderByUpdatedAt ListDestinationOrderBy = "updatedAt"
+	OrderByID        OrderBy = "id"
+	OrderByName      OrderBy = "name"
+	OrderBySlug      OrderBy = "slug"
+	OrderByCreatedAt OrderBy = "createdAt"
+	OrderByUpdatedAt OrderBy = "updatedAt"
 )
 
-func (e ListDestinationOrderBy) ToPointer() *ListDestinationOrderBy {
+func (e OrderBy) ToPointer() *OrderBy {
 	return &e
 }
 
-func (e *ListDestinationOrderBy) UnmarshalJSON(data []byte) error {
+func (e *OrderBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -40,10 +40,10 @@ func (e *ListDestinationOrderBy) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "updatedAt":
-		*e = ListDestinationOrderBy(v)
+		*e = OrderBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListDestinationOrderBy: %v", v)
+		return fmt.Errorf("invalid value for OrderBy: %v", v)
 	}
 }
 
@@ -55,7 +55,7 @@ type ListDestinationRequest struct {
 	// set the offset on results (for pagination)
 	Offset *float64 `default:"0" queryParam:"style=form,explode=true,name=offset"`
 	// Order the returned destinations
-	OrderBy *ListDestinationOrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
+	OrderBy *OrderBy `default:"id" queryParam:"style=form,explode=true,name=orderBy"`
 	// Filter based on destination's slug
 	Slug *string `queryParam:"style=form,explode=true,name=slug"`
 }
@@ -92,7 +92,7 @@ func (o *ListDestinationRequest) GetOffset() *float64 {
 	return o.Offset
 }
 
-func (o *ListDestinationRequest) GetOrderBy() *ListDestinationOrderBy {
+func (o *ListDestinationRequest) GetOrderBy() *OrderBy {
 	if o == nil {
 		return nil
 	}
@@ -106,12 +106,12 @@ func (o *ListDestinationRequest) GetSlug() *string {
 	return o.Slug
 }
 
-// ListDestination200ApplicationJSON - Ok
-type ListDestination200ApplicationJSON struct {
+// ListDestinationResponseBody - Ok
+type ListDestinationResponseBody struct {
 	Data []shared.Destination `json:"data"`
 }
 
-func (o *ListDestination200ApplicationJSON) GetData() []shared.Destination {
+func (o *ListDestinationResponseBody) GetData() []shared.Destination {
 	if o == nil {
 		return []shared.Destination{}
 	}
@@ -121,14 +121,12 @@ func (o *ListDestination200ApplicationJSON) GetData() []shared.Destination {
 type ListDestinationResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Ok
-	ListDestination200ApplicationJSONObject *ListDestination200ApplicationJSON
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Validation Failed
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	// Ok
+	Object *ListDestinationResponseBody
 }
 
 func (o *ListDestinationResponse) GetContentType() string {
@@ -136,13 +134,6 @@ func (o *ListDestinationResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *ListDestinationResponse) GetListDestination200ApplicationJSONObject() *ListDestination200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.ListDestination200ApplicationJSONObject
 }
 
 func (o *ListDestinationResponse) GetStatusCode() int {
@@ -159,9 +150,9 @@ func (o *ListDestinationResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ListDestinationResponse) GetValidateErrorJSON() *shared.ValidateErrorJSON {
+func (o *ListDestinationResponse) GetObject() *ListDestinationResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ValidateErrorJSON
+	return o.Object
 }

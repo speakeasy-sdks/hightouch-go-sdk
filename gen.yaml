@@ -2,23 +2,31 @@ configVersion: 1.0.0
 management:
   docChecksum: 7998dbff43d13b24f5ce8289e558ad2e
   docVersion: 1.0.0
-  speakeasyVersion: 1.109.2
-  generationVersion: 2.173.0
+  speakeasyVersion: 1.114.1
+  generationVersion: 2.181.1
 generation:
-  repoURL: https://github.com/speakeasy-sdks/hightouch-go-sdk.git
+  comments: {}
   sdkClassName: hightouch
-  singleTagPerOp: false
-  telemetryEnabled: false
+  repoURL: https://github.com/speakeasy-sdks/hightouch-go-sdk.git
 features:
   go:
     constsAndDefaults: 0.1.1
-    core: 2.94.0
+    core: 3.1.0
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
-    unions: 2.84.1
+    unions: 2.85.0
 go:
-  version: 0.26.1
+  version: 0.27.0
+  clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: pkg/models/callbacks
+      errors: pkg/models/sdkerrors
+      operations: pkg/models/operations
+      shared: pkg/models/shared
+      webhooks: pkg/models/webhooks
   installationURL: https://github.com/speakeasy-sdks/hightouch-go-sdk
   maxMethodParams: 0
   packageName: github.com/speakeasy-sdks/hightouch-go-sdk

@@ -1,19 +1,29 @@
 # SyncSchedule
 
-The scheduling configuration. It can be triggerd based on several ways:
 
-Interval: the sync will be trigged based on certain interval(minutes/hours/days/weeks)
+## Supported Types
 
-Cron: the sync will be trigged based on cron expression https://en.wikipedia.org/wiki/Cron.
+### IntervalSchedule
 
-Visual: the sync will be trigged based a visual cron configuration on UI
+```go
+syncSchedule := shared.CreateSyncScheduleIntervalSchedule(shared.IntervalSchedule{/* values here */})
+```
 
-DBT-cloud: the sync will be trigged based on a dbt cloud job
+### CronSchedule
 
+```go
+syncSchedule := shared.CreateSyncScheduleCronSchedule(shared.CronSchedule{/* values here */})
+```
 
-## Fields
+### VisualCronSchedule
 
-| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `Schedule`                                                          | [SyncScheduleSchedule](../../models/shared/syncscheduleschedule.md) | :heavy_check_mark:                                                  | N/A                                                                 |
-| `Type`                                                              | *string*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
+```go
+syncSchedule := shared.CreateSyncScheduleVisualCronSchedule(shared.VisualCronSchedule{/* values here */})
+```
+
+### DBTSchedule
+
+```go
+syncSchedule := shared.CreateSyncScheduleDBTSchedule(shared.DBTSchedule{/* values here */})
+```
+
