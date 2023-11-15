@@ -47,9 +47,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -103,9 +101,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.CreateModel(ctx, shared.ModelCreate{
@@ -177,9 +173,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.CreateSource(ctx, shared.SourceCreate{
@@ -233,9 +227,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.CreateSync(ctx, shared.SyncCreate{
@@ -304,9 +296,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.GetDestination(ctx, operations.GetDestinationRequest{
@@ -355,9 +345,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.GetModel(ctx, operations.GetModelRequest{
@@ -406,9 +394,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.GetSource(ctx, operations.GetSourceRequest{
@@ -458,9 +444,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.GetSync(ctx, operations.GetSyncRequest{
@@ -509,9 +493,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.GetSyncSequenceRun(ctx, operations.GetSyncSequenceRunRequest{
@@ -561,9 +543,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.ListDestination(ctx, operations.ListDestinationRequest{})
@@ -611,9 +591,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.ListModel(ctx, operations.ListModelRequest{})
@@ -661,9 +639,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.ListSource(ctx, operations.ListSourceRequest{})
@@ -710,9 +686,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.ListSync(ctx, operations.ListSyncRequest{})
@@ -760,9 +734,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
@@ -815,9 +787,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.TriggerRun(ctx, operations.TriggerRunRequest{
@@ -870,9 +840,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{})
@@ -918,9 +886,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
@@ -974,9 +940,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.TriggerSequenceRun(ctx, operations.TriggerSequenceRunRequest{
@@ -1028,9 +992,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.UpdateDestination(ctx, operations.UpdateDestinationRequest{
@@ -1087,9 +1049,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.UpdateModel(ctx, operations.UpdateModelRequest{
@@ -1161,9 +1121,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.UpdateSource(ctx, operations.UpdateSourceRequest{
@@ -1220,9 +1178,7 @@ import(
 )
 
 func main() {
-    s := hightouchgosdk.New(
-        hightouchgosdk.WithSecurity(""),
-    )
+    s := hightouchgosdk.New()
 
     ctx := context.Background()
     res, err := s.UpdateSync(ctx, operations.UpdateSyncRequest{

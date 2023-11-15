@@ -29,6 +29,8 @@ go get github.com/speakeasy-sdks/hightouch-go-sdk
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+### Example
+
 ```go
 package main
 
@@ -40,9 +42,7 @@ import (
 )
 
 func main() {
-	s := hightouchgosdk.New(
-		hightouchgosdk.WithSecurity(""),
-	)
+	s := hightouchgosdk.New()
 
 	ctx := context.Background()
 	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -121,7 +121,7 @@ Here's an example of one such pagination call:
 
 
 <!-- Start Error Handling -->
-# Error Handling
+## Error Handling
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
@@ -130,8 +130,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | sdkerrors.ValidateErrorJSON | 409,422                     | application/json            |
 | sdkerrors.SDKError          | 400-600                     | */*                         |
 
-
-## Example
+### Example
 
 ```go
 package main
@@ -144,9 +143,7 @@ import (
 )
 
 func main() {
-	s := hightouchgosdk.New(
-		hightouchgosdk.WithSecurity(""),
-	)
+	s := hightouchgosdk.New()
 
 	ctx := context.Background()
 	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -179,9 +176,9 @@ func main() {
 
 
 <!-- Start Server Selection -->
-# Server Selection
+## Server Selection
 
-## Select Server by Index
+### Select Server by Index
 
 You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
@@ -189,7 +186,7 @@ You can override the default server globally using the `WithServerIndex` option 
 | - | ------ | --------- |
 | 0 | `https://api.hightouch.com/api/v1` | None |
 
-For example:
+#### Example
 
 ```go
 package main
@@ -204,7 +201,6 @@ import (
 func main() {
 	s := hightouchgosdk.New(
 		hightouchgosdk.WithServerIndex(0),
-		hightouchgosdk.WithSecurity(""),
 	)
 
 	ctx := context.Background()
@@ -228,10 +224,9 @@ func main() {
 ```
 
 
-## Override Server URL Per-Client
+### Override Server URL Per-Client
 
 The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
-
 ```go
 package main
 
@@ -245,7 +240,6 @@ import (
 func main() {
 	s := hightouchgosdk.New(
 		hightouchgosdk.WithServerURL("https://api.hightouch.com/api/v1"),
-		hightouchgosdk.WithSecurity(""),
 	)
 
 	ctx := context.Background()
@@ -272,7 +266,7 @@ func main() {
 
 
 <!-- Start Custom HTTP Client -->
-# Custom HTTP Client
+## Custom HTTP Client
 
 The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
 
@@ -303,9 +297,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 
 <!-- Start Authentication -->
-# Authentication
+## Authentication
 
-## Per-Client Security Schemes
+### Per-Client Security Schemes
 
 This SDK supports the following security scheme globally:
 
@@ -314,7 +308,6 @@ This SDK supports the following security scheme globally:
 | `BearerAuth` | http         | HTTP Bearer  |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
-
 ```go
 package main
 

@@ -1,6 +1,4 @@
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
@@ -12,9 +10,7 @@ import (
 )
 
 func main() {
-	s := hightouchgosdk.New(
-		hightouchgosdk.WithSecurity(""),
-	)
+	s := hightouchgosdk.New()
 
 	ctx := context.Background()
 	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
