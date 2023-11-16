@@ -42,7 +42,9 @@ import (
 )
 
 func main() {
-	s := hightouchgosdk.New()
+	s := hightouchgosdk.New(
+		hightouchgosdk.WithSecurity(""),
+	)
 
 	ctx := context.Background()
 	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -137,13 +139,17 @@ package main
 
 import (
 	"context"
+	"errors"
 	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"log"
 )
 
 func main() {
-	s := hightouchgosdk.New()
+	s := hightouchgosdk.New(
+		hightouchgosdk.WithSecurity(""),
+	)
 
 	ctx := context.Background()
 	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -201,6 +207,7 @@ import (
 func main() {
 	s := hightouchgosdk.New(
 		hightouchgosdk.WithServerIndex(0),
+		hightouchgosdk.WithSecurity(""),
 	)
 
 	ctx := context.Background()
@@ -240,6 +247,7 @@ import (
 func main() {
 	s := hightouchgosdk.New(
 		hightouchgosdk.WithServerURL("https://api.hightouch.com/api/v1"),
+		hightouchgosdk.WithSecurity(""),
 	)
 
 	ctx := context.Background()

@@ -40,14 +40,16 @@ Create a new destination
 package main
 
 import(
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"context"
 	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
@@ -94,14 +96,16 @@ Create a new model
 package main
 
 import(
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"context"
 	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.CreateModel(ctx, shared.ModelCreate{
@@ -166,14 +170,16 @@ Create a new source
 package main
 
 import(
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"context"
 	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.CreateSource(ctx, shared.SourceCreate{
@@ -220,14 +226,16 @@ Create a new sync
 package main
 
 import(
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"context"
 	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.CreateSync(ctx, shared.SyncCreate{
@@ -288,15 +296,17 @@ Retrieve a destination based on its Hightouch ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.GetDestination(ctx, operations.GetDestinationRequest{
@@ -337,15 +347,17 @@ Retrieve models from model ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.GetModel(ctx, operations.GetModelRequest{
@@ -386,15 +398,17 @@ Retrieve source from source ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.GetSource(ctx, operations.GetSourceRequest{
@@ -436,15 +450,17 @@ Retrieve sync from sync ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.GetSync(ctx, operations.GetSyncRequest{
@@ -485,15 +501,17 @@ Get the status of a sync sequence run.
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.GetSyncSequenceRun(ctx, operations.GetSyncSequenceRunRequest{
@@ -535,15 +553,17 @@ List the destinations in the user's workspace
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.ListDestination(ctx, operations.ListDestinationRequest{})
@@ -583,15 +603,17 @@ List all the models in the current workspace including parent and related models
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.ListModel(ctx, operations.ListModelRequest{})
@@ -631,15 +653,17 @@ List all the sources in the current workspace
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.ListSource(ctx, operations.ListSourceRequest{})
@@ -678,15 +702,17 @@ List all the syncs in the current workspace
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.ListSync(ctx, operations.ListSyncRequest{})
@@ -726,15 +752,17 @@ List all sync runs under a sync
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.ListSyncRuns(ctx, operations.ListSyncRunsRequest{
@@ -779,15 +807,17 @@ executed immediately after the current run completes.
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.TriggerRun(ctx, operations.TriggerRunRequest{
@@ -833,14 +863,16 @@ executed immediately after the current run completes.
 package main
 
 import(
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"context"
 	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
-	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.TriggerRunCustom(ctx, shared.TriggerRunCustomInput{})
@@ -878,15 +910,17 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
@@ -932,15 +966,17 @@ executed immediately after the current run completes.
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.TriggerSequenceRun(ctx, operations.TriggerSequenceRunRequest{
@@ -984,15 +1020,17 @@ Patch a destination based on its Hightouch ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.UpdateDestination(ctx, operations.UpdateDestinationRequest{
@@ -1041,15 +1079,17 @@ Patch a model based on its Hightouch ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.UpdateModel(ctx, operations.UpdateModelRequest{
@@ -1113,15 +1153,17 @@ Patch a source based on its Hightouch ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.UpdateSource(ctx, operations.UpdateSourceRequest{
@@ -1170,15 +1212,17 @@ Patch a sync based on its Hightouch ID
 package main
 
 import(
-	"context"
-	"log"
-	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
+	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
+	"context"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
+	"log"
 )
 
 func main() {
-    s := hightouchgosdk.New()
+    s := hightouchgosdk.New(
+        hightouchgosdk.WithSecurity(""),
+    )
 
     ctx := context.Background()
     res, err := s.UpdateSync(ctx, operations.UpdateSyncRequest{

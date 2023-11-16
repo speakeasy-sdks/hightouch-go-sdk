@@ -10,7 +10,9 @@ import (
 )
 
 func main() {
-	s := hightouchgosdk.New()
+	s := hightouchgosdk.New(
+		hightouchgosdk.WithSecurity(""),
+	)
 
 	ctx := context.Background()
 	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
