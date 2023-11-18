@@ -14,7 +14,7 @@ updateSourceResponseBody := operations.CreateUpdateSourceResponseBodySource(shar
 ### ValidateErrorJSON
 
 ```go
-updateSourceResponseBody := operations.CreateUpdateSourceResponseBodyValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
+updateSourceResponseBody := operations.CreateUpdateSourceResponseBodyValidateErrorJSON(sdkerrors.ValidateErrorJSON{/* values here */})
 ```
 
 ### InternalServerError

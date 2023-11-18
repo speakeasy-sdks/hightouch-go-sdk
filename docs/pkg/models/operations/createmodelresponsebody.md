@@ -14,7 +14,7 @@ createModelResponseBody := operations.CreateCreateModelResponseBodyModel(shared.
 ### ValidateErrorJSON
 
 ```go
-createModelResponseBody := operations.CreateCreateModelResponseBodyValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
+createModelResponseBody := operations.CreateCreateModelResponseBodyValidateErrorJSON(sdkerrors.ValidateErrorJSON{/* values here */})
 ```
 
 ### InternalServerError

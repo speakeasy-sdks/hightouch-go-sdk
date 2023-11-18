@@ -4,6 +4,7 @@ package operations
 
 import (
 	"errors"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
@@ -19,7 +20,7 @@ const (
 
 type CreateSyncResponseBody struct {
 	Sync                *shared.Sync
-	ValidateErrorJSON   *shared.ValidateErrorJSON
+	ValidateErrorJSON   *sdkerrors.ValidateErrorJSON
 	InternalServerError *shared.InternalServerError
 
 	Type CreateSyncResponseBodyType
@@ -34,7 +35,7 @@ func CreateCreateSyncResponseBodySync(sync shared.Sync) CreateSyncResponseBody {
 	}
 }
 
-func CreateCreateSyncResponseBodyValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateSyncResponseBody {
+func CreateCreateSyncResponseBodyValidateErrorJSON(validateErrorJSON sdkerrors.ValidateErrorJSON) CreateSyncResponseBody {
 	typ := CreateSyncResponseBodyTypeValidateErrorJSON
 
 	return CreateSyncResponseBody{
@@ -54,17 +55,17 @@ func CreateCreateSyncResponseBodyInternalServerError(internalServerError shared.
 
 func (u *CreateSyncResponseBody) UnmarshalJSON(data []byte) error {
 
-	validateErrorJSON := shared.ValidateErrorJSON{}
-	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
-		u.ValidateErrorJSON = &validateErrorJSON
-		u.Type = CreateSyncResponseBodyTypeValidateErrorJSON
-		return nil
-	}
-
 	sync := shared.Sync{}
 	if err := utils.UnmarshalJSON(data, &sync, "", true, true); err == nil {
 		u.Sync = &sync
 		u.Type = CreateSyncResponseBodyTypeSync
+		return nil
+	}
+
+	validateErrorJSON := sdkerrors.ValidateErrorJSON{}
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = &validateErrorJSON
+		u.Type = CreateSyncResponseBodyTypeValidateErrorJSON
 		return nil
 	}
 

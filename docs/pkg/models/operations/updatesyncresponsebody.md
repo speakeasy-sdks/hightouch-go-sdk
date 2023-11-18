@@ -14,7 +14,7 @@ updateSyncResponseBody := operations.CreateUpdateSyncResponseBodySync(shared.Syn
 ### ValidateErrorJSON
 
 ```go
-updateSyncResponseBody := operations.CreateUpdateSyncResponseBodyValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
+updateSyncResponseBody := operations.CreateUpdateSyncResponseBodyValidateErrorJSON(sdkerrors.ValidateErrorJSON{/* values here */})
 ```
 
 ### InternalServerError

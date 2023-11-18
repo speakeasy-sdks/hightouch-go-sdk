@@ -14,7 +14,7 @@ updateModelResponseBody := operations.CreateUpdateModelResponseBodyModel(shared.
 ### ValidateErrorJSON
 
 ```go
-updateModelResponseBody := operations.CreateUpdateModelResponseBodyValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
+updateModelResponseBody := operations.CreateUpdateModelResponseBodyValidateErrorJSON(sdkerrors.ValidateErrorJSON{/* values here */})
 ```
 
 ### InternalServerError

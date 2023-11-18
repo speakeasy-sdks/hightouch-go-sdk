@@ -4,6 +4,7 @@ package operations
 
 import (
 	"errors"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
@@ -39,7 +40,7 @@ const (
 
 type UpdateDestinationResponseBody struct {
 	Destination         *shared.Destination
-	ValidateErrorJSON   *shared.ValidateErrorJSON
+	ValidateErrorJSON   *sdkerrors.ValidateErrorJSON
 	InternalServerError *shared.InternalServerError
 
 	Type UpdateDestinationResponseBodyType
@@ -54,7 +55,7 @@ func CreateUpdateDestinationResponseBodyDestination(destination shared.Destinati
 	}
 }
 
-func CreateUpdateDestinationResponseBodyValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) UpdateDestinationResponseBody {
+func CreateUpdateDestinationResponseBodyValidateErrorJSON(validateErrorJSON sdkerrors.ValidateErrorJSON) UpdateDestinationResponseBody {
 	typ := UpdateDestinationResponseBodyTypeValidateErrorJSON
 
 	return UpdateDestinationResponseBody{
@@ -74,17 +75,17 @@ func CreateUpdateDestinationResponseBodyInternalServerError(internalServerError 
 
 func (u *UpdateDestinationResponseBody) UnmarshalJSON(data []byte) error {
 
-	validateErrorJSON := shared.ValidateErrorJSON{}
-	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
-		u.ValidateErrorJSON = &validateErrorJSON
-		u.Type = UpdateDestinationResponseBodyTypeValidateErrorJSON
-		return nil
-	}
-
 	destination := shared.Destination{}
 	if err := utils.UnmarshalJSON(data, &destination, "", true, true); err == nil {
 		u.Destination = &destination
 		u.Type = UpdateDestinationResponseBodyTypeDestination
+		return nil
+	}
+
+	validateErrorJSON := sdkerrors.ValidateErrorJSON{}
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = &validateErrorJSON
+		u.Type = UpdateDestinationResponseBodyTypeValidateErrorJSON
 		return nil
 	}
 

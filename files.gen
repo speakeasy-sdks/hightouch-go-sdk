@@ -41,7 +41,6 @@ pkg/utils/utils.go
 /pkg/models/operations/updatesource.go
 /pkg/models/operations/updatesync.go
 /pkg/models/shared/destination.go
-/pkg/models/shared/validateerrorjson.go
 /pkg/models/shared/internalservererror.go
 /pkg/models/shared/destinationcreate.go
 /pkg/models/shared/model.go
@@ -134,8 +133,6 @@ docs/pkg/models/operations/updatesyncrequest.md
 docs/pkg/models/operations/updatesyncresponsebody.md
 docs/pkg/models/operations/updatesyncresponse.md
 docs/pkg/models/shared/destination.md
-docs/pkg/models/shared/message.md
-docs/pkg/models/shared/validateerrorjson.md
 docs/pkg/models/shared/internalservererror.md
 docs/pkg/models/shared/destinationcreate.md
 docs/pkg/models/shared/custom.md

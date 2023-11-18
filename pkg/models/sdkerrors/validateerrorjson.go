@@ -31,6 +31,7 @@ func (e *Message) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// ValidateErrorJSON - Conflict
 type ValidateErrorJSON struct {
 	Details map[string]interface{} `json:"details"`
 	Message Message                `json:"message"`

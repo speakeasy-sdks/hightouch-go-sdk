@@ -4,6 +4,7 @@ package operations
 
 import (
 	"errors"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
@@ -18,7 +19,7 @@ const (
 
 type TriggerRunCustomResponseBody struct {
 	TriggerRunOutput  *shared.TriggerRunOutput
-	ValidateErrorJSON *shared.ValidateErrorJSON
+	ValidateErrorJSON *sdkerrors.ValidateErrorJSON
 
 	Type TriggerRunCustomResponseBodyType
 }
@@ -32,7 +33,7 @@ func CreateTriggerRunCustomResponseBodyTriggerRunOutput(triggerRunOutput shared.
 	}
 }
 
-func CreateTriggerRunCustomResponseBodyValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) TriggerRunCustomResponseBody {
+func CreateTriggerRunCustomResponseBodyValidateErrorJSON(validateErrorJSON sdkerrors.ValidateErrorJSON) TriggerRunCustomResponseBody {
 	typ := TriggerRunCustomResponseBodyTypeValidateErrorJSON
 
 	return TriggerRunCustomResponseBody{
@@ -50,7 +51,7 @@ func (u *TriggerRunCustomResponseBody) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	validateErrorJSON := shared.ValidateErrorJSON{}
+	validateErrorJSON := sdkerrors.ValidateErrorJSON{}
 	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
 		u.ValidateErrorJSON = &validateErrorJSON
 		u.Type = TriggerRunCustomResponseBodyTypeValidateErrorJSON

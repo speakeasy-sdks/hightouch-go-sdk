@@ -14,6 +14,6 @@ triggerRunCustomResponseBody := operations.CreateTriggerRunCustomResponseBodyTri
 ### ValidateErrorJSON
 
 ```go
-triggerRunCustomResponseBody := operations.CreateTriggerRunCustomResponseBodyValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
+triggerRunCustomResponseBody := operations.CreateTriggerRunCustomResponseBodyValidateErrorJSON(sdkerrors.ValidateErrorJSON{/* values here */})
 ```
 

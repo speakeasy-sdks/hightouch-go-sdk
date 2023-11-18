@@ -14,7 +14,7 @@ updateDestinationResponseBody := operations.CreateUpdateDestinationResponseBodyD
 ### ValidateErrorJSON
 
 ```go
-updateDestinationResponseBody := operations.CreateUpdateDestinationResponseBodyValidateErrorJSON(shared.ValidateErrorJSON{/* values here */})
+updateDestinationResponseBody := operations.CreateUpdateDestinationResponseBodyValidateErrorJSON(sdkerrors.ValidateErrorJSON{/* values here */})
 ```
 
 ### InternalServerError

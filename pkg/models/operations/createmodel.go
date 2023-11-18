@@ -4,6 +4,7 @@ package operations
 
 import (
 	"errors"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/sdkerrors"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/utils"
 	"net/http"
@@ -19,7 +20,7 @@ const (
 
 type CreateModelResponseBody struct {
 	Model               *shared.Model
-	ValidateErrorJSON   *shared.ValidateErrorJSON
+	ValidateErrorJSON   *sdkerrors.ValidateErrorJSON
 	InternalServerError *shared.InternalServerError
 
 	Type CreateModelResponseBodyType
@@ -34,7 +35,7 @@ func CreateCreateModelResponseBodyModel(model shared.Model) CreateModelResponseB
 	}
 }
 
-func CreateCreateModelResponseBodyValidateErrorJSON(validateErrorJSON shared.ValidateErrorJSON) CreateModelResponseBody {
+func CreateCreateModelResponseBodyValidateErrorJSON(validateErrorJSON sdkerrors.ValidateErrorJSON) CreateModelResponseBody {
 	typ := CreateModelResponseBodyTypeValidateErrorJSON
 
 	return CreateModelResponseBody{
@@ -54,17 +55,17 @@ func CreateCreateModelResponseBodyInternalServerError(internalServerError shared
 
 func (u *CreateModelResponseBody) UnmarshalJSON(data []byte) error {
 
-	validateErrorJSON := shared.ValidateErrorJSON{}
-	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
-		u.ValidateErrorJSON = &validateErrorJSON
-		u.Type = CreateModelResponseBodyTypeValidateErrorJSON
-		return nil
-	}
-
 	model := shared.Model{}
 	if err := utils.UnmarshalJSON(data, &model, "", true, true); err == nil {
 		u.Model = &model
 		u.Type = CreateModelResponseBodyTypeModel
+		return nil
+	}
+
+	validateErrorJSON := sdkerrors.ValidateErrorJSON{}
+	if err := utils.UnmarshalJSON(data, &validateErrorJSON, "", true, true); err == nil {
+		u.ValidateErrorJSON = &validateErrorJSON
+		u.Type = CreateModelResponseBodyTypeValidateErrorJSON
 		return nil
 	}
 
