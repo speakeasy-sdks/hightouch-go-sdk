@@ -73,7 +73,6 @@ pkg/utils/utils.go
 /pkg/models/shared/syncupdate.go
 /pkg/models/shared/security.go
 /pkg/models/sdkerrors/validateerrorjson.go
-USAGE.md
 docs/pkg/models/operations/createdestinationresponsebody.md
 docs/pkg/models/operations/createdestinationresponse.md
 docs/pkg/models/operations/createmodelresponsebody.md
@@ -195,4 +194,5 @@ docs/pkg/models/shared/security.md
 docs/pkg/models/sdkerrors/message.md
 docs/pkg/models/sdkerrors/validateerrorjson.md
 docs/sdks/hightouch/README.md
+USAGE.md
 .gitattributes
