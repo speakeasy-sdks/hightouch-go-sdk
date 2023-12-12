@@ -11,7 +11,7 @@ import (
 
 func main() {
 	s := hightouchgosdk.New(
-		hightouchgosdk.WithSecurity(""),
+		hightouchgosdk.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
