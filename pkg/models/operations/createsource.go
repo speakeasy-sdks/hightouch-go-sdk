@@ -18,6 +18,7 @@ const (
 	CreateSourceResponseBodyTypeInternalServerError CreateSourceResponseBodyType = "InternalServerError"
 )
 
+// CreateSourceResponseBody - Ok
 type CreateSourceResponseBody struct {
 	Source              *shared.Source
 	ValidateErrorJSON   *sdkerrors.ValidateErrorJSON

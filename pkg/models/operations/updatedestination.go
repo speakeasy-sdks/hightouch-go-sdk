@@ -38,6 +38,7 @@ const (
 	UpdateDestinationResponseBodyTypeInternalServerError UpdateDestinationResponseBodyType = "InternalServerError"
 )
 
+// UpdateDestinationResponseBody - Ok
 type UpdateDestinationResponseBody struct {
 	Destination         *shared.Destination
 	ValidateErrorJSON   *sdkerrors.ValidateErrorJSON

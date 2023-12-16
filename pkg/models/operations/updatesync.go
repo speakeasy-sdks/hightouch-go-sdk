@@ -38,6 +38,7 @@ const (
 	UpdateSyncResponseBodyTypeInternalServerError UpdateSyncResponseBodyType = "InternalServerError"
 )
 
+// UpdateSyncResponseBody - Ok
 type UpdateSyncResponseBody struct {
 	Sync                *shared.Sync
 	ValidateErrorJSON   *sdkerrors.ValidateErrorJSON

@@ -38,6 +38,7 @@ const (
 	UpdateModelResponseBodyTypeInternalServerError UpdateModelResponseBodyType = "InternalServerError"
 )
 
+// UpdateModelResponseBody - Ok
 type UpdateModelResponseBody struct {
 	Model               *shared.Model
 	ValidateErrorJSON   *sdkerrors.ValidateErrorJSON
