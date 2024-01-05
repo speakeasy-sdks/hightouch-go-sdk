@@ -84,7 +84,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 409,422                     | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## CreateModel
 
@@ -158,7 +158,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 409,422                     | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## CreateSource
 
@@ -214,7 +214,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 409,422                     | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## CreateSync
 
@@ -284,7 +284,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 409,422                     | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## GetDestination
 
@@ -335,7 +335,7 @@ func main() {
 **[*operations.GetDestinationResponse](../../pkg/models/operations/getdestinationresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetModel
 
@@ -386,7 +386,7 @@ func main() {
 **[*operations.GetModelResponse](../../pkg/models/operations/getmodelresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSource
 
@@ -438,7 +438,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## GetSync
 
@@ -489,7 +489,7 @@ func main() {
 **[*operations.GetSyncResponse](../../pkg/models/operations/getsyncresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSyncSequenceRun
 
@@ -541,7 +541,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## ListDestination
 
@@ -591,7 +591,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## ListModel
 
@@ -641,7 +641,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## ListSource
 
@@ -690,7 +690,7 @@ func main() {
 **[*operations.ListSourceResponse](../../pkg/models/operations/listsourceresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## ListSync
 
@@ -740,7 +740,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## ListSyncRuns
 
@@ -792,7 +792,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## TriggerRun
 
@@ -848,7 +848,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## TriggerRunCustom
 
@@ -900,7 +900,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## TriggerRunIDGraph
 
@@ -951,7 +951,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## TriggerSequenceRun
 
@@ -1006,7 +1006,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## UpdateDestination
 
@@ -1065,7 +1065,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## UpdateModel
 
@@ -1139,7 +1139,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## UpdateSource
 
@@ -1198,7 +1198,7 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## UpdateSync
 
@@ -1270,4 +1270,4 @@ func main() {
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ValidateErrorJSON | 422                         | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
