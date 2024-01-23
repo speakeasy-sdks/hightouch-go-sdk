@@ -158,15 +158,15 @@ type Sync struct {
 	// The timestamp when the sync was created
 	CreatedAt time.Time `json:"createdAt"`
 	// The id of the Destination that sync is connected to
-	DestinationID string `json:"destinationId"`
+	DestinationID float64 `json:"destinationId"`
 	// Whether the sync has been disabled by the user.
 	Disabled bool `json:"disabled"`
 	// The sync's id
-	ID string `json:"id"`
+	ID float64 `json:"id"`
 	// The timestamp of the last sync run
 	LastRunAt *time.Time `json:"lastRunAt"`
 	// The id of the Model that sync is connected to
-	ModelID string `json:"modelId"`
+	ModelID float64 `json:"modelId"`
 	// The primary key that sync uses to identify data from source
 	PrimaryKey string `json:"primaryKey"`
 	// The reference column that sync depends on to sync data from source
@@ -188,7 +188,7 @@ type Sync struct {
 	// The timestamp when the sync was last updated
 	UpdatedAt time.Time `json:"updatedAt"`
 	// The id of the workspace that the sync belongs to
-	WorkspaceID string `json:"workspaceId"`
+	WorkspaceID float64 `json:"workspaceId"`
 }
 
 func (s Sync) MarshalJSON() ([]byte, error) {
@@ -216,9 +216,9 @@ func (o *Sync) GetCreatedAt() time.Time {
 	return o.CreatedAt
 }
 
-func (o *Sync) GetDestinationID() string {
+func (o *Sync) GetDestinationID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.DestinationID
 }
@@ -230,9 +230,9 @@ func (o *Sync) GetDisabled() bool {
 	return o.Disabled
 }
 
-func (o *Sync) GetID() string {
+func (o *Sync) GetID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ID
 }
@@ -244,9 +244,9 @@ func (o *Sync) GetLastRunAt() *time.Time {
 	return o.LastRunAt
 }
 
-func (o *Sync) GetModelID() string {
+func (o *Sync) GetModelID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ModelID
 }
@@ -293,9 +293,9 @@ func (o *Sync) GetUpdatedAt() time.Time {
 	return o.UpdatedAt
 }
 
-func (o *Sync) GetWorkspaceID() string {
+func (o *Sync) GetWorkspaceID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.WorkspaceID
 }

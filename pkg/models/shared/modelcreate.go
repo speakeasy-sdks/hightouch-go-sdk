@@ -16,12 +16,12 @@ func (o *ModelCreateCustom) GetQuery() interface{} {
 
 type ModelCreateDbt struct {
 	// Model id that refers to a dbt model
-	ModelID string `json:"modelId"`
+	ModelID float64 `json:"modelId"`
 }
 
-func (o *ModelCreateDbt) GetModelID() string {
+func (o *ModelCreateDbt) GetModelID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ModelID
 }
@@ -54,9 +54,9 @@ func (o *ModelCreateTable) GetName() string {
 type ModelCreateVisual struct {
 	Filter interface{} `json:"filter"`
 	// Parent id of the schema that visual query is based on
-	ParentID       string `json:"parentId"`
-	PrimaryLabel   string `json:"primaryLabel"`
-	SecondaryLabel string `json:"secondaryLabel"`
+	ParentID       float64 `json:"parentId"`
+	PrimaryLabel   string  `json:"primaryLabel"`
+	SecondaryLabel string  `json:"secondaryLabel"`
 }
 
 func (o *ModelCreateVisual) GetFilter() interface{} {
@@ -66,9 +66,9 @@ func (o *ModelCreateVisual) GetFilter() interface{} {
 	return o.Filter
 }
 
-func (o *ModelCreateVisual) GetParentID() string {
+func (o *ModelCreateVisual) GetParentID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ParentID
 }
@@ -107,7 +107,7 @@ type ModelCreate struct {
 	// The slug of the model
 	Slug string `json:"slug"`
 	// The id of the source that model is connected to
-	SourceID string `json:"sourceId"`
+	SourceID float64 `json:"sourceId"`
 	// Table-based query that fetches on a table instead of SQL
 	Table *ModelCreateTable `json:"table,omitempty"`
 	// Visual query, used by audience
@@ -177,9 +177,9 @@ func (o *ModelCreate) GetSlug() string {
 	return o.Slug
 }
 
-func (o *ModelCreate) GetSourceID() string {
+func (o *ModelCreate) GetSourceID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.SourceID
 }

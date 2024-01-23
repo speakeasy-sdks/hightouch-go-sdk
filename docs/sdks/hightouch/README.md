@@ -113,7 +113,7 @@ func main() {
             Query: "string",
         },
         Dbt: &shared.ModelCreateDbt{
-            ModelID: "string",
+            ModelID: 8761.56,
         },
         IsSchema: false,
         Name: "string",
@@ -123,13 +123,13 @@ func main() {
             SQL: "string",
         },
         Slug: "string",
-        SourceID: "string",
+        SourceID: 9991.44,
         Table: &shared.ModelCreateTable{
             Name: "string",
         },
         Visual: &shared.ModelCreateVisual{
             Filter: "string",
-            ParentID: "string",
+            ParentID: 5748.68,
             PrimaryLabel: "string",
             SecondaryLabel: "string",
         },
@@ -242,18 +242,13 @@ func main() {
         Configuration: map[string]interface{}{
             "key": "string",
         },
-        DestinationID: "string",
+        DestinationID: 8797.77,
         Disabled: false,
-        ModelID: "string",
+        ModelID: 2438.5,
         Schedule: &shared.SyncCreateSchedule{
-            Schedule: shared.CreateSyncCreateSchemasScheduleDBTSchedule(
-                    shared.DBTSchedule{
-                        Account: shared.Account{
-                            ID: "<ID>",
-                        },
-                        Job: shared.Job{
-                            ID: "<ID>",
-                        },
+            Schedule: shared.CreateSyncCreateSchemasScheduleCronSchedule(
+                    shared.CronSchedule{
+                        Expression: "string",
                     },
             ),
             Type: "string",
@@ -1098,7 +1093,7 @@ func main() {
                 Query: "string",
             },
             Dbt: &shared.ModelUpdateDbt{
-                ModelID: "string",
+                ModelID: 1027.03,
             },
             Raw: &shared.ModelUpdateRaw{
                 SQL: "string",
@@ -1108,12 +1103,12 @@ func main() {
             },
             Visual: &shared.ModelUpdateVisual{
                 Filter: "string",
-                ParentID: "string",
+                ParentID: 4048.47,
                 PrimaryLabel: "string",
                 SecondaryLabel: "string",
             },
         },
-        ModelID: 1027.03,
+        ModelID: 7828.84,
     })
     if err != nil {
         log.Fatal(err)

@@ -153,11 +153,11 @@ type SyncCreate struct {
 	// configuration. It may change as Hightouch updates its internal code.
 	Configuration map[string]interface{} `json:"configuration"`
 	// The id of the Destination that sync is connected to
-	DestinationID string `json:"destinationId"`
+	DestinationID float64 `json:"destinationId"`
 	// Whether the sync has been disabled by the user.
 	Disabled bool `json:"disabled"`
 	// The id of the Model that sync is connected to
-	ModelID string `json:"modelId"`
+	ModelID float64 `json:"modelId"`
 	// The scheduling configuration. It can be triggerd based on several ways:
 	//
 	// Interval: the sync will be trigged based on certain interval(minutes/hours/days/weeks)
@@ -179,9 +179,9 @@ func (o *SyncCreate) GetConfiguration() map[string]interface{} {
 	return o.Configuration
 }
 
-func (o *SyncCreate) GetDestinationID() string {
+func (o *SyncCreate) GetDestinationID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.DestinationID
 }
@@ -193,9 +193,9 @@ func (o *SyncCreate) GetDisabled() bool {
 	return o.Disabled
 }
 
-func (o *SyncCreate) GetModelID() string {
+func (o *SyncCreate) GetModelID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ModelID
 }

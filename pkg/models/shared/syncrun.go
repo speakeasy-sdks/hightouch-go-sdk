@@ -126,7 +126,7 @@ type SyncRun struct {
 	// The timestamp when the sync run finished
 	FinishedAt time.Time `json:"finishedAt"`
 	// The sync run's id
-	ID string `json:"id"`
+	ID float64 `json:"id"`
 	// The number of planned rows that this sync run was supposed to execute.
 	//
 	// Note that the counts for `successfulRows` and `failedRows` may not add up
@@ -188,9 +188,9 @@ func (o *SyncRun) GetFinishedAt() time.Time {
 	return o.FinishedAt
 }
 
-func (o *SyncRun) GetID() string {
+func (o *SyncRun) GetID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ID
 }

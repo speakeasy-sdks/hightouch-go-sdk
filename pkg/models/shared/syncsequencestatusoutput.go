@@ -6,8 +6,8 @@ type SyncRuns struct {
 	FinishedAt string `json:"finishedAt"`
 	// The status of sync runs
 	Status    SyncRunStatus `json:"status"`
-	SyncID    string        `json:"syncId"`
-	SyncRunID string        `json:"syncRunId"`
+	SyncID    float64       `json:"syncId"`
+	SyncRunID float64       `json:"syncRunId"`
 }
 
 func (o *SyncRuns) GetFinishedAt() string {
@@ -24,16 +24,16 @@ func (o *SyncRuns) GetStatus() SyncRunStatus {
 	return o.Status
 }
 
-func (o *SyncRuns) GetSyncID() string {
+func (o *SyncRuns) GetSyncID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.SyncID
 }
 
-func (o *SyncRuns) GetSyncRunID() string {
+func (o *SyncRuns) GetSyncRunID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.SyncRunID
 }

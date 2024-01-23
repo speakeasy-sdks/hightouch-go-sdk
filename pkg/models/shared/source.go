@@ -21,7 +21,7 @@ type Source struct {
 	// The timestamp when the source was created
 	CreatedAt time.Time `json:"createdAt"`
 	// The source's id
-	ID string `json:"id"`
+	ID float64 `json:"id"`
 	// The source's name
 	Name string `json:"name"`
 	// The source's slug
@@ -31,7 +31,7 @@ type Source struct {
 	// The timestamp when the source was last updated
 	UpdatedAt time.Time `json:"updatedAt"`
 	// The id of the workspace that the source belongs to
-	WorkspaceID string `json:"workspaceId"`
+	WorkspaceID float64 `json:"workspaceId"`
 }
 
 func (s Source) MarshalJSON() ([]byte, error) {
@@ -59,9 +59,9 @@ func (o *Source) GetCreatedAt() time.Time {
 	return o.CreatedAt
 }
 
-func (o *Source) GetID() string {
+func (o *Source) GetID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ID
 }
@@ -94,9 +94,9 @@ func (o *Source) GetUpdatedAt() time.Time {
 	return o.UpdatedAt
 }
 
-func (o *Source) GetWorkspaceID() string {
+func (o *Source) GetWorkspaceID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.WorkspaceID
 }

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0a1408aa-fb18-4c26-97e1-886d5527ecaf
 management:
-  docChecksum: 7998dbff43d13b24f5ce8289e558ad2e
+  docChecksum: 0dd32241bcd639c7e99747c1a7b3780d
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: 0.28.3
-  configChecksum: c655f018b0943d92cb8bb1938f77995d
+  generationVersion: 2.237.3
+  releaseVersion: 0.28.4
+  configChecksum: aae19361eb4588af2262cf4371ac6292
   repoURL: https://github.com/speakeasy-sdks/hightouch-go-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/hightouch-go-sdk

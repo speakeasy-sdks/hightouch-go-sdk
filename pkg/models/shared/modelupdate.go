@@ -16,12 +16,12 @@ func (o *ModelUpdateCustom) GetQuery() interface{} {
 
 type ModelUpdateDbt struct {
 	// Model id that refers to a dbt model
-	ModelID string `json:"modelId"`
+	ModelID float64 `json:"modelId"`
 }
 
-func (o *ModelUpdateDbt) GetModelID() string {
+func (o *ModelUpdateDbt) GetModelID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ModelID
 }
@@ -54,9 +54,9 @@ func (o *ModelUpdateTable) GetName() string {
 type ModelUpdateVisual struct {
 	Filter interface{} `json:"filter"`
 	// Parent id of the schema that visual query is based on
-	ParentID       string `json:"parentId"`
-	PrimaryLabel   string `json:"primaryLabel"`
-	SecondaryLabel string `json:"secondaryLabel"`
+	ParentID       float64 `json:"parentId"`
+	PrimaryLabel   string  `json:"primaryLabel"`
+	SecondaryLabel string  `json:"secondaryLabel"`
 }
 
 func (o *ModelUpdateVisual) GetFilter() interface{} {
@@ -66,9 +66,9 @@ func (o *ModelUpdateVisual) GetFilter() interface{} {
 	return o.Filter
 }
 
-func (o *ModelUpdateVisual) GetParentID() string {
+func (o *ModelUpdateVisual) GetParentID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ParentID
 }

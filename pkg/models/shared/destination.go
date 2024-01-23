@@ -21,19 +21,19 @@ type Destination struct {
 	// The timestamp when the destination was created
 	CreatedAt time.Time `json:"createdAt"`
 	// The destination's id
-	ID string `json:"id"`
+	ID float64 `json:"id"`
 	// The destination's name
 	Name string `json:"name"`
 	// The destination's slug
 	Slug string `json:"slug"`
 	// A list of syncs that sync to this destination.
-	Syncs []string `json:"syncs"`
+	Syncs []float64 `json:"syncs"`
 	// The destination's type (e.g. salesforce or hubspot).
 	Type string `json:"type"`
 	// The timestamp when the destination was last updated
 	UpdatedAt time.Time `json:"updatedAt"`
 	// The id of the workspace that the destination belongs to
-	WorkspaceID string `json:"workspaceId"`
+	WorkspaceID float64 `json:"workspaceId"`
 }
 
 func (d Destination) MarshalJSON() ([]byte, error) {
@@ -61,9 +61,9 @@ func (o *Destination) GetCreatedAt() time.Time {
 	return o.CreatedAt
 }
 
-func (o *Destination) GetID() string {
+func (o *Destination) GetID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.ID
 }
@@ -82,9 +82,9 @@ func (o *Destination) GetSlug() string {
 	return o.Slug
 }
 
-func (o *Destination) GetSyncs() []string {
+func (o *Destination) GetSyncs() []float64 {
 	if o == nil {
-		return []string{}
+		return []float64{}
 	}
 	return o.Syncs
 }
@@ -103,9 +103,9 @@ func (o *Destination) GetUpdatedAt() time.Time {
 	return o.UpdatedAt
 }
 
-func (o *Destination) GetWorkspaceID() string {
+func (o *Destination) GetWorkspaceID() float64 {
 	if o == nil {
-		return ""
+		return 0.0
 	}
 	return o.WorkspaceID
 }
