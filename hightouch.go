@@ -123,6 +123,15 @@ func WithSecurity(bearerAuth string) SDKOption {
 	}
 }
 
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (shared.Security, error)) SDKOption {
+	return func(sdk *Hightouch) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
+	}
+}
+
 func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
 	return func(sdk *Hightouch) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -135,9 +144,9 @@ func New(opts ...SDKOption) *Hightouch {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.28.4",
-			GenVersion:        "2.237.3",
-			UserAgent:         "speakeasy-sdk/go 0.28.4 2.237.3 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
+			SDKVersion:        "0.28.5",
+			GenVersion:        "2.245.1",
+			UserAgent:         "speakeasy-sdk/go 0.28.5 2.245.1 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
 		},
 	}
 	for _, opt := range opts {
