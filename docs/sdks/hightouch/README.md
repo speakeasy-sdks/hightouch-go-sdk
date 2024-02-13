@@ -109,30 +109,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.CreateModel(ctx, shared.ModelCreate{
-        Custom: &shared.ModelCreateCustom{
-            Query: "string",
-        },
-        Dbt: &shared.ModelCreateDbt{
-            ModelID: 8761.56,
-        },
         IsSchema: false,
         Name: "string",
         PrimaryKey: "string",
         QueryType: "string",
-        Raw: &shared.ModelCreateRaw{
-            SQL: "string",
-        },
         Slug: "string",
-        SourceID: 9991.44,
-        Table: &shared.ModelCreateTable{
-            Name: "string",
-        },
-        Visual: &shared.ModelCreateVisual{
-            Filter: "string",
-            ParentID: 5748.68,
-            PrimaryLabel: "string",
-            SecondaryLabel: "string",
-        },
+        SourceID: 8761.56,
     })
     if err != nil {
         log.Fatal(err)
@@ -816,7 +798,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.TriggerRun(ctx, operations.TriggerRunRequest{
-        TriggerRunInput: &shared.TriggerRunInput{},
         SyncID: "string",
     })
     if err != nil {
@@ -919,7 +900,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
-        TriggerRunIDGraphInput: &shared.TriggerRunIDGraphInput{},
         GraphID: "string",
     })
     if err != nil {
@@ -1029,11 +1009,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.UpdateDestination(ctx, operations.UpdateDestinationRequest{
-        DestinationUpdate: shared.DestinationUpdate{
-            Configuration: map[string]interface{}{
-                "key": "string",
-            },
-        },
+        DestinationUpdate: shared.DestinationUpdate{},
         DestinationID: 8928.88,
     })
     if err != nil {
@@ -1088,27 +1064,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.UpdateModel(ctx, operations.UpdateModelRequest{
-        ModelUpdate: shared.ModelUpdate{
-            Custom: &shared.ModelUpdateCustom{
-                Query: "string",
-            },
-            Dbt: &shared.ModelUpdateDbt{
-                ModelID: 1027.03,
-            },
-            Raw: &shared.ModelUpdateRaw{
-                SQL: "string",
-            },
-            Table: &shared.ModelUpdateTable{
-                Name: "string",
-            },
-            Visual: &shared.ModelUpdateVisual{
-                Filter: "string",
-                ParentID: 4048.47,
-                PrimaryLabel: "string",
-                SecondaryLabel: "string",
-            },
-        },
-        ModelID: 7828.84,
+        ModelUpdate: shared.ModelUpdate{},
+        ModelID: 1027.03,
     })
     if err != nil {
         log.Fatal(err)
@@ -1162,11 +1119,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.UpdateSource(ctx, operations.UpdateSourceRequest{
-        SourceUpdate: shared.SourceUpdate{
-            Configuration: map[string]interface{}{
-                "key": "string",
-            },
-        },
+        SourceUpdate: shared.SourceUpdate{},
         SourceID: 6585.68,
     })
     if err != nil {
@@ -1221,25 +1174,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.UpdateSync(ctx, operations.UpdateSyncRequest{
-        SyncUpdate: shared.SyncUpdate{
-            Configuration: map[string]interface{}{
-                "key": "string",
-            },
-            Schedule: &shared.SyncUpdateSchedule{
-                Schedule: shared.CreateSyncUpdateSchemasScheduleVisualCronSchedule(
-                        shared.VisualCronSchedule{
-                            Expressions: []shared.Expressions{
-                                shared.Expressions{
-                                    Days: shared.RecordDayBooleanOrUndefined{},
-                                    Time: "string",
-                                },
-                            },
-                        },
-                ),
-                Type: "string",
-            },
-        },
-        SyncID: 1402.89,
+        SyncUpdate: shared.SyncUpdate{},
+        SyncID: 5066.51,
     })
     if err != nil {
         log.Fatal(err)
