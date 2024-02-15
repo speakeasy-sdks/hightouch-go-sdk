@@ -17,11 +17,11 @@ func main() {
 	ctx := context.Background()
 	res, err := s.CreateDestination(ctx, shared.DestinationCreate{
 		Configuration: map[string]interface{}{
-			"key": "string",
+			"key": "<value>",
 		},
-		Name: "string",
-		Slug: "string",
-		Type: "string",
+		Name: "<value>",
+		Slug: "<value>",
+		Type: "<value>",
 	})
 	if err != nil {
 		log.Fatal(err)

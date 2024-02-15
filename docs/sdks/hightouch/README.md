@@ -54,11 +54,11 @@ func main() {
     ctx := context.Background()
     res, err := s.CreateDestination(ctx, shared.DestinationCreate{
         Configuration: map[string]interface{}{
-            "key": "string",
+            "key": "<value>",
         },
-        Name: "string",
-        Slug: "string",
-        Type: "string",
+        Name: "<value>",
+        Slug: "<value>",
+        Type: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -110,10 +110,10 @@ func main() {
     ctx := context.Background()
     res, err := s.CreateModel(ctx, shared.ModelCreate{
         IsSchema: false,
-        Name: "string",
-        PrimaryKey: "string",
-        QueryType: "string",
-        Slug: "string",
+        Name: "<value>",
+        PrimaryKey: "<value>",
+        QueryType: "<value>",
+        Slug: "<value>",
         SourceID: 8761.56,
     })
     if err != nil {
@@ -166,11 +166,11 @@ func main() {
     ctx := context.Background()
     res, err := s.CreateSource(ctx, shared.SourceCreate{
         Configuration: map[string]interface{}{
-            "key": "string",
+            "key": "<value>",
         },
-        Name: "string",
-        Slug: "string",
-        Type: "string",
+        Name: "<value>",
+        Slug: "<value>",
+        Type: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -222,7 +222,7 @@ func main() {
     ctx := context.Background()
     res, err := s.CreateSync(ctx, shared.SyncCreate{
         Configuration: map[string]interface{}{
-            "key": "string",
+            "key": "<value>",
         },
         DestinationID: 8797.77,
         Disabled: false,
@@ -230,12 +230,12 @@ func main() {
         Schedule: &shared.SyncCreateSchedule{
             Schedule: shared.CreateSyncCreateSchemasScheduleCronSchedule(
                     shared.CronSchedule{
-                        Expression: "string",
+                        Expression: "<value>",
                     },
             ),
-            Type: "string",
+            Type: "<value>",
         },
-        Slug: "string",
+        Slug: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -492,7 +492,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.GetSyncSequenceRun(ctx, operations.GetSyncSequenceRunRequest{
-        SyncSequenceRunID: "string",
+        SyncSequenceRunID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -798,7 +798,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.TriggerRun(ctx, operations.TriggerRunRequest{
-        SyncID: "string",
+        SyncID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -900,7 +900,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.TriggerRunIDGraph(ctx, operations.TriggerRunIDGraphRequest{
-        GraphID: "string",
+        GraphID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -955,7 +955,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.TriggerSequenceRun(ctx, operations.TriggerSequenceRunRequest{
-        SyncSequenceID: "string",
+        SyncSequenceID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
