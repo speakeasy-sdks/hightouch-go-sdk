@@ -4,9 +4,9 @@ management:
   docChecksum: 0dd32241bcd639c7e99747c1a7b3780d
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.258.0
-  releaseVersion: 0.30.0
-  configChecksum: 0ce1df34a631f3f211d12f2906a5be2f
+  generationVersion: 2.263.3
+  releaseVersion: 0.30.1
+  configChecksum: 6f1141fab7aedcedfbe00b87aa68fbf6
   repoURL: https://github.com/speakeasy-sdks/hightouch-go-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/hightouch-go-sdk
@@ -14,14 +14,13 @@ management:
 features:
   go:
     constsAndDefaults: 0.1.3
-    core: 3.4.0
+    core: 3.4.1
     globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
     unions: 2.85.3
 generatedFiles:
   - hightouch.go
   - go.mod
-  - go.sum
   - pkg/models/sdkerrors/sdkerror.go
   - pkg/types/bigint.go
   - pkg/types/date.go
