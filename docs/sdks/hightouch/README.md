@@ -63,7 +63,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -119,7 +118,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -175,7 +173,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -240,7 +237,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -292,7 +288,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Destination != nil {
         // handle response
     }
@@ -343,7 +338,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Model != nil {
         // handle response
     }
@@ -394,7 +388,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Source != nil {
         // handle response
     }
@@ -446,7 +439,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Sync != nil {
         // handle response
     }
@@ -497,7 +489,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncSequenceStatusOutput != nil {
         // handle response
     }
@@ -547,7 +538,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -597,7 +587,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -647,7 +636,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -696,7 +684,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -748,7 +735,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -803,7 +789,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.TriggerRunOutput != nil {
         // handle response
     }
@@ -855,7 +840,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -905,7 +889,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.TriggerRunIDGraphOutput != nil {
         // handle response
     }
@@ -960,7 +943,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.TriggerSequenceRunOutput != nil {
         // handle response
     }
@@ -1015,7 +997,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -1070,7 +1051,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -1125,7 +1105,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
@@ -1180,7 +1159,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.OneOf != nil {
         // handle response
     }
