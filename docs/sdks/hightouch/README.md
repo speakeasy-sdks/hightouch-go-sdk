@@ -98,6 +98,7 @@ import(
 	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/shared"
 	hightouchgosdk "github.com/speakeasy-sdks/hightouch-go-sdk"
 	"context"
+	"github.com/speakeasy-sdks/hightouch-go-sdk/pkg/models/operations"
 	"log"
 )
 
@@ -107,13 +108,15 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.CreateModel(ctx, shared.ModelCreate{
-        IsSchema: false,
-        Name: "<value>",
-        PrimaryKey: "<value>",
-        QueryType: "<value>",
-        Slug: "<value>",
-        SourceID: 8761.56,
+    res, err := s.CreateModel(ctx, operations.CreateModelRequest{
+        ModelCreate: shared.ModelCreate{
+            IsSchema: false,
+            Name: "<value>",
+            PrimaryKey: "<value>",
+            QueryType: "<value>",
+            Slug: "<value>",
+            SourceID: 8761.56,
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -126,10 +129,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
-| `request`                                                    | [shared.ModelCreate](../../pkg/models/shared/modelcreate.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.CreateModelRequest](../../pkg/models/operations/createmodelrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 
 ### Response

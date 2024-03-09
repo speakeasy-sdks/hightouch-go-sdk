@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0a1408aa-fb18-4c26-97e1-886d5527ecaf
 management:
-  docChecksum: 0dd32241bcd639c7e99747c1a7b3780d
+  docChecksum: 8a72152156319b55ebd9dd4cff488703
   docVersion: 1.0.0
-  speakeasyVersion: 1.204.1
+  speakeasyVersion: 1.205.0
   generationVersion: 2.279.1
-  releaseVersion: 0.31.0
-  configChecksum: 1286415ef59afa12a8a98fb81c6236b9
+  releaseVersion: 0.31.1
+  configChecksum: 02d2b0ab533bef997172e71f2c00fd2f
   repoURL: https://github.com/speakeasy-sdks/hightouch-go-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/hightouch-go-sdk
@@ -95,6 +95,7 @@ generatedFiles:
   - /pkg/models/sdkerrors/validateerrorjson.go
   - docs/pkg/models/operations/createdestinationresponsebody.md
   - docs/pkg/models/operations/createdestinationresponse.md
+  - docs/pkg/models/operations/createmodelrequest.md
   - docs/pkg/models/operations/createmodelresponsebody.md
   - docs/pkg/models/operations/createmodelresponse.md
   - docs/pkg/models/operations/createsourceresponsebody.md

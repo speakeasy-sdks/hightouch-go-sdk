@@ -145,9 +145,9 @@ func New(opts ...SDKOption) *Hightouch {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.31.0",
+			SDKVersion:        "0.31.1",
 			GenVersion:        "2.279.1",
-			UserAgent:         "speakeasy-sdk/go 0.31.0 2.279.1 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
+			UserAgent:         "speakeasy-sdk/go 0.31.1 2.279.1 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -286,7 +286,7 @@ func (s *Hightouch) CreateDestination(ctx context.Context, request shared.Destin
 
 // CreateModel - Create Model
 // Create a new model
-func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate) (*operations.CreateModelResponse, error) {
+func (s *Hightouch) CreateModel(ctx context.Context, request operations.CreateModelRequest) (*operations.CreateModelResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "CreateModel",
@@ -299,7 +299,7 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate)
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "ModelCreate", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -311,6 +311,10 @@ func (s *Hightouch) CreateModel(ctx context.Context, request shared.ModelCreate)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

@@ -10,6 +10,36 @@ import (
 	"net/http"
 )
 
+type CreateModelRequest struct {
+	ModelCreate     shared.ModelCreate `request:"mediaType=application/json"`
+	SkipColumnQuery *bool              `default:"false" queryParam:"style=form,explode=true,name=skipColumnQuery"`
+}
+
+func (c CreateModelRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateModelRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *CreateModelRequest) GetModelCreate() shared.ModelCreate {
+	if o == nil {
+		return shared.ModelCreate{}
+	}
+	return o.ModelCreate
+}
+
+func (o *CreateModelRequest) GetSkipColumnQuery() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SkipColumnQuery
+}
+
 type CreateModelResponseBodyType string
 
 const (
