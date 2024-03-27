@@ -145,9 +145,9 @@ func New(opts ...SDKOption) *Hightouch {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.31.3",
-			GenVersion:        "2.283.1",
-			UserAgent:         "speakeasy-sdk/go 0.31.3 2.283.1 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
+			SDKVersion:        "0.31.4",
+			GenVersion:        "2.291.0",
+			UserAgent:         "speakeasy-sdk/go 0.31.4 2.291.0 1.0.0 github.com/speakeasy-sdks/hightouch-go-sdk",
 			Hooks:             hooks.New(),
 		},
 	}
